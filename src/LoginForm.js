@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Icon from '@mui/material/Icon';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -43,6 +44,7 @@ function LoginForm(){
             type = "password"
             onChange = {()=>setPasscode()}
             value = {passcode}
+            autoComplete="off"
             placeholder = "Pass Code"
             name = "passcode"
           />
@@ -53,6 +55,7 @@ function LoginForm(){
          type = "submit"
          onClick = {()=>handleSubmit()}>Login</button>
        </form>
+       <Icon>star</Icon>;
     </div>
   );
 }
