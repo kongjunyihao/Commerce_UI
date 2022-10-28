@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+nav {
+    display: flex;
+    border: 2em black solid;
+    justify-content: center;
+    align-items: center;
+    width: 100 vw;
+    height: 4em;
+    background-color: white;
+    margin: 1em;
+}
+nav button {
+    border: 2em black solid;
+}
+nav .rightShift {
+    margin-left: auto;
+}
+.searchBar {
+    border: 2em black solid;
+    margin: 1em;
+}
+
+.topDeals {
+    border: 2em black solid;
+    height: 200px;
+    background-color: white;
+    color: black;
+    margin: 1em;
+}
+
+.featuredItem {
+    border: 2em black solid;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow: scroll;
+    height: 200px;
+    background-color: white;
+    color: black;
+    margin: 1em;
+}
+
+.mainProduct {
+    border: 2em black solid;
+    height: 200px;
+    background-color: white;
+    color: black;
+    margin: 1em;
+}
+footer {
+    height: 4em;
+}
