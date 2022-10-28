@@ -60,23 +60,27 @@ export default function SignUp() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
+                  margin="normal"
                   required
                   fullWidth
                   id="firstName"
+                  name="firstName"
                   label="First Name"
+                  autoComplete="given-name"
+                  variant="standard"
                   autoFocus
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  margin="normal"
                   required
                   fullWidth
                   id="lastName"
-                  label="Last Name"
                   name="lastName"
+                  label="Last Name"
                   autoComplete="family-name"
+                  variant="standard"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -84,20 +88,45 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
                   name="email"
+                  label="Email Address"
                   autoComplete="email"
+                  variant="standard"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
+                  id="phone number"
+                  label="Phone Number"
+                  name="phone number"
+                  autoComplete="mobile-phone-number"
+                  variant="standard"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="password"
                   name="password"
                   label="Password"
                   type="password"
-                  id="password"
                   autoComplete="new-password"
+                  variant="standard"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="new password"
+                  name="verify new password"
+                  label="Verify New Password"
+                  type="password"
+                  autoComplete="verify-new-password"
+                  variant="standard"
                 />
               </Grid>
               <Grid item xs={12}>
