@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
+import { Alert } from '@mui/material';
 
 function Copyright(props) {
   return (
@@ -32,15 +33,32 @@ const theme = createTheme();
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [emailEmpty, setEmailEmpty] = useState(true);
+  const [passwordEmpty, setPasswordEmpty] = useState(true);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    if(emailEmpty === false && passwordEmpty === false){
+      console.log(email, password);
+      setIsSubmitted(true);
+    }
+    // const data = new FormData(event.currentTarget);
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
   };
+
+  const EmailInput = (value) => {
+    setEmail(value);
+    setEmailEmpty(false);
+  }
+
+  const PasswordInput = (value) => {
+    setPassword(value);
+    setPasswordEmpty(false);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -61,6 +79,7 @@ export default function SignIn() {
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
+            {isSubmitted&&<Alert severity="success">Success! Thank you for signing in</Alert>}
             <TextField
               margin="normal"
               required
@@ -71,8 +90,9 @@ export default function SignIn() {
               autoComplete="email"
               variant="standard"
               autoFocus
+              onChange={(e)=>EmailInput(e.target.value)}
             />
-            {}
+            {emailEmpty?<div style={{color: 'red'}}>Email required!</div>:''}
             <TextField
               margin="normal"
               required
@@ -82,8 +102,10 @@ export default function SignIn() {
               type="password"
               autoComplete="current-password"
               variant="standard"
+              autoFocus
+              onChange={(e)=>PasswordInput(e.target.value)}
             />
-            {}
+            {passwordEmpty?<div style={{color: 'red'}}>Password required!</div>:''}
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
