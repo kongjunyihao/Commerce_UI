@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { useState, useContext } from 'react';
+import { commerceContext } from './App';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,8 +15,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
 import { Alert } from '@mui/material';
+
 
 function Copyright(props) {
   return (
@@ -31,6 +34,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+  const signIn = useContext(commerceContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);

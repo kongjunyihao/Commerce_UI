@@ -12,8 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Alert } from '@mui/material';
+import { commerceContext } from './App';
 
 // function Copyright(props) {
 //   return (
@@ -31,6 +32,8 @@ import { Alert } from '@mui/material';
 const theme = createTheme();
 
 export default function SignUp() {
+  const signUp = useContext(commerceContext);
+  
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -43,17 +46,20 @@ export default function SignUp() {
   const [phoneNumberEmpty, setPhoneNumberEmpty] = useState(true);
   const [passwordEmpty, setPasswordEmpty] = useState(true);
   const [rePasswordEmpty, setRePasswordEmpty] = useState(true);
-  const [verify, setVerify] = useState(false);
+  const [verify, setVerify] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(password === rePassword){
-
-    }else if(firstNameEmpty === false && lastNameEmpty === false &&
+    if(firstNameEmpty === false && lastNameEmpty === false &&
        emailEmpty === false && phoneNumberEmpty === false &&
        passwordEmpty === false && rePasswordEmpty === false){
-      setIsSubmitted(true);
+      if(password !== rePassword){
+        setVerify(1);
+      }else{
+        setVerify(2);
+        setIsSubmitted(true);
+      }
     }
     // const data = new FormData(event.currentTarget);
     // console.log({
@@ -199,7 +205,7 @@ export default function SignUp() {
                   autoFocus
                   onChange={(e)=>ReEnterPassword(e.target.value)}
                 />
-                {isSubmitted&&!(password === rePassword)&&<Alert severity="error">Password do not match</Alert>}
+                {verify===1&&<Alert severity="error">Password do not match</Alert>}
                 {rePasswordEmpty?<div style={{color: 'red'}}>Re Enter Password required!</div>:''}
               </Grid>
               <Grid item xs={12}>
