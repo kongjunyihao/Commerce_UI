@@ -47,16 +47,12 @@ export default function HomePage() {
                 <button>feature</button>
                 <button>feature</button>
                 <button>feature</button>
-                <button className="rightShift">
                 <Link style={{textDecoration: 'none'}} to="/sign-in">
                     <div>Sign In</div>
                 </Link>
-                </button>
-                <button className="rightShift">
                 <Link style={{textDecoration: 'none'}} to="/sign-up">
                     <div>Sign Up</div>
                 </Link>
-                </button>
                 <button>Cart</button>
             </nav>
             <div className="searchBar">

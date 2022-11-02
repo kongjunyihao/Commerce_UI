@@ -2,7 +2,7 @@ import { Switch } from '@mui/material';
 import React, { useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import redux, { Provider } from "react-redux";
-import { Route, Routes, Router, useRoutes } from "react-router-dom";
+import { Route, Routes, Router, Switch, useRoutes } from "react-router-dom";
 import './App.css';
 
 import HomePage from './HomePage';
@@ -32,12 +32,13 @@ function App() {
     };
     return (
         <commerceContext.Provider value = {allCommerce}>
-            <HomePage />
-            {/* <Switch>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/sign-in" element={<SignIn />} />
-                <Route path="/sign-up" element={<SignUp />} />
-            </Switch> */}
+            {/* <HomePage /> */}
+            <Routes>
+                <Route path="/" element={<HomePage />}>
+                    <Route path="/sign-in" element={<SignIn />} />
+                    <Route path="/sign-up" element={<SignUp />} />
+                </Route>
+            </Routes>
         </commerceContext.Provider>
     );
 }
