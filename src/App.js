@@ -5,42 +5,31 @@ import redux, { Provider } from "react-redux";
 import { Route, Routes, Router, Switch, useRoutes } from "react-router-dom";
 import './App.css';
 
-import HomePage from './HomePage';
+
+import BuyerMainPage from "./BuyerMainPage.js";
+import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 
-export const commerceContext = React.createContext();
-
 function App() {
-    const [signIn, setSignIn] = useState([]);
-    const [signUp, setSignUp] = useState([]);
+  return (
+    <div className="App">
+      <header className="App-header">
+        <BrowserRouter>
+            <nav className='homeRouterNav'>
+                <Link to="home"  className='homeRouterLink'>Home</Link>
+                <Link to="signInOrUp" className='homeRouterLink signIn'>Sign In/Sign Up</Link>
+                <Link to="Cart" className='homeRouterLink'>Cart</Link>
+            </nav>
 
-    const user = {
-        firstName: "John",
-        lastName: "Alisa",
-        email: "123456@gmail.com",
-        phoneNumber: "46642156498",
-        password: "Xtx12345678="
-    };
-
-    const allCommerce = {
-        user,
-        signIn,
-        setSignIn,
-        signUp,
-        setSignUp
-    };
-    return (
-        <commerceContext.Provider value = {allCommerce}>
-            {/* <HomePage /> */}
             <Routes>
-                <Route path="/" element={<HomePage />}>
-                    <Route path="/sign-in" element={<SignIn />} />
-                    <Route path="/sign-up" element={<SignUp />} />
-                </Route>
+                <Route path="home" element={<BuyerMainPage />}></Route>
+                <Route path="signInOrUp" element={<SignIn />}></Route>
             </Routes>
-        </commerceContext.Provider>
-    );
+        </BrowserRouter>
+      </header>
+    </div>
+  );
 }
 
 export default App;
