@@ -1,12 +1,5 @@
-import { Switch } from '@mui/material';
-import React, { useState, useContext } from 'react';
-import ReactDOM from 'react-dom';
-import redux, { Provider } from "react-redux";
-import { Route, Routes, Router, Switch, useRoutes } from "react-router-dom";
-import './App.css';
-
-
-import BuyerMainPage from "./BuyerMainPage.js";
+import "./App.css"
+import BuyerMainPage from "./BuyerMainPage";
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
 import SignIn from './SignIn';
 import SignUp from './SignUp';
