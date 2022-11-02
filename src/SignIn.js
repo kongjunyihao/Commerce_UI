@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState, useContext } from 'react';
+// import { Link } from 'react-router-dom';
 import { commerceContext } from './App';
 
 import Avatar from '@mui/material/Avatar';
@@ -34,7 +35,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-  const signIn = useContext(commerceContext);
+  const userdata = useContext(commerceContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -56,13 +57,17 @@ export default function SignIn() {
   };
 
   const EmailInput = (value) => {
-    setEmail(value);
-    setEmailEmpty(false);
+    if(value === userdata.user.email){
+      setEmail(value);
+      setEmailEmpty(false);
+    }
   }
 
   const PasswordInput = (value) => {
-    setPassword(value);
-    setPasswordEmpty(false);
+    if(value === userdata.user.password){
+      setPassword(value);
+      setPasswordEmpty(false);
+    }
   }
 
   return (
@@ -85,42 +90,44 @@ export default function SignIn() {
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
             {isSubmitted&&<Alert severity="success">Success! Thank you for signing in</Alert>}
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              name="email"
-              label="Email Address"
-              autoComplete="email"
-              variant="standard"
-              autoFocus
-              onChange={(e)=>EmailInput(e.target.value)}
-            />
-            {emailEmpty?<div style={{color: 'red'}}>Email required!</div>:''}
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="password"
-              label="Password"
-              type="password"
-              autoComplete="current-password"
-              variant="standard"
-              autoFocus
-              onChange={(e)=>PasswordInput(e.target.value)}
-            />
-            {passwordEmpty?<div style={{color: 'red'}}>Password required!</div>:''}
+            <Grid container spacing = {2}>
+              <Grid item xs={12}>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  name="email"
+                  label="Email Address"
+                  autoComplete="email"
+                  variant="standard"
+                  autoFocus
+                  onChange={(e)=>EmailInput(e.target.value)}
+                />
+                {emailEmpty?<div style={{color: 'red'}}>Email required!</div>:''}
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="password"
+                  label="Password"
+                  type="password"
+                  autoComplete="current-password"
+                  variant="standard"
+                  autoFocus
+                  onChange={(e)=>PasswordInput(e.target.value)}
+                />
+                {passwordEmpty?<div style={{color: 'red'}}>Password required!</div>:''}
+              </Grid>
+            </Grid>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
             <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+              type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               Sign In
             </Button>
             <Grid container>
@@ -131,7 +138,9 @@ export default function SignIn() {
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  <Link  style={{textDecoration: 'none'}} to="/sign-up">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
                 </Link>
               </Grid>
             </Grid>

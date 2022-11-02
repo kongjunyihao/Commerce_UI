@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { useState, useContext } from 'react';
+import { commerceContext } from './App';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,9 +15,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState, useContext } from 'react';
 import { Alert } from '@mui/material';
-import { commerceContext } from './App';
 
 // function Copyright(props) {
 //   return (
@@ -32,7 +33,7 @@ import { commerceContext } from './App';
 const theme = createTheme();
 
 export default function SignUp() {
-  const signUp = useContext(commerceContext);
+  const userdata = useContext(commerceContext);
   
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -69,28 +70,38 @@ export default function SignUp() {
   };
 
   const FirstNameInput = (value) => {
-    setFirstName(value);
-    setFirstNameEmpty(false);
+    if(value === userdata.user.firstName){
+      setFirstName(value);
+      setFirstNameEmpty(false);
+    }
   }
 
   const LastNameInput = (value) => {
-    setLastName(value);
-    setLastNameEmpty(false);
+    if(value === userdata.user.lastName){
+      setLastName(value);
+      setLastNameEmpty(false);
+    }
   }
 
   const EmailInput = (value) => {
-    setEmail(value);
-    setEmailEmpty(false);
+    if(value === userdata.user.email){
+      setEmail(value);
+      setEmailEmpty(false);
+    }
   }
 
   const PhoneNumberInput = (value) => {
-    setPhone(value);
-    setPhoneNumberEmpty(false);
+    if(value === userdata.user.phoneNumber){
+      setPhone(value);
+      setPhoneNumberEmpty(false);
+    }
   }
 
   const PasswordInput = (value) => {
-    setPassword(value);
-    setPasswordEmpty(false);
+    if(value === userdata.user.password){
+      setPassword(value);
+      setPasswordEmpty(false);
+    }
   }
 
   const ReEnterPassword = (value) => {
@@ -220,7 +231,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/SignIn.js/" variant="body2">
+                <Link variant="body2" to="/sign-in">
                   Already have an account? Sign in
                 </Link>
               </Grid>
