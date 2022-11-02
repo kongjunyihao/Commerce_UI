@@ -32,10 +32,12 @@ function App() {
     };
     return (
         <commerceContext.Provider value = {allCommerce}>
-            {/* <HomePage /> */}
-            <Route path="/" element={<HomePage />} />
-            <Route path="/sign-in" element={<SignIn />} />
-            <Route path="/sign-up" element={<SignUp />} />
+            <HomePage />
+            {/* <Switch>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/sign-in" element={<SignIn />} />
+                <Route path="/sign-up" element={<SignUp />} />
+            </Switch> */}
         </commerceContext.Provider>
     );
 }

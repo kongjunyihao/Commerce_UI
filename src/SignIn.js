@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useContext } from 'react';
-// import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { commerceContext } from './App';
 
 import Avatar from '@mui/material/Avatar';
@@ -138,8 +138,10 @@ export default function SignIn() {
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  <Link  style={{textDecoration: 'none'}} to="/sign-up">
-                    {"Don't have an account? Sign Up"}
+                  <Link  style={{textDecoration: 'none'}}>
+                    <NavLink to="/sign-up">
+                      {"Don't have an account? Sign Up"}
+                    </NavLink>
                   </Link>
                 </Link>
               </Grid>
