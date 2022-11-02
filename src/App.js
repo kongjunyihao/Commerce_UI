@@ -1,11 +1,11 @@
 import './App.css';
-import SellerMainPage from "./SellerMainPage.js"
+import BuyerMainPage from "./BuyerMainPage.js"
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <SellerMainPage />
+        <BuyerMainPage />
       </header>
     </div>
   );

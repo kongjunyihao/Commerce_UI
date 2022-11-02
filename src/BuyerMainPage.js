@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SellerMainPage.css";
+import "./BuyerMainPage.css";
 
 const seller = [{
     userId: 123,
@@ -17,7 +17,7 @@ const items=[
     id: 123}, 
     {name: "purse",
     id: 456}];
-export default function SellerMainPage() {
+export default function BuyerMainPage() {
     const [search, setSearch]=useState("");
     const [searchStaus, setSearchStatus]=useState(false);
     const [searchItem, setSearchItem]=useState([]);
