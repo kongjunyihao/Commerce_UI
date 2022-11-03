@@ -1,4 +1,9 @@
 import * as React from 'react';
+import { useState, useContext } from 'react';
+import { Link as RouteLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { CommerceContext } from './App';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,31 +17,86 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Alert } from '@mui/material';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const theme = createTheme();
 
 export default function SignUp() {
+  const userdata = useContext(CommerceContext);
+  
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [rePassword, setRePassword] = useState("");
+  const [firstNameEmpty, setFirstNameEmpty] = useState(true);
+  const [lastNameEmpty, setLastNameEmpty] = useState(true);
+  const [emailEmpty, setEmailEmpty] = useState(true);
+  const [phoneNumberEmpty, setPhoneNumberEmpty] = useState(true);
+  const [passwordEmpty, setPasswordEmpty] = useState(true);
+  const [rePasswordEmpty, setRePasswordEmpty] = useState(true);
+  const [verify, setVerify] = useState(0);
+
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    if(firstNameEmpty === false && lastNameEmpty === false &&
+       emailEmpty === false && phoneNumberEmpty === false &&
+       passwordEmpty === false && rePasswordEmpty === false){
+        if(password !== rePassword){
+          setVerify(1);
+        }else{
+          navigate('/');
+        }
+    }
+    // const data = new FormData(event.currentTarget);
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
   };
+
+  const FirstNameInput = (value) => {
+    if(value === userdata.user.firstName){
+      setFirstName(value);
+      setFirstNameEmpty(false);
+    }
+  }
+
+  const LastNameInput = (value) => {
+    if(value === userdata.user.lastName){
+      setLastName(value);
+      setLastNameEmpty(false);
+    }
+  }
+
+  const EmailInput = (value) => {
+    if(value === userdata.user.email){
+      setEmail(value);
+      setEmailEmpty(false);
+    }
+  }
+
+  const PhoneNumberInput = (value) => {
+    if(value === userdata.user.phoneNumber){
+      setPhone(value);
+      setPhoneNumberEmpty(false);
+    }
+  }
+
+  const PasswordInput = (value) => {
+    if(value === userdata.user.password){
+      setPassword(value);
+      setPasswordEmpty(false);
+    }
+  }
+
+  const ReEnterPassword = (value) => {
+    setRePassword(value);
+    setRePasswordEmpty(false);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -69,7 +129,9 @@ export default function SignUp() {
                   autoComplete="given-name"
                   variant="standard"
                   autoFocus
+                  onChange={(e)=>FirstNameInput(e.target.value)}
                 />
+                {firstNameEmpty?<div style={{color: 'red'}}>First name required!</div>:''}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -81,7 +143,10 @@ export default function SignUp() {
                   label="Last Name"
                   autoComplete="family-name"
                   variant="standard"
+                  autoFocus
+                  onChange={(e)=>LastNameInput(e.target.value)}
                 />
+                {lastNameEmpty?<div style={{color: 'red'}}>Last name required!</div>:''}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -92,7 +157,10 @@ export default function SignUp() {
                   label="Email Address"
                   autoComplete="email"
                   variant="standard"
+                  autoFocus
+                  onChange={(e)=>EmailInput(e.target.value)}
                 />
+                {emailEmpty?<div style={{color: 'red'}}>Email required!</div>:''}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -103,7 +171,10 @@ export default function SignUp() {
                   name="phone number"
                   autoComplete="mobile-phone-number"
                   variant="standard"
+                  autoFocus
+                  onChange={(e)=>PhoneNumberInput(e.target.value)}
                 />
+                {phoneNumberEmpty?<div style={{color: 'red'}}>Phone number required!</div>:''}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -115,19 +186,26 @@ export default function SignUp() {
                   type="password"
                   autoComplete="new-password"
                   variant="standard"
+                  autoFocus
+                  onChange={(e)=>PasswordInput(e.target.value)}
                 />
+                {passwordEmpty?<div style={{color: 'red'}}>Password required!</div>:''}
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  id="new password"
+                  id="re-enter-password"
                   name="verify new password"
-                  label="Verify New Password"
+                  label="Re Enter Password"
                   type="password"
                   autoComplete="verify-new-password"
                   variant="standard"
+                  autoFocus
+                  onChange={(e)=>ReEnterPassword(e.target.value)}
                 />
+                {verify===1&&<Alert severity="error">Password do not match</Alert>}
+                {rePasswordEmpty?<div style={{color: 'red'}}>Re Enter Password required!</div>:''}
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
@@ -136,24 +214,27 @@ export default function SignUp() {
                 />
               </Grid>
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/SignIn.js/" variant="body2">
-                  Already have an account? Sign in
-                </Link>
+                {/* <Link variant="body2">
+                  <RouteLink to="/signInOrUp">
+                    Already have an account? Sign in
+                  </RouteLink>
+                </Link> */}
+                <RouteLink to="/signInOrUp">
+                  <div>
+                    <Link variant="body2">
+                      Already have an account? Sign in
+                    </Link>
+                  </div>
+                </RouteLink>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );

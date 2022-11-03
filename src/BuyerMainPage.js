@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./BuyerMainPage.css";
 
 const seller = [{
@@ -37,15 +38,19 @@ export default function BuyerMainPage() {
 
     return (
         <div>
-            <header>Seller Main page</header>
+            <header>Buyer Main page</header>
             <nav>
                 <button>Logo</button>
                 <button>feature</button>
                 <button>feature</button>
                 <button>feature</button>
                 <button>feature</button>
-                <button className="rightShift">Sign In / Sign up</button>
-                <button>Cart</button>
+                <Link to="signInOrUp">
+                    <button style={{width: "200px"}}>Sign In / Sign Up</button>
+                </Link>
+                <Link to="/">
+                    <div>Cart</div>
+                </Link>
             </nav>
             <div className="searchBar">
                 <input type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)}></input>
