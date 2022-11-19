@@ -32,27 +32,38 @@ export default function SignIn() {
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     if(emailEmpty === false && passwordEmpty === false){
-      console.log(email, password);
-      navigate('/');
+      let formData = new FormData();
+      formData.append("username",email);
+      formData.append("password",password);
+      fetch("http://localhost:8080/login",{
+            method: "POST",
+            body: formData
+          })
+          .then(res=>res.json())
+          .then(result=>{
+            console.log(result);
+            if(result.code === 200){
+              navigate("/");
+            }else{
+              alert("Please check your login information");
+            }
+          })
     }
   };
 
   const EmailInput = (value) => {
     if(value !== ""){
       setEmailEmpty(false);
-      if(value === userdata.user.email){
-        setEmail(value);
-      }
+      setEmail(value);
     }
   }
 
   const PasswordInput = (value) => {
     if(value !== ""){
       setPasswordEmpty(false);
-      if(value === userdata.user.password){
-        setPassword(value);
-      }
+      setPassword(value);
     }
   }
 

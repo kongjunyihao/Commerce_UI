@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { CommerceContext } from '../App';
-import formatCurrency from "format-currency";
 import Rating from "./Rating";
 import "./BestProductStyle.css";
 
@@ -13,7 +12,7 @@ export default function BestProduct({product}){
             <img className='productCard__img' src={product.image} alt='' />
             <h4>{product.name}</h4>
             <div className='ProductCard__price'>
-              <h5>{formatCurrency(`${product.price}`, opts)}</h5>
+              <h5>{product.price}</h5>
             </div>
             <div className='ProductCard__Rateing'>
               <Rating

@@ -42,47 +42,84 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     if(firstNameEmpty === false && lastNameEmpty === false &&
        emailEmpty === false && phoneNumberEmpty === false &&
        passwordEmpty === false && rePasswordEmpty === false){
         if(password !== rePassword){
           setVerify(1);
         }else{
-          navigate('/');
+          const data = {
+            username: email,
+            password: password
+          };
+          fetch("http://localhost:8080/user_detail",{
+            credentials: "include",
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: email,
+              name: firstName+" "+lastName,
+              phone: phone
+            })
+          })
+          .then(res=>res.json())
+          .then(result=>{
+            console.log(result)});
+
+          fetch("http://localhost:8080/users",{
+            credentials: "include",
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+          .then(res=>res.json())
+          .then(result=>{
+            console.log(result);
+            if(result.code === 200){
+              navigate("/signIn");
+            }else{
+              alert("Please check your registration information");
+            }
+          })
         }
     }
   };
 
   const FirstNameInput = (value) => {
-    if(value === userdata.user.firstName){
+    if(value !== ""){
       setFirstName(value);
       setFirstNameEmpty(false);
     }
   }
 
   const LastNameInput = (value) => {
-    if(value === userdata.user.lastName){
+    if(value !== ""){
       setLastName(value);
       setLastNameEmpty(false);
     }
   }
 
   const EmailInput = (value) => {
-    if(value === userdata.user.email){
+    if(value !== ""){
       setEmail(value);
       setEmailEmpty(false);
     }
   }
 
   const PhoneNumberInput = (value) => {
-    if(value === userdata.user.phoneNumber){
+    if(value !== ""){
       setPhone(value);
       setPhoneNumberEmpty(false);
     }
   }
 
   const PasswordInput = (value) => {
-    if(value === userdata.user.password){
+    if(value !== ""){
       setPassword(value);
       setPasswordEmpty(false);
     }
