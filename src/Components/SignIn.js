@@ -45,6 +45,7 @@ export default function SignIn() {
           .then(result=>{
             console.log(result);
             if(result.code === 200){
+              localStorage.setItem("username",email);
               navigate("/");
             }else{
               alert("Please check your login information");
