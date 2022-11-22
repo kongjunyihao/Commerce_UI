@@ -25,7 +25,6 @@ function BestCloth(){
 
     const Globalstate = useContext(CommerceContext);
     const dispatch = Globalstate.dispatch;
-    console.log(Globalstate);
 
 
     return (
