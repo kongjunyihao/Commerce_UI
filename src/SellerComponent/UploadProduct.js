@@ -1,0 +1,307 @@
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { CommerceContext } from '../App';
+
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme();
+
+export default function UploadProduct(){
+    const productContext = useContext(CommerceContext);
+    const product = productContext.product;
+    const setProduct = productContext.setProduct;
+    // const navigate = useNavigate();
+
+    const [productID, setProductID] = useState("");
+    const [name, setName] = useState("");
+    const [type, setType] = useState("");
+    const [file, setFile] = useState("");
+    const [price, setPrice] = useState("");
+    const [category, setCategory] = useState("");
+    const [rating, setRating] = useState("");
+    const [views, setViews] = useState("");
+    const [description, setDescription] = useState("");
+
+    const [IDEmpty, setIDEmpty] = useState(true);
+    const [typeEmpty, setTypeEmpty] = useState("ID Type");
+    const [nameEmpty, setNameEmpty] = useState(true);
+    const [fileEmpty, setFileEmpty] = useState(true);
+    const [priceEmpty, setPriceEmpty] = useState(true);
+    const [categoryEmpty, setCategoryEmpty] = useState(true);
+    const [ratingEmpty, setRatingEmpty] = useState(true);
+    const [viewEMpty, setViewEmpty] = useState(true);
+    const [descriptioinEmpty, setDescriptionEmpty] = useState(true);
+
+
+    const typeArr = [
+        {label: "GTIN"},
+        {label: "EAN"},
+        {label: "GCID"},
+        {label: "UPC"},
+        {label: "ASIN"},
+    ];
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if(productID&&name&&type&&file&&price&&category&&rating&&views&&description){
+            setProduct([...product, {
+                id: new Date().getTime(),
+                productID,
+                type,
+                name,
+                file,
+                price,
+                category,
+                rating,
+                views,
+                description
+            }]);
+        }
+        console.log(product);
+        alert("Upload Successfully!");
+
+    //     const formData = new FormData();
+    //     formData.append("username", email);
+    //     formData.append("password", password);
+    //     console.log(formData.get("username"));
+    //     console.log(formData.get("password"));
+    
+    //     fetch("http://localhost:8080/login", {
+    //     credentials: "include",
+    //     method: "POST",
+    //     body: formData,
+    //   })
+    //   .then(res=>res.json())
+    //   .then(result=>{
+    //     if(result.code === 200){
+    //       navigate("/");
+    //     }else{
+    //       console.log(result.message);
+    //     }
+    //   })
+    };
+
+    const IDInput = (value) => {
+        if(value !== ""){
+            setProductID(value);
+            setIDEmpty(false);
+        }
+    }
+
+    const NameInput = (value) => {
+        if(value !== ""){
+            setName(value);
+            setNameEmpty(false);
+        }
+    }
+
+    const TypeInput = (value) => {
+        if(value !== 'Type ID'){
+            setType(value);
+            setTypeEmpty(false);
+            console.log(value);
+        }
+    }
+
+    const PriceInput = (value) => {
+        if(value !== ""){
+            setPrice(value);
+            setPriceEmpty(false);
+        }
+    }
+
+    const CategoryInput = (value) => {
+        if(value !== ""){
+            setCategory(value);
+            setCategoryEmpty(false);
+        }
+    }
+
+    const RatingInput = (value) => {
+        if(value !== ""){
+            setRating(value);
+            setRatingEmpty(false);
+        }
+    }
+
+    const ViewInput = (value) => {
+        if(value !== ""){
+            setViews(value);
+            setViewEmpty(false);
+        }
+    }
+
+    const DescriptionInput = (value) => {
+        if(value !== ""){
+            setDescription(value);
+            setDescriptionEmpty(false);
+        }
+    }
+
+    const handleImage = (event) => {
+        // console.log(event.target.files);
+        setFile(event.target.files[0]);
+    }
+
+    return (
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <Box
+                sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+                >
+                    <Typography component="h1" variant="h5">
+                        Add New Product
+                    </Typography>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                        <Grid container spacing = {2}>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                 error={IDEmpty}
+                                 autoComplete="given-name"
+                                 id="productID"
+                                 name="productID"
+                                 required
+                                 fullWidth
+                                 label="Product ID"
+                                 onChange={(e)=>IDInput(e.target.value)}
+                                 autoFocus
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <Autocomplete
+                                 disablePortal
+                                 id="type"
+                                 name="type"
+                                 options={typeArr}
+                                 renderInput={(params) => <TextField {...params} label="ID Type" />}
+                                 onChange={(event, value)=>TypeInput(value.label)}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                 error={nameEmpty}
+                                 margin="normal"
+                                 required
+                                 fullWidth
+                                 id="name"
+                                 name="name"
+                                 label="Product Name"
+                                 autoComplete="product name"
+                                 onChange={(e)=>NameInput(e.target.value)}
+                                 autoFocus
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                 error={priceEmpty}
+                                 margin="normal"
+                                 required
+                                 fullWidth
+                                 id="price"
+                                 name="price"
+                                 label="Product Price"
+                                 autoComplete="product price"
+                                 onChange={(e)=>PriceInput(e.target.value)}
+                                 autoFocus
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                 error={categoryEmpty}
+                                 margin="normal"
+                                 required
+                                 fullWidth
+                                 id="category"
+                                 name="category"
+                                 label="Product Category"
+                                 autoComplete="product category"
+                                 onChange={(e)=>CategoryInput(e.target.value)}
+                                 autoFocus
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                 error={ratingEmpty}
+                                 margin="normal"
+                                 required
+                                 fullWidth
+                                 id="rating"
+                                 name="rating"
+                                 label="Product Rating"
+                                 autoComplete="product rating"
+                                 onChange={(e)=>RatingInput(e.target.value)}
+                                 autoFocus
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                 error={viewEMpty}
+                                 margin="normal"
+                                 required
+                                 fullWidth
+                                 id="views"
+                                 name="views"
+                                 label="Views"
+                                 autoComplete="views"
+                                 onChange={(e)=>ViewInput(e.target.value)}
+                                 autoFocus
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                 error={descriptioinEmpty}
+                                 margin="normal"
+                                 required
+                                 fullWidth
+                                 id="description"
+                                 name="description"
+                                 label="Product description"
+                                 autoComplete="product description"
+                                 onChange={(e)=>DescriptionInput(e.target.value)}
+                                 autoFocus
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                 margin="normal"
+                                 required
+                                 fullWidth
+                                 id="file"
+                                 name="file"
+                                 type="file"
+                                 onChange={handleImage}
+                                />
+                            </Grid>
+                        </Grid>
+                        <Button
+                         type="submit"
+                         fullWidth
+                         variant="contained"
+                         sx={{ mt: 3, mb: 2 }}
+                        >
+                        Add Product
+                        </Button>
+                    </Box>
+                </Box>
+            </Container>
+        </ThemeProvider>
+    );
+}
