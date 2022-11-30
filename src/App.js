@@ -5,6 +5,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
 import SellerMainPage from './SellerComponent/SellerMainPage';
+import SellerCenterPage from './SellerComponent/SellerCenterPage';
 import UploadProduct from './SellerComponent/UploadProduct';
 
 export const CommerceContext = createContext();

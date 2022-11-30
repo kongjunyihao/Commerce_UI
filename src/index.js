@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from "./App";
-import SellerMainPage from './SellerComponent/SellerMainPage';
 import ProductDetail from './Components/ProductDetail';
 import UploadProduct from './SellerComponent/UploadProduct';
 import './index.css';
