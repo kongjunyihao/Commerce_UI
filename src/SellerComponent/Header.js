@@ -61,8 +61,8 @@ const AppBar = styled(MuiAppBar, {
             sx={{ display: { xs: 'none', sm: 'block', marginLeft: '100px' } }}>
                 LOGO
           </Typography>
+          <h1 style={{align: 'center'}}>Seller center</h1>
         </Toolbar>
-        <h1 style={{align: 'center'}}>Seller center</h1>
       </AppBar>
     </Box>
     );

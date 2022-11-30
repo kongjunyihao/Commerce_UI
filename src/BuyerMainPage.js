@@ -10,6 +10,8 @@ import CommerceFooter from './Components/FeatureComponents/CommerceFooter';
 import BestPage from './Pages/BestPage';
 
 import Box from '@mui/material/Box';
+import SignUp from './Components/SignUp';
+import SellerMainPage from './SellerComponent/SellerMainPage';
 
 
 export default function BuyerMainPage() {

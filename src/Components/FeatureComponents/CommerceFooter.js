@@ -3,15 +3,13 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
-import { Divider } from "@mui/material";
 
 export default function CommerceFooter(){
     return (
         <Box width='100%' sx={{ flexGrow: 1 }}
-            bgcolor="white" color="black">
-                <Divider color='black' />
+            bgcolor="#1976d2" color="white">
             <Container maxWidth='lg'>
-                <Grid container spacing={0}>
+                <Grid container wrap="nowrap" spacing={0}>
                     <Grid item xs={12} sm={3}>
                         <Box fontWeight='bolder' fontSize='large'>Get to Know Us</Box>
                         <Box>
@@ -84,10 +82,19 @@ export default function CommerceFooter(){
                             <Link href="#" color="inherit">Facebook</Link>
                         </Box>
                     </Grid>
+                    <Grid item xs={12} sm={3}>
+                        <Box fontWeight='bolder' fontSize='large'>Become a seller</Box>
+                        <Box>
+                            <Link href="signUp" color="inherit">Register</Link>
+                        </Box>
+                        <Box>
+                            <Link href="sellerCenter" color="inherit">Seller center</Link>
+                        </Box>
+                        <Box>
+                            <Link href="addProduct" color="inherit">Add product</Link>
+                        </Box>
+                    </Grid>
                 </Grid>
-                <Box textAlign="center" pt={{xs: 5, sm: 10}} pb={{xs: 5, sm: 0}}>
-                    Material UI Workshop &reg; {new Date().getFullYear()}
-                </Box>
             </Container>
         </Box>
     );

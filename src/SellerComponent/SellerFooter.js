@@ -4,13 +4,11 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
-import { Divider } from "@mui/material";
 
 export default function SellerFooter(){
     return (
         <Box width='100%' sx={{ flexGrow: 1 }}
-            bgcolor="white" color="black">
-            <Divider color='black' />
+            bgcolor="#1976d2" color="white">
             <Container maxWidth='lgr'>
                 <Grid container maxWidth='lgr'>
                     <Grid item xs={4} sm={2.2}>

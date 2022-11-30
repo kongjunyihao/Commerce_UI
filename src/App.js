@@ -9,6 +9,8 @@ import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
 import Cart from './Components/SearchComponent/CartPage';
 import CommerceFooter from './Components/FeatureComponents/CommerceFooter';
+import SellerMainPage from './SellerComponent/SellerMainPage';
+import SellerCenterPage from './SellerComponent/SellerCenterPage';
 
 export const CommerceContext = createContext();
 
@@ -74,6 +76,8 @@ function App() {
           <Route path="*" element={<BuyerMainPage />} />
           <Route path="signIn" element={<SignIn />}></Route>
           <Route path="signUp" element={<SignUp />}></Route>
+          <Route path="addProduct" element={<SellerMainPage/>}></Route>
+          <Route path="sellerCenter" element={<SellerCenterPage/>}></Route>
         </Routes>
       </BrowserRouter>
     </CommerceContext.Provider>
