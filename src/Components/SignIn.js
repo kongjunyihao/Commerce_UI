@@ -1,6 +1,5 @@
-import * as React from 'react';
-import { useState, useContext } from 'react';
-import { Link as RouteLink } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { json, Link as RouteLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { CommerceContext } from '../App';
 
@@ -17,18 +16,20 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { data } from 'autoprefixer';
 
 
 const theme = createTheme();
 
 export default function SignIn() {
-  const userdata = useContext(CommerceContext);
+
+  const productContext = useContext(CommerceContext);
+  console.log(productContext.user);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailEmpty, setEmailEmpty] = useState(true);
   const [passwordEmpty, setPasswordEmpty] = useState(true);
-
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {

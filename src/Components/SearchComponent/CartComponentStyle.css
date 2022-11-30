@@ -18,8 +18,42 @@
   }
   .cart .card .quantity {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    height: 48px;
+    border: 1px solid rgb(36, 91, 219);
+    border-radius: 10px;
+  }
+  #left{
+    width: 70px;
+    height: 48px;
+    color: white;
+    font-size: larger;
+    cursor: pointer;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border: 1px solid rgb(36, 91, 219);
+    background-color: rgb(36, 91, 219);
+  }
+  #middle{
+    width: 70px;
+    height: 46px;
+    color: black;
+    font-size: larger;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid rgb(36, 91, 219);
+    background-color: white;
+  }
+  #right{
+    width: 70px;
+    height: 48px;
+    color: white;
+    font-size: larger;
+    cursor: pointer;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid rgb(36, 91, 219);
+    background-color: rgb(36, 91, 219);
   }
   .cart .card .quantity p {
     width: 50px;

@@ -30,9 +30,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import { CheckOutlined } from '@mui/icons-material';
 
 import AccountMenus from './SearchComponent/AccountMenu';
-import { CheckOutlined } from '@mui/icons-material';
+
 
 const drawerWidth = 360;
 
@@ -62,7 +63,6 @@ const Search = styled('div')(({ theme }) => ({
 
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
   color: 'black',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),

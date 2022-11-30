@@ -1,16 +1,11 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useState } from 'react';
 import BuyerMainPage from "./BuyerMainPage";
-import redux, { Provider } from "react-redux";
-import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 
-import CommerceSearchBar from './Components/SearchBar';
-import CommerceNavBar from './Components/NavBar';
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
-import Cart from './Components/SearchComponent/CartPage';
-import CommerceFooter from './Components/FeatureComponents/CommerceFooter';
 import SellerMainPage from './SellerComponent/SellerMainPage';
-import SellerCenterPage from './SellerComponent/SellerCenterPage';
+import UploadProduct from './SellerComponent/UploadProduct';
 
 export const CommerceContext = createContext();
 
@@ -23,6 +18,8 @@ function App() {
     phoneNumber: "46642156498",
     password: "Xtx461303="
   };
+
+  const [product, setProduct] = useState([]);
 
   const reducer  = (state, action) => {
     switch(action.type){
@@ -62,11 +59,16 @@ function App() {
   };
 
   const [state, dispatch] = useReducer(reducer, []);
+  const [popMovie, setPopMovie] = useState([]);
 
   const allCommerce = {
     user,
+    product,
+    setProduct,
     state,
-    dispatch
+    dispatch,
+    popMovie,
+    setPopMovie
   }
   
   return (

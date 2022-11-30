@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CommerceContext } from "../App";
+import { CommerceContext } from '../App';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -19,15 +19,31 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 export default function UploadProduct(){
-    const productdata = useContext(CommerceContext);
+    const productContext = useContext(CommerceContext);
+    const product = productContext.product;
+    const setProduct = productContext.setProduct;
+    // const navigate = useNavigate();
 
+    const [productID, setProductID] = useState("");
     const [name, setName] = useState("");
+    const [type, setType] = useState("");
     const [file, setFile] = useState("");
     const [price, setPrice] = useState("");
     const [category, setCategory] = useState("");
     const [rating, setRating] = useState("");
     const [views, setViews] = useState("");
     const [description, setDescription] = useState("");
+
+    const [IDEmpty, setIDEmpty] = useState(true);
+    const [typeEmpty, setTypeEmpty] = useState("ID Type");
+    const [nameEmpty, setNameEmpty] = useState(true);
+    const [fileEmpty, setFileEmpty] = useState(true);
+    const [priceEmpty, setPriceEmpty] = useState(true);
+    const [categoryEmpty, setCategoryEmpty] = useState(true);
+    const [ratingEmpty, setRatingEmpty] = useState(true);
+    const [viewEMpty, setViewEmpty] = useState(true);
+    const [descriptioinEmpty, setDescriptionEmpty] = useState(true);
+
 
     const typeArr = [
         {label: "GTIN"},
@@ -39,6 +55,23 @@ export default function UploadProduct(){
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        if(productID&&name&&type&&file&&price&&category&&rating&&views&&description){
+            setProduct([...product, {
+                id: new Date().getTime(),
+                productID,
+                type,
+                name,
+                file,
+                price,
+                category,
+                rating,
+                views,
+                description
+            }]);
+        }
+        console.log(product);
+        alert("Upload Successfully!");
+
     //     const formData = new FormData();
     //     formData.append("username", email);
     //     formData.append("password", password);
@@ -60,8 +93,65 @@ export default function UploadProduct(){
     //   })
     };
 
+    const IDInput = (value) => {
+        if(value !== ""){
+            setProductID(value);
+            setIDEmpty(false);
+        }
+    }
+
+    const NameInput = (value) => {
+        if(value !== ""){
+            setName(value);
+            setNameEmpty(false);
+        }
+    }
+
+    const TypeInput = (value) => {
+        if(value !== 'Type ID'){
+            setType(value);
+            setTypeEmpty(false);
+            console.log(value);
+        }
+    }
+
+    const PriceInput = (value) => {
+        if(value !== ""){
+            setPrice(value);
+            setPriceEmpty(false);
+        }
+    }
+
+    const CategoryInput = (value) => {
+        if(value !== ""){
+            setCategory(value);
+            setCategoryEmpty(false);
+        }
+    }
+
+    const RatingInput = (value) => {
+        if(value !== ""){
+            setRating(value);
+            setRatingEmpty(false);
+        }
+    }
+
+    const ViewInput = (value) => {
+        if(value !== ""){
+            setViews(value);
+            setViewEmpty(false);
+        }
+    }
+
+    const DescriptionInput = (value) => {
+        if(value !== ""){
+            setDescription(value);
+            setDescriptionEmpty(false);
+        }
+    }
+
     const handleImage = (event) => {
-        console.log(event.target.files);
+        // console.log(event.target.files);
         setFile(event.target.files[0]);
     }
 
@@ -84,25 +174,30 @@ export default function UploadProduct(){
                         <Grid container spacing = {2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField
+                                 error={IDEmpty}
                                  autoComplete="given-name"
                                  id="productID"
                                  name="productID"
                                  required
                                  fullWidth
                                  label="Product ID"
+                                 onChange={(e)=>IDInput(e.target.value)}
                                  autoFocus
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                            <Autocomplete
-                             disablePortal
-                             id="type"
-                             options={typeArr}
-                             renderInput={(params) => <TextField {...params} label="ID Type" />}
-                            />
+                                <Autocomplete
+                                 disablePortal
+                                 id="type"
+                                 name="type"
+                                 options={typeArr}
+                                 renderInput={(params) => <TextField {...params} label="ID Type" />}
+                                 onChange={(event, value)=>TypeInput(value.label)}
+                                />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
+                                 error={nameEmpty}
                                  margin="normal"
                                  required
                                  fullWidth
@@ -110,11 +205,13 @@ export default function UploadProduct(){
                                  name="name"
                                  label="Product Name"
                                  autoComplete="product name"
+                                 onChange={(e)=>NameInput(e.target.value)}
                                  autoFocus
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
+                                 error={priceEmpty}
                                  margin="normal"
                                  required
                                  fullWidth
@@ -122,11 +219,13 @@ export default function UploadProduct(){
                                  name="price"
                                  label="Product Price"
                                  autoComplete="product price"
+                                 onChange={(e)=>PriceInput(e.target.value)}
                                  autoFocus
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
+                                 error={categoryEmpty}
                                  margin="normal"
                                  required
                                  fullWidth
@@ -134,11 +233,13 @@ export default function UploadProduct(){
                                  name="category"
                                  label="Product Category"
                                  autoComplete="product category"
+                                 onChange={(e)=>CategoryInput(e.target.value)}
                                  autoFocus
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
+                                 error={ratingEmpty}
                                  margin="normal"
                                  required
                                  fullWidth
@@ -146,11 +247,13 @@ export default function UploadProduct(){
                                  name="rating"
                                  label="Product Rating"
                                  autoComplete="product rating"
+                                 onChange={(e)=>RatingInput(e.target.value)}
                                  autoFocus
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
+                                 error={viewEMpty}
                                  margin="normal"
                                  required
                                  fullWidth
@@ -158,11 +261,13 @@ export default function UploadProduct(){
                                  name="views"
                                  label="Views"
                                  autoComplete="views"
+                                 onChange={(e)=>ViewInput(e.target.value)}
                                  autoFocus
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
+                                 error={descriptioinEmpty}
                                  margin="normal"
                                  required
                                  fullWidth
@@ -170,6 +275,7 @@ export default function UploadProduct(){
                                  name="description"
                                  label="Product description"
                                  autoComplete="product description"
+                                 onChange={(e)=>DescriptionInput(e.target.value)}
                                  autoFocus
                                 />
                             </Grid>

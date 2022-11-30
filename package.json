@@ -14,8 +14,17 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "autoprefixer": "10.4.5",
+<<<<<<< HEAD
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+=======
+    "cloudinary-react": "^1.8.1",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-loading-skeleton": "^3.1.0",
+>>>>>>> 79d57708b9f4fb0bd873b9fc8aca7a030c4eaa78
     "react-material-ui-carousel": "^3.4.2",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.3",

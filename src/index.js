@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from "./App";
+import SellerMainPage from './SellerComponent/SellerMainPage';
+import ProductDetail from './Components/ProductDetail';
+import UploadProduct from './SellerComponent/UploadProduct';
 import './index.css';
 import SellerMainPage from "./SellerComponent/SellerMainPage";
 
@@ -11,6 +14,9 @@ root.render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
       <App />
+      {/* <SellerMainPage /> */}
+      {/* <ProductDetail /> */}
+      {/* <UploadProduct /> */}
     </StyledEngineProvider>
   </React.StrictMode>
 );

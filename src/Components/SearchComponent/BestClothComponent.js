@@ -10,7 +10,7 @@ function BestCloth(){
     const [cloth, setCloth] = useState([]);
 
     const getData = () => {
-        fetch("https://fakestoreapi.com/products?limit=10")
+        fetch("https://fakestoreapi.com/products/category/women's clothing?limit=5")
         .then(res=>res.json())
         .then(
             data=>{
@@ -35,7 +35,7 @@ function BestCloth(){
                 item.quantity = 1;
                 return (
                     <div className="card" key={index}>
-                        <img src={item.image} alt="" />
+                        <img src={item.image} alt={item.title} />
                         <p>{item.title}</p>
                         <h3>$. {item.price}</h3>
                         <Button
