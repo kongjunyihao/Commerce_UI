@@ -19,11 +19,6 @@ export default function ProductDetail() {
     const navigate = useNavigate();
     console.log(Globalstate.productWithDetail);
     const item = Globalstate.productWithDetail.find(prod => prod.id === parseInt(productId));
-    const addToCart = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        dispatch({ type: "ADD", payload: item });
-    }
     return (
         <>
         <Box className="detail"
@@ -46,7 +41,8 @@ export default function ProductDetail() {
                 </div>
                 <Button
                     fullWidth variant="contained"
-                    onClick={(e)=>{
+                    onClick={()=>{
+                        item.quantity = 1;
                         dispatch({ type: "ADD", payload: item });
                         }}>
                     Add to Cart

@@ -7,7 +7,7 @@ import Divider from "@mui/material";
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 
 
 export default function Cart() {
@@ -36,7 +36,7 @@ export default function Cart() {
                     component="div"
                     sx={{ display: { xs: 'none', sm: 'block' }, paddingTop: '7px', marginLeft: '50px' }}
                 >
-                    <Link href='/' sx={{ color: 'black', textDecoration: 'none' }}>
+                    <Link style={{textDecoration: "none", color:"black"}} to='/'>
                         <ChevronLeftIcon fontSize='large' />Shop
                     </Link>
                 </Typography>
