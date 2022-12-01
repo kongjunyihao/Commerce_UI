@@ -6,6 +6,14 @@ import Link from "@mui/material/Link";
 
 export default function CommerceFooter(){
     return (
+        <>
+        <Link underline="none" href="#" fontSize='large'>
+            <Box width='100%' sx={{ flexGrow: 1 }}
+                bgcolor="#41b0cc" color="white"
+                textAlign="center">
+                    Back To Top
+            </Box>
+        </Link>
         <Box width='100%' sx={{ flexGrow: 1 }}
             bgcolor="#1976d2" color="white">
             <Container maxWidth='lg'>
@@ -13,89 +21,90 @@ export default function CommerceFooter(){
                     <Grid item xs={12} sm={3}>
                         <Box fontWeight='bolder' fontSize='large'>Get to Know Us</Box>
                         <Box>
-                            <Link href="#" color="inherit">Careers</Link>
+                            <Link underline="hover" href="#" color="inherit">Careers</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">Newsletter</Link>
+                            <Link underline="hover" href="#" color="inherit">Newsletter</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">About Us</Link>
+                            <Link underline="hover" href="#" color="inherit">About Us</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">Sustainability</Link>
+                            <Link underline="hover" href="#" color="inherit">Sustainability</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">Press Center</Link>
+                            <Link underline="hover" href="#" color="inherit">Press Center</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">Investor Relations</Link>
+                            <Link underline="hover" href="#" color="inherit">Investor Relations</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">Our Devices</Link>
+                            <Link underline="hover" href="#" color="inherit">Our Devices</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">Our Science</Link>
+                            <Link underline="hover" href="#" color="inherit">Our Science</Link>
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <Box fontWeight='bolder' fontSize='large'>Company Info</Box>
                         <Box>
-                            <Link href="#" color="inherit">Albertsons Companies</Link>
+                            <Link underline="hover" href="#" color="inherit">Albertsons Companies</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">Suppliers</Link>
+                            <Link underline="hover" href="#" color="inherit">Suppliers</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">For Employees</Link>
+                            <Link underline="hover" href="#" color="inherit">For Employees</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">Foundation</Link>
+                            <Link underline="hover" href="#" color="inherit">Foundation</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">Prime</Link>
+                            <Link underline="hover" href="#" color="inherit">Prime</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">Product Recalls</Link>
+                            <Link underline="hover" href="#" color="inherit">Product Recalls</Link>
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <Box fontWeight='bolder' fontSize='large'>Messages</Box>
                         <Box>
-                            <Link href="#" color="inherit">Backup</Link>
+                            <Link underline="hover" href="#" color="inherit">Backup</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">History</Link>
+                            <Link underline="hover" href="#" color="inherit">History</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">Roll</Link>
+                            <Link underline="hover" href="#" color="inherit">Roll</Link>
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <Box fontWeight='bolder' fontSize='large'>Contact</Box>
                         <Box>
-                            <Link href="#" color="inherit">Telegram</Link>
+                            <Link underline="hover" href="#" color="inherit">Telegram</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">Instegram</Link>
+                            <Link underline="hover" href="#" color="inherit">Instegram</Link>
                         </Box>
                         <Box>
-                            <Link href="#" color="inherit">Facebook</Link>
+                            <Link underline="hover" href="#" color="inherit">Facebook</Link>
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <Box fontWeight='bolder' fontSize='large'>Become a seller</Box>
                         <Box>
-                            <Link href="signUp" color="inherit">Register</Link>
+                            <Link underline="hover" href="signUp" color="inherit">Register</Link>
                         </Box>
                         <Box>
-                            <Link href="sellerCenter" color="inherit">Seller center</Link>
+                            <Link underline="hover" href="sellerCenter" color="inherit">Seller center</Link>
                         </Box>
                         <Box>
-                            <Link href="addProduct" color="inherit">Add product</Link>
+                            <Link underline="hover" href="addProduct" color="inherit">Add product</Link>
                         </Box>
                     </Grid>
                 </Grid>
             </Container>
         </Box>
+        </>
     );
 }

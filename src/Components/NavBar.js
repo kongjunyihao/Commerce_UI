@@ -22,7 +22,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { Tabs, Button, Tab } from '@mui/material';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
-
+import { useNavigate } from 'react-router-dom';
 const drawerWidth = 300;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -66,7 +66,7 @@ export default function CommerceNavBar(){
     const theme = useTheme();
     const [value, setValue] = useState(0);
     const [open, setOpen] = useState(false);
-
+    const navigate = useNavigate();
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -87,7 +87,7 @@ export default function CommerceNavBar(){
                     onChange={(e, value)=>setValue(value)}
                     indicatorColor='secondary'
                     >
-                      <Tab label="Home" href='/' sx={{color: 'black'}} />
+                      <Tab label="Home" onClick={()=>{navigate('/')}} sx={{color: 'black'}} />
                       <Tab label="Beauty & Personal Care" sx={{color: 'black'}} />
                       <Tab label="Pet Supplies" sx={{color: 'black'}} />
                       <Tab label="Todqay's Deals" sx={{color: 'black'}} />

@@ -11,6 +11,7 @@ import BestPage from './Pages/BestPage';
 
 import Box from '@mui/material/Box';
 import { data } from 'autoprefixer';
+import ProductDetail from './Components/ProductDetail';
 
 
 export default function BuyerMainPage() {
@@ -24,6 +25,7 @@ export default function BuyerMainPage() {
                 <Route path="cart" element={<Cart />}></Route>
                 <Route path="best" element={<BestPage />}></Route>
                 <Route path="seller" element={<SellerMainPage />}></Route>
+                <Route path=":productId" element={<ProductDetail/>}></Route>
             </Routes>
             <CommerceFooter />
         </>
