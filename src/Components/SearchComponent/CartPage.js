@@ -54,7 +54,7 @@ export default function Cart() {
                             <p>{item.title}</p>
                             <p>${(item.quantity * item.price).toFixed(2)}</p>
                             <div className="quantity">
-                                <button id="right"
+                                <button id="left"
                                     onClick={() => {
                                         if (item.quantity > 1) {
                                             localdispatch({ type: "DECREASE", payload: item });
@@ -64,7 +64,7 @@ export default function Cart() {
                                     -
                                 </button>
                                 <p id="middle">{item.quantity}</p>
-                                <button id="left"
+                                <button id="right"
                                     onClick={() => localdispatch({ type: "INCREASE", payload: item })}
                                 >
                                     +

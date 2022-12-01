@@ -15,7 +15,6 @@
 .product-info{
     display: flex;
     flex-direction: column;
-    border: 1px solid;
     margin-top: 20px;
     width: 30%;
     padding: 20px;
@@ -31,7 +30,6 @@
 .checkout{
     display: flex;
     flex-direction: column;
-    border: 0.5px solid grey;
     margin-top: 20px;
     margin-left: 10px;
     width: 20%;
