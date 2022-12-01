@@ -19,7 +19,7 @@ function App() {
     phoneNumber: "46642156498",
     password: "Xtx461303="
   };
-
+  const [productWithDetail,setDetail] = useState([]);
   const [product, setProduct] = useState([]);
 
   const reducer  = (state, action) => {
@@ -68,6 +68,8 @@ function App() {
     setProduct,
     state,
     dispatch,
+    productWithDetail,
+    setDetail,
     popMovie,
     setPopMovie
   }

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CommerceContext } from '../App';
 
@@ -22,7 +22,7 @@ export default function UploadProduct(){
     const productContext = useContext(CommerceContext);
     const product = productContext.product;
     const setProduct = productContext.setProduct;
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [productID, setProductID] = useState("");
     const [name, setName] = useState("");
@@ -55,21 +55,20 @@ export default function UploadProduct(){
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if(productID&&name&&type&&file&&price&&category&&rating&&views&&description){
+        if(productID&&name&&type&&file&&price&&category&&rating&&views&&description){ //What if we add same products??
             setProduct([...product, {
                 id: new Date().getTime(),
                 productID,
                 type,
-                name,
-                file,
-                price,
+                title:name,
+                image:file, //mock data
+                price:parseFloat(price),
                 category,
-                rating,
+                rating:{rate: rating, count:views}, // modified
                 views,
                 description
             }]);
         }
-        console.log(product);
         alert("Upload Successfully!");
 
     //     const formData = new FormData();
@@ -92,6 +91,11 @@ export default function UploadProduct(){
     //     }
     //   })
     };
+
+    useEffect(() => {
+        console.log(product);
+        if(product.length > 0) window.sessionStorage.setItem("product",JSON.stringify(product));
+    }, [product]);
 
     const IDInput = (value) => {
         if(value !== ""){
@@ -152,7 +156,7 @@ export default function UploadProduct(){
 
     const handleImage = (event) => {
         // console.log(event.target.files);
-        setFile(event.target.files[0]);
+        setFile(event.target.files[0].name);
     }
 
     return (
@@ -188,6 +192,7 @@ export default function UploadProduct(){
                             <Grid item xs={12} sm={6}>
                                 <Autocomplete
                                  disablePortal
+                                 isOptionEqualToValue={(option, value) => option.id === value.id}
                                  id="type"
                                  name="type"
                                  options={typeArr}

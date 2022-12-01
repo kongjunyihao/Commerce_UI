@@ -42,19 +42,18 @@ export default function Cart() {
                 </Typography>
             </Toolbar>
             <div className="cart">
+                {localstate.length === 0? (
+                    <h1>Your cart is empty. Add something you like here!</h1>
+                ):null}
                 {localstate.map((item, index) => {
                     return (
                         <div className="card" key={index}>
-                            <img src={item.image} alt=""></img>
+                            <img src={
+                                item.image[0] === 'h'? item.image:require("../../Asset/"+item.image) //apply online data / mock data
+                            } alt=""></img>
                             <p>{item.title}</p>
-                            <p>{item.quantity * item.price}</p>
+                            <p>${(item.quantity * item.price).toFixed(2)}</p>
                             <div className="quantity">
-                                <button id="left"
-                                    onClick={() => localdispatch({ type: "INCREASE", payload: item })}
-                                >
-                                    +
-                                </button>
-                                <p id="middle">{item.quantity}</p>
                                 <button id="right"
                                     onClick={() => {
                                         if (item.quantity > 1) {
@@ -63,6 +62,12 @@ export default function Cart() {
                                     }}
                                 >
                                     -
+                                </button>
+                                <p id="middle">{item.quantity}</p>
+                                <button id="left"
+                                    onClick={() => localdispatch({ type: "INCREASE", payload: item })}
+                                >
+                                    +
                                 </button>
                             </div>
                             <h2 onClick={() => localdispatch({ type: "REMOVE", payload: item })}>
@@ -73,7 +78,7 @@ export default function Cart() {
                 })}
                 {localstate.length > 0 && (
                     <div className="total">
-                        <h2>{total}</h2>
+                        <h2>${total.toFixed(2)}</h2>
                     </div>
                 )}
             </div>

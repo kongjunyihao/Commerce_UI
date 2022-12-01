@@ -10,29 +10,45 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import Link from '@mui/material/Link';
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function ProductDetail() {
+    const {productId} = useParams();
+    const Globalstate = useContext(CommerceContext);
+    const dispatch = Globalstate.dispatch;
+    const navigate = useNavigate();
+    console.log(Globalstate.productWithDetail);
+    const item = Globalstate.productWithDetail.find(prod => prod.id === parseInt(productId));
+    const addToCart = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dispatch({ type: "ADD", payload: item });
+    }
     return (
+        <>
         <Box className="detail"
             width='100%' sx={{ flexGrow: 1 }}
             bgcolor="white" color="black">
-            <img className="productDetail__img" />
+            <img className="productDetail__img" src={
+                            item.image[0] === 'h'? item.image:require("../Asset/"+item.image) //apply online data / mock data
+                            } alt={item.title}/>
             <Stack direction="column" className="product-info">
-                <span id="description">fhroifjhroijojkfhrkfjbkrfjvbkjvbfkjvbkvjrbvjrknorvbovrboub</span>
-                <h4>iphone 14 pro</h4>
+                <span id="description">{item.title}</span>
+                <h4>{item.description}</h4>
                 <div className='ProductDetail__price'>
-                    <h5>1049.99$</h5>
+                    <h5>${item.price}</h5>
                 </div>
                 <div className='ProductDetail__Rateing'>
                     <ProductRating
-                        value={4.6}
-                        text={`${125} reviews`}
+                        value={item.rating.rate}
+                        text={`${item.rating.count} reviews`}
                     />
                 </div>
                 <Button
                     fullWidth variant="contained"
-                // onClick={() => dispatch({ type: "ADD", payload: product })}
-                >
+                    onClick={(e)=>{
+                        dispatch({ type: "ADD", payload: item });
+                        }}>
                     Add to Cart
                 </Button>
             </Stack>
@@ -40,10 +56,12 @@ export default function ProductDetail() {
                 <h4>Buy new:</h4>
                 <Button
                     fullWidth variant="contained"
+                    onClick={()=>{navigate("/cart")}}
                 >
                     Checkout
                 </Button>
             </Stack>
         </Box>
+        </>
     );
 }
