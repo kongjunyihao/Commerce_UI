@@ -7,6 +7,7 @@ import SignUp from './Components/SignUp';
 import SellerMainPage from './SellerComponent/SellerMainPage';
 import SellerCenterPage from './SellerComponent/SellerCenterPage';
 import UploadProduct from './SellerComponent/UploadProduct';
+import ProfilePage from './Components/SearchComponent/ProfilePage';
 
 export const CommerceContext = createContext();
 
@@ -19,6 +20,7 @@ function App() {
     phoneNumber: "46642156498",
     password: "Xtx461303="
   };
+
   const [productWithDetail,setDetail] = useState([]);
   const [product, setProduct] = useState([]);
 
@@ -83,6 +85,7 @@ function App() {
           <Route path="signUp" element={<SignUp />}></Route>
           <Route path="addProduct" element={<SellerMainPage/>}></Route>
           <Route path="sellerCenter" element={<SellerCenterPage/>}></Route>
+          <Route path="profile" element={<ProfilePage />}></Route>
         </Routes>
       </BrowserRouter>
     </CommerceContext.Provider>

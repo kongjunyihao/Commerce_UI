@@ -1,13 +1,20 @@
+.cart-info{
+  display: flex;
+  flex-direction: row;
+}
 .cart {
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    padding: 128px;
+    gap: 41px;
+    padding: 20px;
+    margin-left: 10px;
+    width: 70%;
   }
   .cart .card {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
   }
   .cart .card img {
     width: 40px;
@@ -64,5 +71,24 @@
   }
   .cart .total {
     text-align: right;
+    width: 100%;
     border-top: 1px solid black;
+  }
+  .recommend{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+    width: 27%;
+    padding: 20px;
+    border: 0.5px solid grey;
+  }
+
+  .subtotal{
+    font-size: 18px;
+  }
+
+  #price{
+    font-size: 24px;
+    font-weight: bold;
   }

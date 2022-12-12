@@ -76,10 +76,10 @@ export default function AccountMenus() {
         variant="contained"
         disableElevation
         onClick={handleClick}
-        endIcon={open? <KeyboardArrowUpIcon />:<KeyboardArrowDownIcon />}
+        endIcon={open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
       >
         <PersonIcon fontSize='medium' />&nbsp;
-        {localStorage.getItem("username")? localStorage.getItem("username") : "Sign In / Up"}
+        {localStorage.getItem("username") ? localStorage.getItem("username") : "Sign In / Up"}
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -91,29 +91,32 @@ export default function AccountMenus() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose} disableRipple>
-          <Link style={{textDecoration: 'none', color: 'black'}} to="signIn">Sign In</Link>
+          <Link style={{ textDecoration: 'none', color: 'black' }} to="signIn">Sign In</Link>
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
-        <Link style={{textDecoration: 'none', color: 'black'}} to="signUp">Create Account</Link>
+          <Link style={{ textDecoration: 'none', color: 'black' }} to="signUp">Create Account</Link>
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
-        <Link style={{textDecoration: 'none', color: 'black'}} to="orders">Orders</Link>
+          <Link style={{ textDecoration: 'none', color: 'black' }} to="orders">Orders</Link>
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
-        <Link style={{textDecoration: 'none', color: 'black'}} to="rewards">Rewards</Link>
+          <Link style={{ textDecoration: 'none', color: 'black' }} to="rewards">Rewards</Link>
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
-        <Link style={{textDecoration: 'none', color: 'black'}} to="mylist">My List</Link>
+          <Link style={{ textDecoration: 'none', color: 'black' }} to="mylist">My List</Link>
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
-        <Link style={{textDecoration: 'none', color: 'black'}} to="settings">Settings</Link>
+          <Link style={{ textDecoration: 'none', color: 'black' }} to="profile">Profile</Link>
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
-        <Link style={{textDecoration: 'none', color: 'black'}} to="wallet">Wallet</Link>
+          <Link style={{ textDecoration: 'none', color: 'black' }} to="settings">Settings</Link>
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
-        <Link style={{textDecoration: 'none', color: 'black'}} to="address">Address Preferences</Link>
+          <Link style={{ textDecoration: 'none', color: 'black' }} to="wallet">Wallet</Link>
+        </MenuItem>
+        <MenuItem onClick={handleClose} disableRipple>
+          <Link style={{ textDecoration: 'none', color: 'black' }} to="address">Address Preferences</Link>
         </MenuItem>
       </StyledMenu>
     </div>

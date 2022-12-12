@@ -54,7 +54,7 @@ export default function ProductDetail() {
                     fullWidth variant="contained"
                     onClick={()=>{navigate("/cart")}}
                 >
-                    Checkout
+                    Go to Cart
                 </Button>
             </Stack>
         </Box>
