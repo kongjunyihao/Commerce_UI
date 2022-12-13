@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { styled, alpha, useTheme } from '@mui/material/styles';
@@ -26,23 +25,23 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { CheckOutlined } from '@mui/icons-material';
 
 import AccountMenus from './SearchComponent/AccountMenu';
+import SearchFunction from './SearchComponent/SearchFunction';
 
 
 const drawerWidth = 360;
 
 const digit = ['Prime Video', 'Music', 'Echo & Alexa',
- 'Fire Tablets', 'Fire TV', 'Kindle E-readers & Books',
- 'Audible Books & Originals', 'Photos', 'Appstore'];
+  'Fire Tablets', 'Fire TV', 'Kindle E-readers & Books',
+  'Audible Books & Originals', 'Photos', 'Appstore'];
 
 const department = ['Clothing, Shoes Jewelry & Watches', 'Books',
- 'Movies, Music & Games', 'Electronics'];
+  'Movies, Music & Games', 'Electronics'];
 
 const programFeature = ['Whole Foods Market', 'Pharmacy', 'Physucal Stores', 'Subscribe & Save'];
 
@@ -107,16 +106,30 @@ export default function CommerceSearchBar() {
   const theme = useTheme();
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false);
+  const [productdata, setProductdata] = useState([]);
+
+  const getData = () => {
+    fetch("https://fakestoreapi.com/products")
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setProductdata(data);
+      })
+  }
+
+  useEffect(() => {
+    getData()
+  }, []);
 
   const handleDrawerOpen = () => {
-      setOpen(true);
+    setOpen(true);
   };
 
   const handleDrawerClose = () => {
-      setOpen(false);
+    setOpen(false);
   };
 
-  const handleCart = () => {}
+  const handleCart = () => { }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -128,64 +141,53 @@ export default function CommerceSearchBar() {
             onClick={handleDrawerOpen}
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
-            >
+          >
             <MenuIcon />
             <Typography
-             variant="h6"
-             component="div"
-             sx={{ display: { xs: 'none', sm: 'block' } }}>
-                All
+              variant="h6"
+              component="div"
+              sx={{ display: { xs: 'none', sm: 'block' } }}>
+              All
             </Typography>
           </IconButton>
           <Typography variant="h5"
-            sx={{ display: { xs: 'none', sm: 'block', marginLeft: '100px' } }}>
-                LOGO
+            sx={{ display: { xs: 'none', sm: 'block', marginLeft: '100px', marginRight: '10px' } }}>
+            LOGO
           </Typography>
-          <Search>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-          <Button
-            variant="h6"
-            sx={{ display: { marginRight: 'auto' } }}
-          >
-            <SearchIcon fontSize='large' />
-          </Button>
+          <SearchFunction data={productdata} />
           <AccountMenus sx={{ display: { marginLeft: 'auto' } }} />
           <Button variant="h6"
-           sx={{ display: { marginLeft: 'auto' } }}
+            sx={{ display: { marginLeft: 'auto' } }}
           >
             <ShoppingCartCheckoutIcon
               fontSize='medium'
-              sx={{marginRight: 'auto'}} />&nbsp;
-              <Link to='cart' style={{color: 'white', textDecoration: 'none'}}>
-                Cart
-              </Link>
+              sx={{ marginRight: 'auto' }} />&nbsp;
+            <Link to='cart' style={{ color: 'white', textDecoration: 'none' }}>
+              Cart
+            </Link>
           </Button>
         </Toolbar>
       </AppBar>
       <Drawer
         sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
             width: drawerWidth,
-            flexShrink: 0,
-            '& .MuiDrawer-paper': {
-                width: drawerWidth,
-                boxSizing: 'border-box',
-            },
-            }}
-            variant="temporary"
-            anchor="left"
-            open={open}
-            onClose={() => setOpen(false)}
-        >
+            boxSizing: 'border-box',
+          },
+        }}
+        variant="temporary"
+        anchor="left"
+        open={open}
+        onClose={() => setOpen(false)}
+      >
         <DrawerHeader>
-        <IconButton
-         sx={{marginLeft: 'auto'}}
-         onClick={handleDrawerClose}>
+          <IconButton
+            sx={{ marginLeft: 'auto' }}
+            onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-        </IconButton>
+          </IconButton>
         </DrawerHeader>
         <Divider />
         <List>
@@ -193,11 +195,11 @@ export default function CommerceSearchBar() {
             variant="h6"
             component="div"
             sx={{ display: { xs: 'none', sm: 'block', fontWeight: 'bolder' } }}>
-                Trending
+            Trending
           </Typography>
           <ListItem disablePadding sx={{ display: { xs: 'none', sm: 'block' } }}>
             <ListItemButton>
-              <Link to='best' style={{color: 'black', textDecoration: 'none'}}>
+              <Link to='best' style={{ color: 'black', textDecoration: 'none' }}>
                 <ListItemText href='best' primary={'Best Sellers'} />
               </Link>
             </ListItemButton>
@@ -215,15 +217,15 @@ export default function CommerceSearchBar() {
             variant="h6"
             component="div"
             sx={{ display: { xs: 'none', sm: 'block', fontWeight: 'bolder' } }}>
-                Digital Content & Devices
+            Digital Content & Devices
           </Typography>
-            {digit.map((text, index) => (
-                <ListItem key={text} disablePadding>
-                    <ListItemButton>
-                        <ListItemText primary={text} />
-                    </ListItemButton>
-                </ListItem>
-            ))}
+          {digit.map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
         </List>
         <Divider />
         <List>
@@ -231,15 +233,15 @@ export default function CommerceSearchBar() {
             variant="h6"
             component="div"
             sx={{ display: { xs: 'none', sm: 'block', fontWeight: 'bolder' } }}>
-                Shop By Department
+            Shop By Department
           </Typography>
-            {department.map((text, index) => (
-                <ListItem key={text} disablePadding>
-                    <ListItemButton>
-                        <ListItemText primary={text} />
-                    </ListItemButton>
-                </ListItem>
-            ))}
+          {department.map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
         </List>
         <Divider />
         <List>
@@ -247,17 +249,17 @@ export default function CommerceSearchBar() {
             variant="h6"
             component="div"
             sx={{ display: { xs: 'none', sm: 'block', fontWeight: 'bolder' } }}>
-                Programs & Features
+            Programs & Features
           </Typography>
-            {programFeature.map((text, index) => (
-                <ListItem key={text} disablePadding>
-                    <ListItemButton>
-                        <ListItemText primary={text} />
-                    </ListItemButton>
-                </ListItem>
-            ))}
+          {programFeature.map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
         </List>
-    </Drawer>
+      </Drawer>
     </Box>
   );
 }

@@ -21,6 +21,7 @@ const theme = createTheme();
 export default function ProfilePage() {
     const productContext = useContext(CommerceContext);
     console.log(productContext.user);
+    const navigate = useNavigate();
 
     //Initial state
     const [firstName, setFirstName] = useState("");
@@ -84,6 +85,10 @@ export default function ProfilePage() {
         // }
     }
   };
+
+  const handleCancel = () => {
+    navigate("/");
+  }
 
   const FirstNameInput = (value) => {
     if(value !== ""){
@@ -255,6 +260,9 @@ export default function ProfilePage() {
                         </Grid>
                         <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >
                             Save
+                        </Button>
+                        <Button onClick={handleCancel} fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >
+                            Cancel
                         </Button>
                     </Box>
                 </Box>
