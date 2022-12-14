@@ -32,7 +32,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('md')]: {
-            width: '43ch',
+            width: '55ch',
         },
     },
 }));
@@ -40,13 +40,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchFunction({data}) {
     const [filteredData, setFilteredData] = useState([]);
     const [nameEntered, setNameEntered] = useState("");
-
+    let categories = new Set();
 
     const handleFilter = (event) => {
         const searchWord = event.target.value;
         setNameEntered(searchWord);
         const newFilter = data.filter((value) => {
-            return value.title.toLowerCase().includes(searchWord.toLowerCase());
+            return value.category.toLowerCase().includes(searchWord.toLowerCase());
         });
 
         if (searchWord === "") {
@@ -73,6 +73,7 @@ export default function SearchFunction({data}) {
                     inputProps={{ 'aria-label': 'search' }}
                     value={nameEntered}
                     onChange={handleFilter}
+                    onBlur={()=>{setFilteredData([])}} //close dropdown menu when search input loses focus
                 />
                 {nameEntered.length !== 0 && <Button variant="h6"
                     sx={{ display: { marginRight: 'auto' } }}>
@@ -89,10 +90,14 @@ export default function SearchFunction({data}) {
             </Button>
             {filteredData.length !== 0 && (
                 <div className="dataResult">
-                    {filteredData.map((value) => {
+                    {filteredData.slice(0,11).forEach((value) => {
+                        categories.add(value.category)
+                        })
+                    }
+                    {Array.from(categories).map((value)=>{
                         return (
-                            <a className="dataItem" key={value.id}>
-                                <p>{value.category}</p>
+                            <a className="dataItem" key={value}>
+                                <p>{value}</p>
                             </a>
                         );
                     })}
