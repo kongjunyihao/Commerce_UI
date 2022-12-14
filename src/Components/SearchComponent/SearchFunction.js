@@ -89,10 +89,10 @@ export default function SearchFunction({data}) {
             </Button>
             {filteredData.length !== 0 && (
                 <div className="dataResult">
-                    {filteredData.slice(0, 11).map((value) => {
+                    {filteredData.map((value) => {
                         return (
                             <a className="dataItem" key={value.id}>
-                                <p>{value.title}</p>
+                                <p>{value.category}</p>
                             </a>
                         );
                     })}
