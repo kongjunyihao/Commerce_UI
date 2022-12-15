@@ -29,7 +29,7 @@ export default function BuyerMainPage() {
                 <Route path="best" element={<BestPage />}></Route>
                 <Route path="seller" element={<SellerMainPage />}></Route>
                 <Route path=":productId" element={<ProductDetail />}></Route>
-                <Route path="searchproduct" element={<SearchProduct />}></Route>
+                <Route path=":categoryVal" element={<SearchProduct />}></Route>
             </Routes>
             <CommerceFooter />
         </>

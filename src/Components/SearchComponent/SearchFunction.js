@@ -129,7 +129,7 @@ export default function SearchFunction({data}) {
                     {Array.from(categories).map((value)=>{
                         
                         return (
-                            <a id="search-res" className="dataItem" fref="#" key={value}>
+                            <a id="search-res" className="dataItem" href={`${value}`} key={value}>
                                 {categoryItem = value}
                                 <p>{value}</p>
                             </a>
