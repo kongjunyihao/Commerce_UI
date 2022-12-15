@@ -58,11 +58,11 @@ input:focus {
 .dataItem p {
     margin-left: 10px;
   }
-  a {
+  #search-res {
     text-decoration: none;
   }
   
-  a:hover {
+  #search-res:hover {
     background-color: lightgrey;
   }
   

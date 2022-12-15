@@ -13,12 +13,12 @@ function BestCloth(){
     const dispatch = Globalstate.dispatch;
 
     const getData = () => {
-        fetch("https://fakestoreapi.com/products/category/women's clothing?limit=5")
+        fetch("https://fakestoreapi.com/products")
         .then(res=>res.json())
         .then(
             data=>{
                 if(window.sessionStorage.getItem("product")) {
-                    setCloth([...JSON.parse(window.sessionStorage.getItem("product")),...data]);
+                    setCloth([...JSON.parse(window.sessionStorage.getItem("product")), ...data]);
                 }
                 else{
                     setCloth(data);
@@ -29,12 +29,14 @@ function BestCloth(){
     useEffect(()=>{
         getData();
     }, []);
+
     useEffect(()=>{
         Globalstate.setDetail(cloth);
     },[cloth]);
+
     return (
         <>
-            <h2>Best Sellers in Clothes</h2>
+            <h2>Today's Best Sellers</h2>
             <div className="home">
             {cloth.map((item, index) => {
                 item.quantity = 1;

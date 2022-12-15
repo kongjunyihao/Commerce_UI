@@ -1,0 +1,15 @@
+.recommend-comp {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 100px;
+    gap: 100px;
+  }
+  .recommend-comp .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .recommend-comp .info #recommend-img {
+    width: 100%;
+    max-height: 300px;
+  }

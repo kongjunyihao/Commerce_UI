@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { CommerceContext } from "../../App";
+import { useNavigate } from 'react-router-dom';
 
 import { styled, alpha, useTheme } from '@mui/material/styles';
 import { Tabs, Button, Tab } from '@mui/material';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from "@mui/icons-material/Close";
-import Link from '@mui/material/Link';
+import { Link } from "react-router-dom";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import "./SearchFunctionStyle.css";
 
+//Styled input element
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -38,8 +41,37 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchFunction({data}) {
+    const [productdata, setProductdata] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [nameEntered, setNameEntered] = useState("");
+    const Globalstate = useContext(CommerceContext);
+    const dispatch = Globalstate.dispatch;
+    const navigate = useNavigate();
+
+    let categoryItem = undefined; //get searched item
+
+    const getData = () => {
+        fetch("https://fakestoreapi.com/products/category/"+categoryItem)
+        .then(res=>res.json())
+        .then(
+            data=>{
+                if(window.sessionStorage.getItem("product")) {
+                    setProductdata([...JSON.parse(window.sessionStorage.getItem("product")), ...data]);
+                }
+                else{
+                    setProductdata(data);
+                }
+            }
+        )
+    }
+    useEffect(()=>{
+        getData();
+    }, []);
+
+    useEffect(()=>{
+        Globalstate.setDetail(productdata);
+    },[productdata]);
+    
     let categories = new Set();
 
     const handleFilter = (event) => {
@@ -95,8 +127,10 @@ export default function SearchFunction({data}) {
                         })
                     }
                     {Array.from(categories).map((value)=>{
+                        
                         return (
-                            <a className="dataItem" key={value}>
+                            <a id="search-res" className="dataItem" fref="#" key={value}>
+                                {categoryItem = value}
                                 <p>{value}</p>
                             </a>
                         );

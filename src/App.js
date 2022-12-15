@@ -62,7 +62,6 @@ function App() {
   };
 
   const [state, dispatch] = useReducer(reducer, []);
-  const [popMovie, setPopMovie] = useState([]);
 
   const allCommerce = {
     user,
@@ -71,9 +70,7 @@ function App() {
     state,
     dispatch,
     productWithDetail,
-    setDetail,
-    popMovie,
-    setPopMovie
+    setDetail
   }
   
   return (

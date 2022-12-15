@@ -48,7 +48,7 @@ export default function Cart() {
                     </Link>
                 </Typography>
             </Toolbar>
-            <Stack className='cart-info'>
+            <div className='cart-info'>
                 <div className="cart">
                     {localstate.length === 0 ? (
                         <h1>Your cart is empty. Add something you like here!</h1>
@@ -90,10 +90,11 @@ export default function Cart() {
                         </div>
                     )}
                 </div>
+                {totalItem === 0? "":
                 <Stack className='recommend'>
                     <div>
-                        <p>Add <span style={{color: "red"}}>$4.15</span> of eligible items to your order to qualify for FREE Shipping.</p>
-                        <div style={{fontSize: "18px"}}>
+                        <p>Add <span style={{ color: "red" }}>$4.15</span> of eligible items to your order to qualify for FREE Shipping.</p>
+                        <div style={{ fontSize: "18px" }}>
                             Subtotal ({totalItem} {totalItem > 1 ? 'items' : 'item'}): <span id='price'>${total.toFixed(2)}</span>
                         </div>
                         <FormControlLabel
@@ -112,7 +113,8 @@ export default function Cart() {
                     </div>
                     <h3 style={{ marginTop: '1px' }}>Your recently viewed items</h3>
                 </Stack>
-            </Stack>
+                }
+            </div>
         </>
     );
 }

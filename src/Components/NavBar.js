@@ -23,6 +23,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import { Tabs, Button, Tab } from '@mui/material';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import { useNavigate } from 'react-router-dom';
+
 const drawerWidth = 300;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
