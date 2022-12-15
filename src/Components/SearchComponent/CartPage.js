@@ -43,15 +43,15 @@ export default function Cart() {
                     component="div"
                     sx={{ display: { xs: 'none', sm: 'block' }, paddingTop: '7px', marginLeft: '50px' }}
                 >
-                    <Link style={{ textDecoration: "none", color: "black" }} to='/'>
-                        <ChevronLeftIcon fontSize='large' />Shop
+                    <Link className='backButton' style={{ textDecoration: "none", color: "black" }} to='/'>
+                        <ChevronLeftIcon fontSize='large' /><span>Shop</span>
                     </Link>
                 </Typography>
             </Toolbar>
             <div className='cart-info'>
                 <div className="cart">
                     {localstate.length === 0 ? (
-                        <h1>Your cart is empty. Add something you like here!</h1>
+                        <h1 style={{marginTop: "15%", marginBottom: "15%", marginLeft:"40px"}}>Your cart is empty. Add something you like here!</h1>
                     ) : null}
                     {localstate.map((item, index) => {
                         return (
