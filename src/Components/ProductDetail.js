@@ -64,7 +64,7 @@ export default function ProductDetail() {
             </Stack>
             
         </Box>
-        <Recommendation categoryVal={categoryItem} />
+        <Recommendation categoryVal={categoryItem} productID={productId} />
         </>
     );
 }
