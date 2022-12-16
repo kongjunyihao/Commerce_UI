@@ -47,7 +47,6 @@ export default function SearchFunction({data}) {
     const Globalstate = useContext(CommerceContext);
     const dispatch = Globalstate.dispatch;
     const navigate = useNavigate();
-
     
     let categories = new Set();
 
@@ -82,7 +81,7 @@ export default function SearchFunction({data}) {
                     inputProps={{ 'aria-label': 'search' }}
                     value={nameEntered}
                     onChange={handleFilter}
-                    onBlur={()=>{setFilteredData([])}} //close dropdown menu when search input loses focus
+                    onBlur={()=>{setTimeout(()=>setFilteredData([]),200)}} //close dropdown menu when search input loses focus
                 />
                 {nameEntered.length !== 0 && <Button variant="h6"
                     sx={{ display: { marginRight: 'auto' } }}>
@@ -106,8 +105,7 @@ export default function SearchFunction({data}) {
                     {Array.from(categories).map((value)=>{
                         
                         return (
-                            <a id="search-res" className="dataItem" href={`${value}`} key={value}>
-                                {categoryItem = value}
+                            <a id="search-res" className="dataItem" href={`/categories/${value}`} key={value}>
                                 <p>{value}</p>
                             </a>
                         );

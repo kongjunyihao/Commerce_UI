@@ -22,7 +22,7 @@ export default function ProductDetail() {
     const dispatch = Globalstate.dispatch;
     const navigate = useNavigate();
     const item = Globalstate.productWithDetail.find(prod => prod.id === parseInt(productId));
-    let categoryItem = item.category;
+    let categoryItem = item? item.category:null;
 
     return (
         <>
