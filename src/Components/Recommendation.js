@@ -28,17 +28,13 @@ export default function ({ categoryVal, productID }) {
         getData();
     }, []);
 
-    // useEffect(()=>{
-    //     Globalstate.setDetail(cloth);
-    // },[cloth]);
-
     return (
         <>
             <h3 style={{ marginLeft: '50px' }}>Products related to this item</h3>
             <div className="recommend-comp">
                 {cloth.map((item, index) => {
                     item.quantity = 1;
-                    if (item.id === productID) {
+                    if (item.id === parseInt(productID)) {
                         return;
                     } else {
                         return (
