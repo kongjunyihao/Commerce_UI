@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { CommerceContext } from "../../App";
 import { useNavigate } from 'react-router-dom';
 
@@ -48,29 +48,6 @@ export default function SearchFunction({data}) {
     const dispatch = Globalstate.dispatch;
     const navigate = useNavigate();
 
-    let categoryItem = undefined; //get searched item
-
-    const getData = () => {
-        fetch("https://fakestoreapi.com/products/category/"+categoryItem)
-        .then(res=>res.json())
-        .then(
-            data=>{
-                if(window.sessionStorage.getItem("product")) {
-                    setProductdata([...JSON.parse(window.sessionStorage.getItem("product")), ...data]);
-                }
-                else{
-                    setProductdata(data);
-                }
-            }
-        )
-    }
-    useEffect(()=>{
-        getData();
-    }, []);
-
-    useEffect(()=>{
-        Globalstate.setDetail(productdata);
-    },[productdata]);
     
     let categories = new Set();
 

@@ -6,7 +6,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import './BestClothStyle.css';
 
-export default function SearchProduct() {
+function SearchProduct() {
     const [product,setProduct] = useState([]);
     const {categoryVal} = useParams();
     const Globalstate = useContext(CommerceContext);
@@ -62,3 +62,5 @@ export default function SearchProduct() {
         </>
     );
 }
+
+export default SearchProduct;
