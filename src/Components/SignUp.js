@@ -49,13 +49,6 @@ export default function SignUp() {
       if (password !== rePassword) {
         setVerify(1);
       } else {
-        const data = {
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          phone: phone,
-          password: password
-        };
         fetch("http://localhost:4000/app/signup", {
           credentials: "omit",
           method: "POST",
@@ -63,11 +56,11 @@ export default function SignUp() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            phone: phone,
-            password: password
+            firstName,
+            lastName,
+            email,
+            phone,
+            password
           })
         })
         .then(res => res.json())

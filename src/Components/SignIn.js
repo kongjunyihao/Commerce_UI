@@ -32,21 +32,14 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if(emailEmpty === false && passwordEmpty === false){
-      let formData = new FormData();
-      formData.append("email",email);
-      formData.append("password",password);
-      // fetch("http://localhost:8080/login",{
-      //       method: "POST",
-      //       body: formData
-      //     })
       fetch("http://localhost:4000/app/signin",{
             method: "POST",
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              email: email,
-              password: password
+              email,
+              password
             })
           })
           .then(res=>{
