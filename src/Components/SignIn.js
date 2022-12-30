@@ -23,9 +23,6 @@ const theme = createTheme();
 
 export default function SignIn() {
 
-  const productContext = useContext(CommerceContext);
-  console.log(productContext.user);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailEmpty, setEmailEmpty] = useState(true);
@@ -36,22 +33,32 @@ export default function SignIn() {
     event.preventDefault();
     if(emailEmpty === false && passwordEmpty === false){
       let formData = new FormData();
-      formData.append("username",email);
+      formData.append("email",email);
       formData.append("password",password);
-      fetch("http://localhost:8080/login",{
+      // fetch("http://localhost:8080/login",{
+      //       method: "POST",
+      //       body: formData
+      //     })
+      fetch("http://localhost:4000/app/signin",{
             method: "POST",
-            body: formData
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: email,
+              password: password
+            })
           })
-          .then(res=>res.json())
-          .then(result=>{
-            console.log(result);
-            if(result.code === 200){
-              localStorage.setItem("username",email);
+          .then(res=>{
+            res.json()
+            if(res.status === 200){
+              localStorage.setItem("email",email);
               navigate("/");
             }else{
               alert("Please check your login information");
             }
           })
+          .then(result=>console.log(result))
     }
   };
 

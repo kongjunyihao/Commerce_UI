@@ -24,7 +24,7 @@ const theme = createTheme();
 
 export default function SignUp() {
   const userdata = useContext(CommerceContext);
-  
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -43,83 +43,112 @@ export default function SignUp() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(firstNameEmpty === false && lastNameEmpty === false &&
-       emailEmpty === false && phoneNumberEmpty === false &&
-       passwordEmpty === false && rePasswordEmpty === false){
-        if(password !== rePassword){
-          setVerify(1);
-        }else{
-          const data = {
-            username: email,
+    if (firstNameEmpty === false && lastNameEmpty === false &&
+      emailEmpty === false && phoneNumberEmpty === false &&
+      passwordEmpty === false && rePasswordEmpty === false) {
+      if (password !== rePassword) {
+        setVerify(1);
+      } else {
+        const data = {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          phone: phone,
+          password: password
+        };
+        fetch("http://localhost:4000/app/signup", {
+          credentials: "omit",
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phone: phone,
             password: password
-          };
-          fetch("http://localhost:8080/user_detail",{
-            credentials: "include",
-            method: "POST",
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              email: email,
-              name: firstName+" "+lastName,
-              phone: phone
-            })
           })
-          .then(res=>res.json())
-          .then(result=>{
-            console.log(result)});
-
-          fetch("http://localhost:8080/users",{
-            credentials: "include",
-            method: "POST",
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-          })
-          .then(res=>res.json())
-          .then(result=>{
-            console.log(result);
-            if(result.code === 200){
+        })
+        .then(res => res.json())
+        .then(result => {
+            if (result) {
               navigate("/signIn");
-            }else{
+            } else {
               alert("Please check your registration information");
             }
           })
-        }
+        // const data = {
+        //   username: email,
+        //   password: password
+        // };
+        // fetch("http://localhost:8080/user_detail",{
+        //   credentials: "include",
+        //   method: "POST",
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify({
+        //     email: email,
+        //     name: firstName+" "+lastName,
+        //     phone: phone
+        //   })
+        // })
+        // .then(res=>res.json())
+        // .then(result=>{
+        //   console.log(result)});
+
+        // fetch("http://localhost:8080/users",{
+        //   credentials: "include",
+        //   method: "POST",
+        //   headers: {
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body: JSON.stringify(data)
+        // })
+        // .then(res=>res.json())
+        // .then(result=>{
+        //   console.log(result);
+        //   if(result.code === 200){
+        //     navigate("/signIn");
+        //   }else{
+        //     alert("Please check your registration information");
+        //   }
+        // })
+      }
     }
   };
 
   const FirstNameInput = (value) => {
-    if(value !== ""){
+    if (value !== "") {
       setFirstName(value);
       setFirstNameEmpty(false);
     }
   }
 
   const LastNameInput = (value) => {
-    if(value !== ""){
+    if (value !== "") {
       setLastName(value);
       setLastNameEmpty(false);
     }
   }
 
   const EmailInput = (value) => {
-    if(value !== ""){
+    if (value !== "") {
       setEmail(value);
       setEmailEmpty(false);
     }
   }
 
   const PhoneNumberInput = (value) => {
-    if(value !== ""){
+    if (value !== "") {
       setPhone(value);
       setPhoneNumberEmpty(false);
     }
   }
 
   const PasswordInput = (value) => {
-    if(value !== ""){
+    if (value !== "") {
       setPassword(value);
       setPasswordEmpty(false);
     }
@@ -161,9 +190,9 @@ export default function SignUp() {
                   autoComplete="given-name"
                   variant="standard"
                   autoFocus
-                  onChange={(e)=>FirstNameInput(e.target.value)}
+                  onChange={(e) => FirstNameInput(e.target.value)}
                 />
-                {firstNameEmpty?<div style={{color: 'red'}}>First name required!</div>:''}
+                {firstNameEmpty ? <div style={{ color: 'red' }}>First name required!</div> : ''}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -176,9 +205,9 @@ export default function SignUp() {
                   autoComplete="family-name"
                   variant="standard"
                   autoFocus
-                  onChange={(e)=>LastNameInput(e.target.value)}
+                  onChange={(e) => LastNameInput(e.target.value)}
                 />
-                {lastNameEmpty?<div style={{color: 'red'}}>Last name required!</div>:''}
+                {lastNameEmpty ? <div style={{ color: 'red' }}>Last name required!</div> : ''}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -190,9 +219,9 @@ export default function SignUp() {
                   autoComplete="email"
                   variant="standard"
                   autoFocus
-                  onChange={(e)=>EmailInput(e.target.value)}
+                  onChange={(e) => EmailInput(e.target.value)}
                 />
-                {emailEmpty?<div style={{color: 'red'}}>Email required!</div>:''}
+                {emailEmpty ? <div style={{ color: 'red' }}>Email required!</div> : ''}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -204,9 +233,9 @@ export default function SignUp() {
                   autoComplete="mobile-phone-number"
                   variant="standard"
                   autoFocus
-                  onChange={(e)=>PhoneNumberInput(e.target.value)}
+                  onChange={(e) => PhoneNumberInput(e.target.value)}
                 />
-                {phoneNumberEmpty?<div style={{color: 'red'}}>Phone number required!</div>:''}
+                {phoneNumberEmpty ? <div style={{ color: 'red' }}>Phone number required!</div> : ''}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -219,9 +248,9 @@ export default function SignUp() {
                   autoComplete="new-password"
                   variant="standard"
                   autoFocus
-                  onChange={(e)=>PasswordInput(e.target.value)}
+                  onChange={(e) => PasswordInput(e.target.value)}
                 />
-                {passwordEmpty?<div style={{color: 'red'}}>Password required!</div>:''}
+                {passwordEmpty ? <div style={{ color: 'red' }}>Password required!</div> : ''}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -234,10 +263,10 @@ export default function SignUp() {
                   autoComplete="verify-new-password"
                   variant="standard"
                   autoFocus
-                  onChange={(e)=>ReEnterPassword(e.target.value)}
+                  onChange={(e) => ReEnterPassword(e.target.value)}
                 />
-                {verify===1&&<Alert severity="error">Password do not match</Alert>}
-                {rePasswordEmpty?<div style={{color: 'red'}}>Re Enter Password required!</div>:''}
+                {verify === 1 && <Alert severity="error">Password do not match</Alert>}
+                {rePasswordEmpty ? <div style={{ color: 'red' }}>Re Enter Password required!</div> : ''}
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel

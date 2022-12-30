@@ -78,7 +78,7 @@ export default function AccountMenus() {
         endIcon={open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
       >
         <PersonIcon fontSize='medium' />&nbsp;
-        {localStorage.getItem("username") ? localStorage.getItem("username") : "Sign In / Up"}
+        {localStorage.getItem("email") ? localStorage.getItem("email") : "Sign In / Up"}
       </Button>
       <StyledMenu
         id="demo-customized-menu"
