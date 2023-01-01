@@ -68,23 +68,23 @@ export default function UploadProduct() {
             //     views,
             //     description
             // }]);
+            let formData = new FormData();
+            formData.append("productID", productID)
+            formData.append("type", type)
+            formData.append("productNamw", name)
+            formData.append("productImage", file)
+            formData.append("price", price)
+            formData.append("category", category)
+            formData.append("rating", rating)
+            formData.append("view", views)
+            formData.append("description", description)
             fetch("http://localhost:4000/app/upload", {
                 credentials: "omit",
                 method: "POST",
                 headers: {
-                    'contentType': "image/png",
+                    'Content-Type': "application/json",
                 },
-                body: JSON.stringify({
-                    productID,
-                    type,
-                    name,
-                    image: {...file},
-                    price,
-                    category,
-                    rating:{rate: rating, count:views}, // modified
-                    views,
-                    description
-                }),
+                body: formData
             })
             .then(res => {
                 res.json()
@@ -166,8 +166,8 @@ export default function UploadProduct() {
 
     const handleImage = (event) => {
         // console.log(event.target.files);
-        setFile(event.target.files[0].name);
-        console.log(typeof file);
+        setFile(event.target.files[0]);
+        console.log(file);
     }
 
     return (
