@@ -5,8 +5,8 @@ const bcrypt = require('bcrypt')
 const path = require('path')
 const multer = require('multer')
 
-const signUpTemplateCopy = require('./modules/SignUpModels')
-const productInfoTemplateCopy = require('./modules/ProductModels')
+const signUpTemplateCopy = require('./models/SignUpModels')
+const productInfoTemplateCopy = require('./models/ProductModels')
 
 
 //Sign Up
