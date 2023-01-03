@@ -117,6 +117,10 @@ export default function AccountMenus() {
         <MenuItem onClick={handleClose} disableRipple>
           <Link style={{ textDecoration: 'none', color: 'black' }} to="address">Address Preferences</Link>
         </MenuItem>
+        {localStorage.getItem("email")&&
+        <MenuItem onClick={handleClose} disableRipple>
+        <Link style={{ textDecoration: 'none', color: 'black' }} to="/">Sign out</Link>
+      </MenuItem>}
       </StyledMenu>
     </div>
   );
