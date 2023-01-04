@@ -10,8 +10,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
-// const cors = require('cors')
-const routerURI = require('./router-app')
+const routerProduct = require('./router-product')
+const routerBuyer = require('./router-buyer')
 const draftURI = require('./modules/uploadDraft/DraftRouter')
 
 //connection to database
@@ -32,7 +32,8 @@ connect()
 //express middleware
 app.use(cors())
 app.use(express.json())
-app.use('/app', routerURI)
+app.use('/app', routerProduct)
+app.use('app', routerBuyer)
 app.use('uploads', express.static('uploads'))
 // app.use('/app', draftURI)
 
