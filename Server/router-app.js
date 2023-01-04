@@ -5,8 +5,8 @@ const bcrypt = require('bcrypt')
 const path = require('path')
 const multer = require('multer')
 
-const signUpTemplateCopy = require('./modules/SignUpModels')
-const productInfoTemplateCopy = require('./modules/ProductModels')
+const signUpTemplateCopy = require('./models/SignUpModels') //modules? models?
+const productInfoTemplateCopy = require('./models/ProductModels')
 
 
 //Sign Up
@@ -95,10 +95,7 @@ router.post('/upload', (req, res)=>{
                 productID: req.body.productID,
                 productName: req.body.productName,
                 productType: req.body.productType,
-                productImage: {
-                    data: req.file.filename,
-                    contentType: "image/png",
-                },
+                productImage: req.body.productImage,
                 price: req.body.price,
                 category: req.body.category,
                 rating: req.body.rating,

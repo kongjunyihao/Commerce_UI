@@ -15,7 +15,8 @@ const routerURI = require('./router-app')
 // const draftURI = require('./modules/uploadDraft/DraftRouter')
 
 
-const uri = "mongodb+srv://Sean_cluster:Xtx199284=@e-commerce.xyeoe40.mongodb.net/?retryWrites=true&w=majority"
+// const uri = "mongodb+srv://Sean_cluster:Xtx199284=@e-commerce.xyeoe40.mongodb.net/?retryWrites=true&w=majority"
+const uri = "mongodb+srv://YanyuLi:lyy123456@cluster0.vf6ovwt.mongodb.net/?retryWrites=true&w=majority"
 
 async function connect(){
     try{
@@ -32,6 +33,7 @@ connect()
 app.use(cors())
 app.use(express.json())
 app.use('/app', routerURI)
+app.use('uploads', express.static('uploads'))
 // app.use('/app', draftURI)
 
 app.listen(4000, ()=>{

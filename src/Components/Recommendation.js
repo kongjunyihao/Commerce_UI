@@ -39,7 +39,7 @@ export default function ({ categoryVal, productID }) {
                     } else {
                         return (
                             <div className="info" key={index}>
-                                <Link to={`${item.id}`} state={item}>
+                                <Link to={`/${item.id}`} state={item}>
                                     <img id='recommend-img' src={
                                         item.image[0] === 'h' ? item.image : require("../Asset/" + item.image) //apply online data / mock data
                                     } alt={item.title} />
