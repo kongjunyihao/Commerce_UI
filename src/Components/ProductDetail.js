@@ -24,24 +24,22 @@ export default function ProductDetail() {
     // const item = Globalstate.productWithDetail.find(prod => prod.id === parseInt(productId));
     const [item, setItem] = useState([]);
     const [loading, setLoading] = useState(true);
-    let categoryItem = "";
+    const [categoryItem, setCategory] = useState("");
     const getData = () => {
-        fetch("http://localhost:4000/app/products")
-        .then(res => res.json())
+        fetch("http://localhost:4000/app/products/" + productId)
+        .then(res=>res.json())
         .then(
-            res => {
-                let item = Array.from(res).find(i => parseInt(i.productID) === parseInt(productId))
+            item => {
+                // let item = Array.from(res).find(i => parseInt(i.productID) === parseInt(productId))
                 setItem(item)
                 setLoading(false)
+                setCategory(item.category)
             }
         )
     }
     useEffect(()=>{
         getData();
     },[]);
-    useEffect(()=>{
-        categoryItem = item? item.category:null;
-    },[item])
     if(loading) return (
         <>
         <div>Loading the details...</div>
@@ -87,7 +85,7 @@ export default function ProductDetail() {
             </Stack>
             
         </Box>
-        {/* <Recommendation categoryVal={categoryItem} productID={productId}/> */}
+        <Recommendation categoryVal={categoryItem} productID={productId}/>
         </>
     );
 }

@@ -131,6 +131,24 @@ router.get('/products', (async (req,res,next)=>{
     }
 }))
 
+//show product detail
+router.get('/products/:id', async (req, res)=>{
+    const id = req.params.id
+    await productInfoTemplateCopy.findOne({productID:id})
+    .then((product)=>{
+        res.json(product)
+    })
+})
+
+//show products with same category
+router.get('/products/category/:category', async (req, res)=>{
+    const category = req.params.category
+    await productInfoTemplateCopy.find({category:category})
+    .limit(4)
+    .then((product)=>{
+        res.json(product)
+    })
+})
 
 //search
 router.post('/search', async (req, res)=>{

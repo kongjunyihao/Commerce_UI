@@ -11,7 +11,7 @@ export default function ({ categoryVal, productID }) {
     const navigate = useNavigate();
 
     const getData = () => {
-        fetch("https://fakestoreapi.com/products/category/" + categoryVal + "?limit=5")
+        fetch("http://localhost:4000/app/products/category/"+categoryVal)
             .then(res => res.json())
             .then(
                 data => {
@@ -27,24 +27,28 @@ export default function ({ categoryVal, productID }) {
     useEffect(() => {
         getData();
     }, []);
-
+    if(!cloth) return(
+        <>
+        <div>Loading...</div>
+        </>
+    )
     return (
         <>
             <h3 style={{ marginLeft: '50px' }}>Products related to this item</h3>
             <div className="recommend-comp">
                 {cloth.map((item, index) => {
                     item.quantity = 1;
-                    if (item.id === parseInt(productID)) {
+                    if (item.productID === productID) {
                         return;
                     } else {
                         return (
                             <div className="info" key={index}>
-                                <Link to={`/${item.id}`} state={item}>
+                                <a href={`/${item.productID}`} state={item}>
                                     <img id='recommend-img' src={
-                                        item.image[0] === 'h' ? item.image : require("../Asset/" + item.image) //apply online data / mock data
-                                    } alt={item.title} />
-                                </Link>
-                                <p>{item.title}</p>
+                                        item.productImage[0] === 'h' ? item.productImage : require("../../uploads/" + item.productImage.slice(8,item.productImage.length)) //apply online data / mock data
+                                    } alt={item.productName} />
+                                </a>
+                                <p>{item.productName}</p>
                                 <h3>$ {item.price}</h3>
                             </div>
                         );

@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 
 function BestCloth(){
     const [cloth,setCloth] = useState([]);
+    const [loading,setLoading] = useState(true);
     const Globalstate = useContext(CommerceContext);
     const dispatch = Globalstate.dispatch;
 
@@ -23,18 +24,23 @@ function BestCloth(){
                 }
                 else{
                     setCloth(data);
+                    setLoading(false);
                 }
             }
         )
     }
     useEffect(()=>{
-        getData();
+        setTimeout(()=>getData(),1000);
     }, []);
 
     useEffect(()=>{
         Globalstate.setDetail(cloth);
     },[cloth]);
-
+    if(loading) return(
+        <>
+        <div>Loading...</div>
+        </>
+    )
     return (
         <>
             <h2>Today's Best Sellers</h2>
