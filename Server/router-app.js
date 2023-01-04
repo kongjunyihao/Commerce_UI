@@ -42,11 +42,11 @@ router.post('/signin', async (req, res)=>{
         .then(user=>{
             if(user){
                 bcrypt.compare(password, user.password, (err, result)=>{
-                    if(err){
-                        res.json({
-                            error: err
-                        })
-                    }
+                    // if(err){
+                    //     res.json({
+                    //         error: err
+                    //     })
+                    // }
                     if(result){
                         let token = jwt.sign({name: user.name}, 'verySecretValue', {expiresIn: '1h'})
                         res.status(200).json({
@@ -54,7 +54,7 @@ router.post('/signin', async (req, res)=>{
                             token
                         })
                     }else{
-                        res.status(400).json({
+                        res.status(401).json({
                             message: 'Password does not match'
                         })
                     }
@@ -152,11 +152,11 @@ router.get('/products/category/:category', async (req, res)=>{
 
 //search
 router.post('/search', async (req, res)=>{
-    let payload = req.body.payload.trim()
-    let search = await productInfoTemplateCopy.find({name: {$regex: new RegExp('^'+payload+'.*','i')}}).exec()
+    let payload = req.body.payload
+    let search = await productInfoTemplateCopy.find({category: payload}).exec()
     //search limit
     search = search.slice(0, 10)
-    res.send({payload: search})
+    res.send(search)
 })
 
 //list data:

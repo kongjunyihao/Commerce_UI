@@ -43,15 +43,19 @@ export default function SignIn() {
             })
           })
           .then(res=>{
-            res.json()
             if(res.status === 200){
               localStorage.setItem("email",email);
               navigate("/");
+              return res.json()
             }else{
               alert("Please check your login information");
+              return res.json()
             }
           })
-          .then(result=>console.log(result))
+          .then(
+            result=>{
+              console.log(result)
+            })
     }
   };
 
