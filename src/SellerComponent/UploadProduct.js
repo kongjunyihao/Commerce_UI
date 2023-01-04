@@ -71,7 +71,7 @@ export default function UploadProduct() {
             let formData = new FormData();
             formData.append("productID", productID)
             formData.append("type", type)
-            formData.append("productNamw", name)
+            formData.append("productName", name)
             formData.append("productImage", file)
             formData.append("price", price)
             formData.append("category", category)
@@ -79,11 +79,7 @@ export default function UploadProduct() {
             formData.append("view", views)
             formData.append("description", description)
             fetch("http://localhost:4000/app/upload", {
-                credentials: "omit",
                 method: "POST",
-                headers: {
-                    'Content-Type': "application/json",
-                },
                 body: formData
             })
             .then(res => {
