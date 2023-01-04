@@ -18,6 +18,8 @@ const productInfoTemplate = new mongoose.Schema({
         required: true
     },
     productImage:{
+        // data: Buffer,
+        // contentType: string
         type: String
     },
     price:{

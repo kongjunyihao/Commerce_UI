@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 import { CommerceContext } from '../App';
 
 import Avatar from '@mui/material/Avatar';
@@ -70,7 +70,7 @@ export default function UploadProduct() {
             // }]);
             let formData = new FormData();
             formData.append("productID", productID)
-            formData.append("type", type)
+            formData.append("productType", type)
             formData.append("productName", name)
             formData.append("productImage", file)
             formData.append("price", price)
