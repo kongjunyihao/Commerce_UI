@@ -76,7 +76,9 @@ router.post('/signin', async (req, res)=>{
 const Storage = multer.diskStorage({
     destination: 'uploads',
     filename: (req, file, cb) =>{
-        cb(null, file.originalname)
+        // cb(null, file.originalname)
+        let ext = path.extname(file.originalname)
+        cb(null, Date.now() + ext)
     },
 })
 
@@ -95,10 +97,11 @@ router.post('/upload', (req, res)=>{
                 productID: req.body.productID,
                 productName: req.body.productName,
                 productType: req.body.productType,
-                productImage: {
-                    data: req.file.filename,
-                    contentType: "image/png",
-                },
+                // productImage: {
+                //     data: req.file.filename,
+                //     contentType: "image/png",
+                // },
+                productImge: req.file.path,
                 price: req.body.price,
                 category: req.body.category,
                 rating: req.body.rating,
