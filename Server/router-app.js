@@ -121,6 +121,16 @@ router.post('/upload', (req, res)=>{
     })
 })
 
+//show product detail
+router.get('/products/:id', async (req, res)=>{
+    const id = req.params.id
+    await productInfoTemplateCopy.findOne({id,})
+    .select(['-_id'])
+    .then((product)=>{
+        res.json(product)
+    })
+})
+
 //search
 router.post('/search', async (req, res)=>{
     let payload = req.body.payload.trim()

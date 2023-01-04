@@ -13,8 +13,8 @@ function BestCloth(){
     const dispatch = Globalstate.dispatch;
 
     const getData = () => {
-        // fetch("https://fakestoreapi.com/products")
-        fetch("http://localhost:4000/app/products")
+        fetch("https://fakestoreapi.com/products")
+        // fetch("http://localhost:4000/app/products")
         .then(res=>res.json())
         .then(
             data=>{
