@@ -10,9 +10,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
-// const cors = require('cors')
+const cors = require('cors')
 const routerURI = require('./router-app')
-const draftURI = require('./modules/uploadDraft/DraftRouter')
+// const draftURI = require('./modules/uploadDraft/DraftRouter')
 
 // const uri = "mongodb+srv://Sean_cluster:Xtx199284=@e-commerce.xyeoe40.mongodb.net/?retryWrites=true&w=majority"
 const uri = "mongodb+srv://YanyuLi:lyy123456@cluster0.vf6ovwt.mongodb.net/?retryWrites=true&w=majority"

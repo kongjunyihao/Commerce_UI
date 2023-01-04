@@ -101,7 +101,7 @@ router.post('/upload', (req, res)=>{
                 //     data: req.file.filename,
                 //     contentType: "image/png",
                 // },
-                productImge: req.file.path,
+                productImage: req.file.path,
                 price: req.body.price,
                 category: req.body.category,
                 rating: req.body.rating,
@@ -120,6 +120,17 @@ router.post('/upload', (req, res)=>{
         }
     })
 })
+
+//show product list
+router.get('/products', (async (req,res,next)=>{
+    try{
+        const result = await productInfoTemplateCopy.find({},{__v: 0})
+        res.send(result)
+    }catch(error){
+        console.log(error.message)
+    }
+}))
+
 
 //search
 router.post('/search', async (req, res)=>{
