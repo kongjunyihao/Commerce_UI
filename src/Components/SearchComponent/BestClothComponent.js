@@ -30,12 +30,12 @@ function BestCloth(){
         )
     }
     useEffect(()=>{
-        setTimeout(()=>getData(),1000);
+        getData();
     }, []);
 
-    useEffect(()=>{
-        Globalstate.setDetail(cloth);
-    },[cloth]);
+    // useEffect(()=>{
+    //     Globalstate.setDetail(cloth);
+    // },[cloth]);
     if(loading) return(
         <>
         <div>Loading...</div>

@@ -87,7 +87,7 @@ export default function UploadProduct() {
                 res.json()
                 if (res.status === 200) {
                     alert("Upload Successfully!");
-                    navigate("/");
+                    window.location.reload();
                 } else {
                     alert("Please provide correct product information");
                 }
