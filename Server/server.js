@@ -34,7 +34,7 @@ connect()
 app.use(cors())
 app.use(express.json())
 app.use('/app', routerProduct)
-app.use('app', routerBuyer)
+app.use('/app', routerBuyer)
 app.use('uploads', express.static('uploads'))
 // app.use('/app', draftURI)
 

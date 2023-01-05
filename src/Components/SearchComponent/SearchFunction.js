@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { CommerceContext } from "../../App";
-import { useNavigate } from 'react-router-dom';
 
 import { styled, alpha, useTheme } from '@mui/material/styles';
 import { Tabs, Button, Tab } from '@mui/material';
@@ -46,7 +45,6 @@ export default function SearchFunction({data}) {
     const [nameEntered, setNameEntered] = useState("");
     const Globalstate = useContext(CommerceContext);
     const dispatch = Globalstate.dispatch;
-    const navigate = useNavigate();
     
     let categories = new Set();
 
