@@ -64,7 +64,10 @@ export default function AccountMenus() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const handleSignout = () => {
+    localStorage.removeItem('email')
+    setAnchorEl(null);
+  }
   return (
     <div>
       <Button
@@ -89,9 +92,11 @@ export default function AccountMenus() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
+        {
+          !localStorage.getItem("email")&&
+          <MenuItem onClick={handleClose} disableRipple>
           <Link style={{ textDecoration: 'none', color: 'black' }} to="signIn">Sign In</Link>
-        </MenuItem>
+        </MenuItem>}
         <MenuItem onClick={handleClose} disableRipple>
           <Link style={{ textDecoration: 'none', color: 'black' }} to="signUp">Create Account</Link>
         </MenuItem>
@@ -118,7 +123,7 @@ export default function AccountMenus() {
           <Link style={{ textDecoration: 'none', color: 'black' }} to="address">Address Preferences</Link>
         </MenuItem>
         {localStorage.getItem("email")&&
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={handleSignout} disableRipple>
         <Link style={{ textDecoration: 'none', color: 'black' }} to="/">Sign out</Link>
       </MenuItem>}
       </StyledMenu>
