@@ -40,11 +40,6 @@ router.post('/signin', async (req, res)=>{
         .then(user=>{
             if(user){
                 bcrypt.compare(password, user.password, (err, result)=>{
-                    if(err){
-                        res.json({
-                            error: err
-                        })
-                    }
                     if(result){
                         let token = jwt.sign({name: user.name}, 'verySecretValue', {expiresIn: '1h'})
                         res.status(200).json({
@@ -52,7 +47,7 @@ router.post('/signin', async (req, res)=>{
                             token
                         })
                     }else{
-                        res.status(400).json({
+                        res.status(401).json({
                             message: 'Password does not match'
                         })
                     }

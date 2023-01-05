@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { CommerceContext } from "../../App";
 import { categoryItem } from "./SearchFunction";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Button from '@mui/material/Button';
 import './BestClothStyle.css';
@@ -9,13 +8,15 @@ import './BestClothStyle.css';
 function SearchProduct() {
     const [product,setProduct] = useState([]);
     const {categoryVal} = useParams();
-    const Globalstate = useContext(CommerceContext);
-    const dispatch = Globalstate.dispatch;
-    const navigate = useNavigate();
-    const item = Globalstate.productWithDetail.find(prod => prod.category === categoryVal);
 
     const getData = () => {
-        fetch("https://fakestoreapi.com/products/category/"+categoryVal)
+        fetch("http://localhost:4000/app/search",{
+            method: "POST",
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({payload: categoryVal})
+        })
             .then(res => res.json())
             .then(
                 data => {
@@ -32,10 +33,6 @@ function SearchProduct() {
         getData();
     }, []);
 
-    useEffect(() => {
-        Globalstate.setDetail(product);
-    }, [product]);
-
     return (
         <>
             <div className="home">
@@ -43,16 +40,16 @@ function SearchProduct() {
                     item.quantity = 1;
                     return (
                         <div className="card" key={index}>
-                            <Link to={`/${item.id}`} state={item}>
+                            <Link to={`/${item.productID}`} state={item}>
                                 <img src={
-                                    item.image[0] === 'h' ? item.image : require("../../Asset/" + item.image) //apply online data / mock data
-                                } alt={item.title} />
+                                    item.productImage[0] === 'h' ? item.productImage : require("../../../uploads/" + item.productImage.slice(8,item.productImage.length)) //apply online data / mock data
+                                } alt={item.productName} />
                             </Link>
-                            <p>{item.title}</p>
+                            <p>{item.productName}</p>
                             <h3>$ {item.price}</h3>
                             <Button
                                 fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
-                                onClick={() => dispatch({ type: "ADD", payload: item })}>
+                                >
                                 add to cart
                             </Button>
                         </div>

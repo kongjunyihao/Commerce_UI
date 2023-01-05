@@ -89,14 +89,13 @@ router.get("/categories", async (req, res)=>{
 })
 
 //get product in category
-router.get('/category/:category', async (req, res)=>{
+router.get('/products/category/:category', async (req, res)=>{
     const category = req.params.category
-    try{
-        const result = await productInfoTemplateCopy.find({category,})
-        res.send(result)
-    }catch(error){
-        console.log(error.message)
-    }
+    await productInfoTemplateCopy.find({category:category})
+    .limit(4)
+    .then((product)=>{
+        res.json(product)
+    })
 })
 
 //update product
@@ -151,11 +150,11 @@ router.delete('/:id', async (req, res)=>{
 
 //search bar
 router.post('/search', async (req, res)=>{
-    let payload = req.body.payload.trim()
-    let search = await productInfoTemplateCopy.find({name: {$regex: new RegExp('^'+payload+'.*','i')}}).exec()
+    let payload = req.body.payload
+    let search = await productInfoTemplateCopy.find({category: payload}).exec()
     //search limit
     search = search.slice(0, 10)
-    res.send({payload: search})
+    res.send(search)
 })
 
 

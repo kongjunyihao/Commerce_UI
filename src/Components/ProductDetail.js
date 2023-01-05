@@ -21,27 +21,46 @@ export default function ProductDetail() {
     const Globalstate = useContext(CommerceContext);
     const dispatch = Globalstate.dispatch;
     const navigate = useNavigate();
-    const item = Globalstate.productWithDetail.find(prod => prod.id === parseInt(productId));
-    let categoryItem = item? item.category:null;
-
+    const [item, setItem] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [categoryItem, setCategory] = useState("");
+    const getData = () => {
+        fetch("http://localhost:4000/app/products/" + productId)
+        .then(res=>res.json())
+        .then(
+            item => {
+                setItem(item)
+                setLoading(false)
+                setCategory(item.category)
+            }
+        )
+    }
+    useEffect(()=>{
+        getData();
+    },[]);
+    if(loading) return (
+        <>
+        <div>Loading the details...</div>
+        </>
+    )
     return (
         <>
         <Box className="detail"
             width='100%' sx={{ flexGrow: 1 }}
             bgcolor="white" color="black">
             <img className="productDetail__img" src={
-                            item.image[0] === 'h'? item.image:require("../Asset/"+item.image) //apply online data / mock data
-                            } alt={item.title}/>
+                            item.productImage[0] === 'h'? item.productImage:require("../../uploads/"+item.productImage.slice(8,item.productImage.length)) //apply online data / mock data
+                            } alt={item.productName}/>
             <Stack direction="column" className="product-info">
-                <span id="description">{item.title}</span>
+                <span id="description">{item.productName}</span>
                 <h4>{item.description}</h4>
                 <div className='ProductDetail__price'>
                     <h5>${item.price}</h5>
                 </div>
                 <div className='ProductDetail__Rateing'>
                     <ProductRating
-                        value={item.rating.rate}
-                        text={`${item.rating.count} reviews`}
+                        value={parseFloat(item.rating)}
+                        text={`${item.view} reviews`}
                     />
                 </div>
                 <Button

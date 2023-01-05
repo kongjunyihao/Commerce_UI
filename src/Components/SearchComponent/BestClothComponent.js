@@ -9,12 +9,12 @@ import Button from '@mui/material/Button';
 
 function BestCloth(){
     const [cloth,setCloth] = useState([]);
+    const [loading,setLoading] = useState(true);
     const Globalstate = useContext(CommerceContext);
     const dispatch = Globalstate.dispatch;
 
     const getData = () => {
-        fetch("https://fakestoreapi.com/products")
-        // fetch("http://localhost:4000/app/products")
+        fetch("http://localhost:4000/app/products")
         .then(res=>res.json())
         .then(
             data=>{
@@ -23,18 +23,23 @@ function BestCloth(){
                 }
                 else{
                     setCloth(data);
+                    setLoading(false);
                 }
             }
         )
     }
     useEffect(()=>{
-        getData();
+        setTimeout(()=>getData(),1000);
     }, []);
 
     useEffect(()=>{
         Globalstate.setDetail(cloth);
     },[cloth]);
-
+    if(loading) return(
+        <>
+        <div>Loading...</div>
+        </>
+    )
     return (
         <>
             <h2>Today's Best Sellers</h2>
@@ -43,12 +48,12 @@ function BestCloth(){
                 item.quantity = 1;
                 return (
                         <div className="card" key={index}>
-                            <Link to={`${item.id}`} state={item}>
+                            <Link to={`${item.productID}`} state={item}>
                             <img src={
-                                item.image[0] === 'h'? item.image:require("../../Asset/"+item.image) //apply online data / mock data
-                                } alt={item.title} />
+                                item.productImage[0] === 'h'? item.productImage:require("../../../uploads/"+item.productImage.slice(8,item.productImage.length)) //apply online data / mock data
+                                } alt={item.productName} />
                             </Link>
-                            <p>{item.title}</p>
+                            <p>{item.productName}</p>
                             <h3>$ {item.price}</h3>
                             <Button
                             fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
