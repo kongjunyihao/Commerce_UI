@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt')
 const path = require('path')
 const multer = require('multer')
 
-const signUpTemplateCopy = require('./modules/SignUpModels')
+const signUpTemplateCopy = require('./models/SignUpModels')
 
 //Sign Up
 router.post('/signup', async (req, res)=>{

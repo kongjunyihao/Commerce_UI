@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt')
 const path = require('path')
 const multer = require('multer')
 
-const productInfoTemplateCopy = require('./modules/ProductModels')
+const productInfoTemplateCopy = require('./models/ProductModels')
 
 
 //set up storage position
