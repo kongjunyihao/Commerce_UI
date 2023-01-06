@@ -1,20 +1,18 @@
-const {string} = require('mathjs')
 const express = require('express')
 const mongoose = require('mongoose')
-const multer = require('multer')
 
 
 const productInfoTemplate = new mongoose.Schema({
     productID:{
-        type: string,
+        type: String,
         required: true
     },
     productName:{
-        type: string,
+        type: String,
         required: true
     },
     productType:{
-        type: string,
+        type: String,
         required: true
     },
     productImage:{
@@ -23,23 +21,23 @@ const productInfoTemplate = new mongoose.Schema({
         type: String
     },
     price:{
-        type: string,
+        type: String,
         required: true
     },
     category:{
-        type: string,
+        type: String,
         required: true
     },
     rating:{
-        type: string,
+        type: String,
         required: true
     },
     view:{
-        type: string,
+        type: String,
         required: true
     },
     description:{
-        type: string,
+        type: String,
         required: true
     },
 })

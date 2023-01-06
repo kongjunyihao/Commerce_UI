@@ -32,9 +32,6 @@ function BestCloth(){
         setTimeout(()=>getData(),1000);
     }, []);
 
-    useEffect(()=>{
-        Globalstate.setDetail(cloth);
-    },[cloth]);
     if(loading) return(
         <>
         <div>Loading...</div>
