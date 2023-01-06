@@ -109,7 +109,7 @@ export default function CommerceSearchBar() {
   const [productdata, setProductdata] = useState([]);
 
   const getData = () => {
-    fetch("https://fakestoreapi.com/products")
+    fetch("http://localhost:4000/app/products")
       .then(res => res.json())
       .then(data => {
         console.log(data);

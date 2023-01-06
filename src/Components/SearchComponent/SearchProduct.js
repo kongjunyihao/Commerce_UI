@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { categoryItem } from "./SearchFunction";
 import { Link, useParams } from "react-router-dom";
 
@@ -8,7 +8,7 @@ import './BestClothStyle.css';
 function SearchProduct() {
     const [product,setProduct] = useState([]);
     const {categoryVal} = useParams();
-
+    const navigate = useNavigate();
     const getData = () => {
         fetch("http://localhost:4000/app/search",{
             method: "POST",
@@ -47,11 +47,33 @@ function SearchProduct() {
                             </Link>
                             <p>{item.productName}</p>
                             <h3>$ {item.price}</h3>
+                            {window.localStorage.getItem("email")? (
                             <Button
-                                fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
-                                >
+                            fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
+                            onClick={() => 
+                                fetch("http://localhost:4000/app/cart/add",{
+                                    method:"POST",
+                                    headers:{
+                                        'Content-Type':'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        email: window.localStorage.getItem("email"),
+                                        productID: item.productID
+                                    })
+                                })}>
                                 add to cart
                             </Button>
+                            ):(
+                                <Button
+                                fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
+                                onClick={() => 
+                                    {
+                                        navigate("/signIn")
+                                    }}>
+                                    Sign in to add
+                                </Button>
+                            )
+                            }
                         </div>
                     );
                 })}

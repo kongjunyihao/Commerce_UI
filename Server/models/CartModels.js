@@ -1,23 +1,16 @@
-const express = require('express')
+const {string} = require('mathjs')
 const mongoose = require('mongoose')
-const product = require('./ProductModels')
-const buyer = require('./SignUpModels')
+
 
 const cartInfoTemplate = new mongoose.Schema({
-    buyer_email:{
-        type: String,
-        ref: buyer,
+    email:{
+        type: string,
         required: true
     },
-    date:{
-        type:Date,
-        // required:true
-    },
-   product:[
+    products:[
         {
             productID:{
-                type: String,
-                ref:product,
+                type:string,
                 required:true
             },
             quantity:{
@@ -25,7 +18,7 @@ const cartInfoTemplate = new mongoose.Schema({
                 required:true
             }
         }
-   ]
+    ]
 })
 
 module.exports = mongoose.model('cart_info', cartInfoTemplate)

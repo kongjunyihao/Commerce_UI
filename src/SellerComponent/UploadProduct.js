@@ -66,6 +66,7 @@ export default function UploadProduct() {
             formData.append("rating", rating)
             formData.append("view", views)
             formData.append("description", description)
+
             fetch("http://localhost:4000/app/upload", {
                 method: "POST",
                 body: formData
@@ -74,7 +75,7 @@ export default function UploadProduct() {
                 res.json()
                 if (res.status === 200) {
                     alert("Upload Successfully!");
-                    navigate("/");
+                    window.location.reload();
                 } else {
                     alert("Please provide correct product information");
                 }
