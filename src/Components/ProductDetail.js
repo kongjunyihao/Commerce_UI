@@ -67,10 +67,17 @@ export default function ProductDetail() {
                 </div>
                 <Button
                     fullWidth variant="contained"
-                    onClick={()=>{
-                        item.quantity = 1;
-                        dispatch({ type: "ADD", payload: item });
-                        }}>
+                    onClick={() => 
+                        fetch("http://localhost:4000/app/cart/add",{
+                            method:"POST",
+                            headers:{
+                                'Content-Type':'application/json'
+                            },
+                            body: JSON.stringify({
+                                email: window.localStorage.getItem("email"),
+                                productID: item.productID
+                            })
+                        })}>
                     Add to Cart
                 </Button>
             </Stack>

@@ -58,7 +58,17 @@ function BestCloth(){
                             <h3>$ {item.price}</h3>
                             <Button
                             fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
-                            onClick={() => dispatch({ type: "ADD", payload: item })}>
+                            onClick={() => 
+                                fetch("http://localhost:4000/app/cart/add",{
+                                    method:"POST",
+                                    headers:{
+                                        'Content-Type':'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        email: window.localStorage.getItem("email"),
+                                        productID: item.productID
+                                    })
+                                })}>
                                 add to cart
                             </Button>
                         </div>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext,useEffect,useState } from 'react';
 import { CommerceContext } from "../../App";
 
 import "./CartComponentStyle.css";
@@ -14,20 +14,43 @@ import { Link } from 'react-router-dom';
 
 
 export default function Cart() {
-    const Globalstate = useContext(CommerceContext);
-    const localstate = Globalstate.state;
-    const localdispatch = Globalstate.dispatch;
-
-    console.log(Globalstate);
-
-    const total = localstate.reduce((total, item) => {
-        return total + item.price * item.quantity;
-    }, 0);
-
-    const totalItem = localstate.reduce((total, item) => {
-        return total + item.quantity;
-    }, 0)
-
+    const [items,setItems] = useState([])
+    const [itemDetails, setDetails] = useState([])
+    const [loading,setLoading] = useState(true)
+    let total = 0
+    useEffect(() => {
+            fetch("http://localhost:4000/app/cart",{
+                method:"POST",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({
+                    email: window.localStorage.getItem("email")
+                })
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                setItems(data.products)
+            })
+    },[]);
+    useEffect(()=>{
+        let details = [];
+        items.forEach((i)=>{
+            fetch("http://localhost:4000/app/products/" + i.productID)
+            .then(res=>res.json())
+            .then(data=>{
+                details.push(data);
+                setDetails([...details]);})
+            })
+    },[items])
+    useEffect(()=>{
+        if(itemDetails.length === items.length) setLoading(false);
+    },[itemDetails])
+    if(loading) return(
+        <>
+        <div>Loading...</div>
+        </>
+    )
     return (
         <>
             <Toolbar>
@@ -50,52 +73,85 @@ export default function Cart() {
             </Toolbar>
             <div className='cart-info'>
                 <div className="cart">
-                    {localstate.length === 0 ? (
+                    {items.length === 0? (
                         <h1 style={{marginTop: "15%", marginBottom: "15%", marginLeft:"40px"}}>Your cart is empty. Add something you like here!</h1>
                     ) : null}
-                    {localstate.map((item, index) => {
+                    {items.map((item, index) => {
+                        let detail = itemDetails.find(i => i.productID === item.productID)
+                        if(detail === undefined) {
+                            return(
+                            <div key={index}>Loading...</div>
+                        )
+                        }
+                        total += item.quantity * detail.price
                         return (
                             <div className="card" key={index}>
                                 <img src={
-                                    item.image[0] === 'h' ? item.image : require("../../Asset/" + item.image) //apply online data / mock data
+                                    detail.productImage[0] === 'h' ? detail.productImage : require("../../../uploads/" + detail.productImage.slice(8,detail.productImage.length)) //apply online data / mock data
                                 } alt=""></img>
-                                <p>{item.title}</p>
-                                <p>${(item.quantity * item.price).toFixed(2)}</p>
+                                <p>{detail.productName}</p>
+                                <p>${(item.quantity * detail.price).toFixed(2)}</p>
                                 <div className="quantity">
                                     <button id="left"
-                                        onClick={() => {
-                                            if (item.quantity > 1) {
-                                                localdispatch({ type: "DECREASE", payload: item });
-                                            }
-                                        }}
+                                         onClick={() => 
+                                            fetch("http://localhost:4000/app/cart/minus",{
+                                                method:"POST",
+                                                headers:{
+                                                    'Content-Type':'application/json'
+                                                },
+                                                body: JSON.stringify({
+                                                    email: window.localStorage.getItem("email"),
+                                                    productID: item.productID
+                                                })
+                                            }).then(window.location.reload())}
                                     >
                                         -
                                     </button>
                                     <p id="middle">{item.quantity}</p>
                                     <button id="right"
-                                        onClick={() => localdispatch({ type: "INCREASE", payload: item })}
+                                        onClick={() => 
+                                            fetch("http://localhost:4000/app/cart/add",{
+                                                method:"POST",
+                                                headers:{
+                                                    'Content-Type':'application/json'
+                                                },
+                                                body: JSON.stringify({
+                                                    email: window.localStorage.getItem("email"),
+                                                    productID: item.productID
+                                                })
+                                            }).then(window.location.reload())}
                                     >
                                         +
                                     </button>
                                 </div>
-                                <h2 onClick={() => localdispatch({ type: "REMOVE", payload: item })}>
+                                <h2  onClick={() => 
+                                            fetch("http://localhost:4000/app/cart/delete",{
+                                                method:"POST",
+                                                headers:{
+                                                    'Content-Type':'application/json'
+                                                },
+                                                body: JSON.stringify({
+                                                    email: window.localStorage.getItem("email"),
+                                                    productID: item.productID
+                                                })
+                                            }).then(window.location.reload())}>
                                     x
                                 </h2>
                             </div>
                         );
                     })}
-                    {localstate.length > 0 && (
+                    {items && (
                         <div className="total">
                             <h2>${total.toFixed(2)}</h2>
                         </div>
                     )}
                 </div>
-                {totalItem === 0? "":
+                {items.length === 0 ? "":
                 <Stack className='recommend'>
                     <div>
                         <p>Add <span style={{ color: "red" }}>$4.15</span> of eligible items to your order to qualify for FREE Shipping.</p>
                         <div style={{ fontSize: "18px" }}>
-                            Subtotal ({totalItem} {totalItem > 1 ? 'items' : 'item'}): <span id='price'>${total.toFixed(2)}</span>
+                            Subtotal ({items.length} {items.length > 1 ? 'items' : 'item'}): <span id='price'>${total.toFixed(2)}</span>
                         </div>
                         <FormControlLabel
                             control={<Checkbox value="gift" color="primary" />}
