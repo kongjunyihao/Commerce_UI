@@ -65,21 +65,33 @@ export default function ProductDetail() {
                         text={`${item.view} reviews`}
                     />
                 </div>
-                <Button
-                    fullWidth variant="contained"
-                    onClick={() => 
-                        fetch("http://localhost:4000/app/cart/add",{
-                            method:"POST",
-                            headers:{
-                                'Content-Type':'application/json'
-                            },
-                            body: JSON.stringify({
-                                email: window.localStorage.getItem("email"),
-                                productID: item.productID
-                            })
-                        })}>
-                    Add to Cart
-                </Button>
+                {window.localStorage.getItem("email")? (
+                            <Button
+                            fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
+                            onClick={() => 
+                                fetch("http://localhost:4000/app/cart/add",{
+                                    method:"POST",
+                                    headers:{
+                                        'Content-Type':'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        email: window.localStorage.getItem("email"),
+                                        productID: item.productID
+                                    })
+                                })}>
+                                add to cart
+                            </Button>
+                            ):(
+                                <Button
+                                fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
+                                onClick={() => 
+                                    {
+                                        navigate("/signIn")
+                                    }}>
+                                    Sign in to add
+                                </Button>
+                            )
+                            }
             </Stack>
             <Stack className="checkout">
                 <h4>Buy new:</h4>

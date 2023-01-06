@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { CommerceContext } from "../../App";
 import "./BestClothStyle.css";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link, Navigate, useNavigate } from "react-router-dom";
 import ProductDetail from "../ProductDetail";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -12,7 +12,7 @@ function BestCloth(){
     const [loading,setLoading] = useState(true);
     const Globalstate = useContext(CommerceContext);
     const dispatch = Globalstate.dispatch;
-
+    const navigate = useNavigate();
     const getData = () => {
         // fetch("https://fakestoreapi.com/products")
         fetch("http://localhost:4000/app/products")
@@ -56,6 +56,7 @@ function BestCloth(){
                             </Link>
                             <p>{item.productName}</p>
                             <h3>$ {item.price}</h3>
+                            {window.localStorage.getItem("email")? (
                             <Button
                             fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
                             onClick={() => 
@@ -71,6 +72,17 @@ function BestCloth(){
                                 })}>
                                 add to cart
                             </Button>
+                            ):(
+                                <Button
+                                fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
+                                onClick={() => 
+                                    {
+                                        navigate("/signIn")
+                                    }}>
+                                    Sign in to add
+                                </Button>
+                            )
+                            }
                         </div>
                     );
                 })}
