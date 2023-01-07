@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 const signUpTemplateCopy = require('./models/SignUpModels')
+const addressTemplateCopy = require('./models/AddressModels')
 
 //Sign Up
 router.post('/signup', async (req, res)=>{
@@ -63,6 +64,36 @@ router.post('/signin', async (req, res)=>{
     }
 })
 
-//profile
+//get buyer info by email for profile
+router.post('/profile', async (req, res)=>{
+    let email = req.body.email
+    let result = await signUpTemplateCopy.findOne({email: email}).exec()
+    res.json(result)
+})
+
+//update profile
+router.put('/profile/update', async (req, res)=>{
+    let email = req.body.email
+    let result = await signUpTemplateCopy.findOne({email: email}).exec()
+    res.json(result)
+})
+
+//get mail address info by email
+router.post('/address', async (req, res)=>{
+    let email = req.body.email
+    let result = await addressTemplateCopy.findOne({email: email})
+    res.json(result)
+})
+
+//add mailing address
+router.post('/address/add', async (req, res)=>{
+    let email = req.body.email
+    let result = await addressTemplateCopy.findOne({email: email}).exec()
+    let targetItem = result.products.find(product => product.productID === productID)
+    if(targetItem) targetItem.quantity += 1
+    else result.products.push({productID:productID,quantity:1})
+    await result.save()
+    res.json(result)
+})
 
 module.exports = router

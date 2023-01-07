@@ -14,7 +14,6 @@ function BestCloth(){
     const dispatch = Globalstate.dispatch;
     const navigate = useNavigate();
     const getData = () => {
-        // fetch("https://fakestoreapi.com/products")
         fetch("http://localhost:4000/app/products")
         .then(res=>res.json())
         .then(
@@ -33,9 +32,6 @@ function BestCloth(){
         setTimeout(()=>getData(),1000);
     }, []);
 
-    // useEffect(()=>{
-    //     Globalstate.setDetail(cloth);
-    // },[cloth]);
     if(loading) return(
         <>
         <div>Loading...</div>

@@ -1,16 +1,15 @@
-const {string} = require('mathjs')
 const mongoose = require('mongoose')
 
 
 const cartInfoTemplate = new mongoose.Schema({
     email:{
-        type: string,
+        type: String,
         required: true
     },
     products:[
         {
             productID:{
-                type:string,
+                type:String,
                 required:true
             },
             quantity:{
