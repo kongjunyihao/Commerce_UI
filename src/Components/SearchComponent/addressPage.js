@@ -18,6 +18,7 @@ const theme = createTheme();
 
 function AddAddress() {
     //address info
+    const [country, setCountry] = useState("United States");
     const [fullName, setFullName] = useState();
     const [phone, setPhone] = useState("");
     const [address1, setAddress1] = useState("");
@@ -27,13 +28,13 @@ function AddAddress() {
     const [zip, setZip] = useState("");
 
     //empty verification
-    const [fullNameEmpty, setFullNameEmpty] = useState();
-    const [phoneEmpty, setPhoneEmpty] = useState("");
-    const [address1Empty, setAddress1Empty] = useState("");
-    const [address2Empty, setAddress2Empty] = useState("");
-    const [cityEmpty, setCityEmpty] = useState("");
-    const [stateEmpty, setStateEmpty] = useState("");
-    const [zipEmpty, setZipEmpty] = useState("");
+    const [fullNameEmpty, setFullNameEmpty] = useState(true);
+    const [phoneEmpty, setPhoneEmpty] = useState(true);
+    const [address1Empty, setAddress1Empty] = useState(true);
+    const [address2Empty, setAddress2Empty] = useState(true);
+    const [cityEmpty, setCityEmpty] = useState(true);
+    const [stateEmpty, setStateEmpty] = useState(true);
+    const [zipEmpty, setZipEmpty] = useState(true);
 
     const countryArr = [
         { label: "" }, { label: "" }, { label: "" }, { label: "" },
@@ -57,21 +58,48 @@ function AddAddress() {
 
     const handleAdd = () => {}
 
-    const CountryInput = () => {}
+    const CountryInput = (value) => {
+        setCountry(value)
+    }
 
-    const FullNameInput = () => {}
+    const FullNameInput = (value) => {
+        if(value !== ""){
+            setFullName(value)
+            setFullNameEmpty(false)
+        }
+    }
 
-    const PhoneInput = () => {}
+    const PhoneInput = (value) => {
+        if(value !== ""){
+            setPhone(value)
+            setPhoneEmpty(false)
+        }
+    }
 
-    const Address1Input = () => {}
+    const Address1Input = (value) => {}
 
-    const Address2Input = () => {}
+    const Address2Input = (value) => {}
 
-    const CityInput = () => {}
+    const CityInput = (value) => {
+        if(value !== ""){
+            setCity(value)
+            setCityEmpty(false)
+        }
+    }
 
-    const StateInput = () => {}
+    const StateInput = (value) => {
+        if(value !== "Select"){
+            setState(value)
+            setStateEmpty(false)
+        }
+    }
 
-    const ZipInput = () => {}
+    const ZipInput = (value) => {
+        if(value !== ""){
+            setZip(value)
+            setZipEmpty(false)
+        }
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -98,7 +126,7 @@ function AddAddress() {
                                     id="country"
                                     name="country"
                                     options={countryArr}
-                                    renderInput={(params) => <TextField {...params} />}
+                                    renderInput={(params) => <TextField {...params} label="United States" />}
                                     onChange={(event, value) => CountryInput(value.label)}
                                 />
                             </Grid>
@@ -176,7 +204,7 @@ function AddAddress() {
                                     id="state"
                                     name="state"
                                     options={stateArr}
-                                    renderInput={(params) => <TextField {...params} label="ID Type" />}
+                                    renderInput={(params) => <TextField {...params} label="Select" />}
                                     onChange={(event, value) => StateInput(value.label)}
                                 />
                             </Grid>
