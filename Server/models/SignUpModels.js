@@ -21,7 +21,19 @@ const signUpTemplate = new mongoose.Schema({
     password:{
         type: String,
         required: true
-    }
+    },
+    address:[
+        {
+            fullName: String,
+            phone: String,
+            city: String,
+            street: String,
+            building: String,
+            zip: Number,
+            state: String,
+            country: String
+        }
+    ]
 })
 
 

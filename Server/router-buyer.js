@@ -81,7 +81,7 @@ router.put('/profile/update', async (req, res)=>{
 //get mail address info by email
 router.post('/address', async (req, res)=>{
     let email = req.body.email
-    let result = await addressTemplateCopy.findOne({email: email})
+    let result = await addressTemplateCopy.findOne({email: email}).exec()
     res.json(result)
 })
 
