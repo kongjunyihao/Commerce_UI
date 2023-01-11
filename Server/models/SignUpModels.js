@@ -30,8 +30,7 @@ const signUpTemplate = new mongoose.Schema({
             street: String,
             building: String,
             zip: Number,
-            state: String,
-            country: String
+            state: String
         }
     ]
 })

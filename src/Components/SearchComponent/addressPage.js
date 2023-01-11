@@ -18,11 +18,9 @@ const theme = createTheme();
 
 function AddAddress() {
     //address info
-    const [country, setCountry] = useState("United States");
     const [fullName, setFullName] = useState();
     const [phone, setPhone] = useState("");
-    const [address1, setAddress1] = useState("");
-    const [address2, setAddress2] = useState("");
+    const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
     const [zip, setZip] = useState("");
@@ -30,37 +28,29 @@ function AddAddress() {
     //empty verification
     const [fullNameEmpty, setFullNameEmpty] = useState(true);
     const [phoneEmpty, setPhoneEmpty] = useState(true);
-    const [address1Empty, setAddress1Empty] = useState(true);
-    const [address2Empty, setAddress2Empty] = useState(true);
+    const [addressEmpty, setAddressEmpty] = useState(true);
     const [cityEmpty, setCityEmpty] = useState(true);
     const [stateEmpty, setStateEmpty] = useState(true);
     const [zipEmpty, setZipEmpty] = useState(true);
 
-    const countryArr = [
-        { label: "" }, { label: "" }, { label: "" }, { label: "" },
-        { label: "" }, { label: "" }, { label: "" }, { label: "" },
-        { label: "" }, { label: "" }, { label: "" }, { label: "" },
-        { label: "" }, { label: "" }, { label: "" }, { label: "" },
-        { label: "" }, { label: "" }, { label: "" }, { label: "" },
-        { label: "" }, { label: "" }, { label: "" }, { label: "" },
-        { label: "" }, { label: "" }, { label: "" }, { label: "" },
-        { label: "" }, { label: "" }, { label: "" }, { label: "" },
-    ];
 
     const stateArr = [
-        { label: "" }, { label: "" }, { label: "" }, { label: "" }, { label: "" },
-        { label: "" }, { label: "" }, { label: "" }, { label: "" }, { label: "" },
-        { label: "" }, { label: "" }, { label: "" }, { label: "" }, { label: "" },
-        { label: "" }, { label: "" }, { label: "" }, { label: "" }, { label: "" },
-        { label: "" }, { label: "" }, { label: "" }, { label: "" }, { label: "" },
-        { label: "" }
+        { label: "Alabama" }, { label: "Alaska" }, { label: "American Samoa" }, { label: "Arizona" }, { label: "Arkansas" },
+        { label: "Califonia" }, { label: "Colorado" }, { label: "Connecticut" }, { label: "Delaware" },
+        { label: "District of Columbia" }, { label: "Federated States of Micronesia" }, { label: "Florida" }, { label: "Georgia" }, { label: "Guam" },
+        { label: "Hawaii" }, { label: "Idaho" }, { label: "Illinois" }, { label: "Indiana" }, { label: "Iowa" },
+        { label: "Kansas" }, { label: "Kentucky" }, { label: "Louisiana" }, { label: "Maine" }, { label: "Marshall Islands" },
+        { label: "Maryland" }, { label: "Massachusetts" }, { label: "Michigan" }, { label: "Minnesoda" }, { label: "Mississippi" },
+        { label: "Missouri" }, { label: "Montana" }, { label: "Nebraska" }, { label: "Nevada" }, { label: "New Hampshire" },
+        { label: "New Jersey" }, { label: "New Mexico" }, { label: "New York" }, { label: "North Carolina" }, { label: "North Dakota" },
+        { label: "North Mariana Islands" }, { label: "Ohio" }, { label: "Oklahoma" }, { label: "Oregon" }, { label: "Palau" },
+        { label: "Pennsylvania" }, { label: "Puerto Rico" }, { label: "Rhode Island" }, { label: "South Carolina" }, { label: "South Dakota" },
+        { label: "Tennessee" }, { label: "Texas" }, { label: "Utah" }, { label: "Vermont" }, { label: "Virgin Islands" },
+        { label: "Virginia" }, { label: "Washington" }, { label: "West Virginia" }, { label: "Wisconsin" }, { label: "Wyoming" },
+        { label: "Armed Forces - AA" }, { label: "Armed Forces - AE" }, { label: "Armed Forces - AP" }
     ];
 
     const handleAdd = () => {}
-
-    const CountryInput = (value) => {
-        setCountry(value)
-    }
 
     const FullNameInput = (value) => {
         if(value !== ""){
@@ -76,9 +66,12 @@ function AddAddress() {
         }
     }
 
-    const Address1Input = (value) => {}
-
-    const Address2Input = (value) => {}
+    const AddressInput = (value) => {
+        if(value !== ""){
+            setAddress(value)
+            setAddressEmpty(false)
+        }
+    }
 
     const CityInput = (value) => {
         if(value !== ""){
@@ -119,18 +112,6 @@ function AddAddress() {
                     <Box component="form" onSubmit={handleAdd} noValidate sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={18}>
-                                <Autocomplete
-                                    disablePortal
-                                    fullWidth
-                                    isOptionEqualToValue={(option, value) => option.id === value.id}
-                                    id="country"
-                                    name="country"
-                                    options={countryArr}
-                                    renderInput={(params) => <TextField {...params} label="United States" />}
-                                    onChange={(event, value) => CountryInput(value.label)}
-                                />
-                            </Grid>
-                            <Grid item xs={18}>
                                 <TextField
                                     margin="normal"
                                     required
@@ -162,26 +143,13 @@ function AddAddress() {
                                     margin="normal"
                                     required
                                     fullWidth
-                                    id="address1"
-                                    name="address1"
+                                    id="address"
+                                    name="address"
                                     label="Address"
-                                    autoComplete="street address ot P.O. Box"
+                                    autoComplete="street address or P.O. Box"
                                     autoFocus
-                                    onChange={(e) => Address1Input(e.target.value)}
+                                    onChange={(e) => AddressInput(e.target.value)}
                                 />
-                            </Grid>
-                            <Grid item xs={18}>
-                                <TextField
-                                    margin="normal"
-                                    required
-                                    fullWidth
-                                    id="address2"
-                                    name="address2"
-                                    autoComplete="Apt, suite, unit, building, floor, etc"
-                                    autoFocus
-                                    onChange={(e) => Address2Input(e.target.value)}
-                                />
-                                {fullNameEmpty ? <div style={{ color: 'red' }}>Please enter an address</div> : ''}
                             </Grid>
                             <Grid item xs={18}>
                                 <TextField
