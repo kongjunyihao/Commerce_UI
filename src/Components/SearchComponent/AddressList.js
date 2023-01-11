@@ -23,7 +23,10 @@ function AddressList(){
                     Your Addresses
                 </Typography>
             </Toolbar>
-            <div></div>
+            <div className='address-container'>
+                <div className='address-add'></div>
+                <div className='address-list'></div>
+            </div>
         </>
     );
 }
