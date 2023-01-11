@@ -55,7 +55,7 @@ function AddAddress() {
         { label: "" }
     ];
 
-    const handleAdd = () => { }
+    const handleAdd = () => {}
 
     const CountryInput = () => {}
 
