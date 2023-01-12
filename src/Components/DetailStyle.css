@@ -36,7 +36,12 @@
     gap: 12px;
     padding: 20px;
 }
-
+.checkout img{
+    height:200px;
+    width: 200px;
+    object-fit: contain;
+    margin: 20px
+}
 .productDetail__wrapper {
     width: 30%;
     padding: 10px;

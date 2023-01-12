@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 
 
 function AddressList(){
+    const navigate = useNavigate()
     return (
         <>
             <Toolbar>
@@ -20,11 +21,15 @@ function AddressList(){
                     component="div"
                     sx={{ display: { xs: 'none', sm: 'block' }, paddingTop: '8px' }}
                 >
-                    Your Addresses
+                    {`Your Addresses (TODO: fetch from database)`} 
                 </Typography>
             </Toolbar>
             <div className='address-container'>
-                <div className='address-add'></div>
+                <div className='address-add'>
+                    <Button onClick={()=>{
+                        navigate('add')
+                        }}>Add Address</Button>
+                </div>
                 <div className='address-list'></div>
             </div>
         </>

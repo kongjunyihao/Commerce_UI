@@ -8,6 +8,8 @@ import SellerMainPage from './SellerComponent/SellerMainPage';
 import SellerCenterPage from './SellerComponent/SellerCenterPage';
 import UploadProduct from './SellerComponent/UploadProduct';
 import ProfilePage from './Components/SearchComponent/ProfilePage';
+import AddressList from './Components/SearchComponent/AddressList';
+import AddAddress from './Components/SearchComponent/addressPage';
 
 export const CommerceContext = createContext();
 
@@ -83,6 +85,8 @@ function App() {
           <Route path="addProduct" element={<SellerMainPage/>}></Route>
           <Route path="sellerCenter" element={<SellerCenterPage/>}></Route>
           <Route path="profile" element={<ProfilePage />}></Route>
+          <Route path="address" element={<AddressList />}></Route>
+          <Route path="address/add" element={<AddAddress/>}></Route>
         </Routes>
       </BrowserRouter>
     </CommerceContext.Provider>

@@ -19,7 +19,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 export default function ProfilePage() {
-    const productContext = useContext(CommerceContext);
+    const productContext = useContext(CommerceContext); // TODO: Need to call api to fetch user information!!
     console.log(productContext.user);
     const navigate = useNavigate();
 
