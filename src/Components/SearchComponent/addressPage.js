@@ -17,6 +17,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 function AddAddress() {
+    const navigate = useNavigate();
     //address info
     const [fullName, setFullName] = useState();
     const [phone, setPhone] = useState("");
@@ -50,7 +51,10 @@ function AddAddress() {
         { label: "Armed Forces - AA" }, { label: "Armed Forces - AE" }, { label: "Armed Forces - AP" }
     ];
 
-    const handleAdd = () => {}
+    const handleAdd = () => {
+        //TODO: Call api to add address!!
+        navigate('/address')
+    }
 
     const FullNameInput = (value) => {
         if(value !== ""){
@@ -193,6 +197,9 @@ function AddAddress() {
                         </Grid>
                         <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                             Add address
+                        </Button>
+                        <Button onClick={()=>{navigate("/")}} fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                            Cancel
                         </Button>
                     </Box>
                 </Box>

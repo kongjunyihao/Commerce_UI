@@ -16,12 +16,14 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import Link from '@mui/material/Link';
 
 
+
 export default function ProductDetail() {
     const {productId} = useParams();
     const Globalstate = useContext(CommerceContext);
     const dispatch = Globalstate.dispatch;
     const navigate = useNavigate();
-    const [item, setItem] = useState([]);
+    const [item, setItem] = useState({});
+    const [history,setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
     const [categoryItem, setCategory] = useState("");
     const getData = () => {
@@ -34,10 +36,41 @@ export default function ProductDetail() {
                 setCategory(item.category)
             }
         )
+        fetch("http://localhost:4000/app/cart/history",{
+                method:"POST",
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: window.localStorage.getItem('email')
+                })
+            })
+            .then(res=>res.json())
+            .then(res=>{console.log(res.history);setHistory(res.history)});
     }
+    const pushHistory = () => {
+        if(item.productID && item.productImage){
+            fetch("http://localhost:4000/app/cart/history/add",{
+                method:"POST",
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: window.localStorage.getItem('email'),
+                    productID: item.productID,
+                    productImage: item.productImage
+                })
+            })
+        }
+    }
+    
     useEffect(()=>{
         getData();
     },[]);
+    useEffect(()=>{
+        pushHistory();
+    },[item])
+
     if(loading) return (
         <>
         <div>Loading the details...</div>
@@ -99,6 +132,19 @@ export default function ProductDetail() {
                 >
                     Go to Cart
                 </Button>
+                {(history.length !== 0) && (
+                    <>
+                        <h4>Viewed products:</h4>
+                        {history.map((i,index)=>{return(
+                        <Link key={index} color="inherit" underline="hover" href={`/${i.productID}`}>
+                            <img 
+                            src={require("../../uploads/" + i.productImage.slice(8,i.productImage.length))} alt=" "/>
+                            <div>{i.productID}</div>
+                        </Link>
+                        )})}
+                    </>
+                )}
+                
             </Stack>
             
         </Box>

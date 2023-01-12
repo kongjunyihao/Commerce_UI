@@ -17,6 +17,16 @@ const cartInfoTemplate = new mongoose.Schema({
                 required:true
             }
         }
+    ],
+    history:[
+        {
+            productID:{
+                type:String
+            },
+            productImage:{
+                type:String
+            }
+        }
     ]
 })
 

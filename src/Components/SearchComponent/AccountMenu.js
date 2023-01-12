@@ -70,11 +70,19 @@ export default function AccountMenus() {
     setAnchorEl(null);
   }
 
+  const handleProfile = () => {
+    if(localStorage.getItem("email")){
+      navigate("/profile")
+    }else{
+      alert("Please sign in first!")
+    }
+  }
+
   const handleAddress = () => {
     if(localStorage.getItem("email")){
       navigate("/address")
     }else{
-      alert("Please sign in firdt!")
+      alert("Please sign in first!")
     }
   }
 
@@ -105,10 +113,10 @@ export default function AccountMenus() {
         {
           !localStorage.getItem("email")&&
           <MenuItem onClick={handleClose} disableRipple>
-          <Link style={{ textDecoration: 'none', color: 'black' }} to="signIn">Sign In</Link>
+          <Link style={{ textDecoration: 'none', color: 'black' }} to="/signIn">Sign In</Link>
         </MenuItem>}
         <MenuItem onClick={handleClose} disableRipple>
-          <Link style={{ textDecoration: 'none', color: 'black' }} to="signUp">Create Account</Link>
+          <Link style={{ textDecoration: 'none', color: 'black' }} to="/signUp">Create Account</Link>
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
@@ -120,7 +128,7 @@ export default function AccountMenus() {
         <MenuItem onClick={handleClose} disableRipple>
           <Link style={{ textDecoration: 'none', color: 'black' }} to="mylist">My List</Link>
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={handleProfile} disableRipple>
           <Link style={{ textDecoration: 'none', color: 'black' }} to="profile">Profile</Link>
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
@@ -129,9 +137,16 @@ export default function AccountMenus() {
         <MenuItem onClick={handleClose} disableRipple>
           <Link style={{ textDecoration: 'none', color: 'black' }} to="wallet">Wallet</Link>
         </MenuItem>
+        {localStorage.getItem("email")&& 
         <MenuItem onClick={handleAddress} disableRipple>
           <Link style={{ textDecoration: 'none', color: 'black' }}>Address Preferences</Link>
-        </MenuItem>
+        </MenuItem>}
+        {!localStorage.getItem("email")&& 
+        <MenuItem onClick={()=>{
+          alert("Please sign in first!")
+        }} disableRipple>
+          <Link style={{ textDecoration: 'none', color: 'black' }}>Address Preferences</Link>
+        </MenuItem>}
         {localStorage.getItem("email")&&
         <MenuItem onClick={handleSignout} disableRipple>
         <Link style={{ textDecoration: 'none', color: 'black' }} to="/">Sign out</Link>
