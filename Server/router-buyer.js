@@ -85,20 +85,57 @@ router.put('/profile/update', async (req, res)=>{
     res.json(result)
 })
 
-//get mail address info by email
-router.post('/address', async (req, res)=>{
+//get mailing address info by email
+router.get('/address', async (req, res)=>{
     let email = req.body.email
-    let result = await addressTemplateCopy.findOne({email: email}).exec()
-    res.json(result)
+    let result = await signUpTemplateCopy.findOne({email: email}).exec()
+    let existAddress = await result.addresses.find().exec()
+    if(existAddress) res.send(existAddress)
 })
 
 //add mailing address
 router.post('/address/add', async (req, res)=>{
     let email = req.body.email
-    let result = await addressTemplateCopy.findOne({email: email}).exec()
-    let targetItem = result.products.find(product => product.productID === productID)
-    if(targetItem) targetItem.quantity += 1
-    else result.products.push({productID:productID,quantity:1})
+    let fullName = req.body.fullName
+    let result = await signUpTemplateCopy.findOne({email: email}).exec()
+    const addAddress = new signUpTemplateCopy({
+        fullName: req.body.fullName,
+        phone: req.body.phone,
+        street: req.body.street,
+        city: req.body.city,
+        state: req.body.state,
+        zip: req.body.zip
+    })
+    result.addresses.push({addresses: addAddress})
+    await result.save()
+    res.json(result)
+})
+
+//edit mailing address
+router.put('/address/edit', async (req, res)=>{
+    let email = req.body.email
+    let fullName = req.body.fullName
+    let result = await signUpTemplateCopy.findOne({email: email}).exec()
+    let existAddress = await result.addresses.findOne(address => address.fullName === fullName).exec()
+    const addAddress = new signUpTemplateCopy({
+        fullName: req.body.fullName,
+        phone: req.body.phone,
+        street: req.body.street,
+        city: req.body.city,
+        state: req.body.state,
+        zip: req.body.zip
+    })
+    result.addresses.push({addresses: addAddress})
+    await result.save()
+    res.json(result)
+})
+
+//remove current address
+router.post('/address/remove', async (req, res)=>{
+    let email = req.body.email
+    let fullName = req.body.fullName
+    let result = await signUpTemplateCopy.findOne({email: email}).exec()
+    result.addresses = result.addresses.filter(address=>address.fullName !== fullName)
     await result.save()
     res.json(result)
 })

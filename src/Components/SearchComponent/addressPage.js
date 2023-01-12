@@ -37,7 +37,7 @@ function AddAddress() {
 
     const stateArr = [
         { label: "Alabama" }, { label: "Alaska" }, { label: "American Samoa" }, { label: "Arizona" }, { label: "Arkansas" },
-        { label: "Califonia" }, { label: "Colorado" }, { label: "Connecticut" }, { label: "Delaware" },
+        { label: "Califonia" }, { label: "Colorado" }, { label: "Connecticut" }, { label: "Columbia" }, { label: "Delaware" },
         { label: "District of Columbia" }, { label: "Federated States of Micronesia" }, { label: "Florida" }, { label: "Georgia" }, { label: "Guam" },
         { label: "Hawaii" }, { label: "Idaho" }, { label: "Illinois" }, { label: "Indiana" }, { label: "Iowa" },
         { label: "Kansas" }, { label: "Kentucky" }, { label: "Louisiana" }, { label: "Maine" }, { label: "Marshall Islands" },
