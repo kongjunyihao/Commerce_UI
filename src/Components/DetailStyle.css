@@ -37,9 +37,9 @@
     padding: 20px;
 }
 .checkout img{
-    height:200px;
-    width: 200px;
-    object-fit: contain;
+    height:120px;
+    width: 120px;
+    object-fit: cover;
     margin: 20px
 }
 .productDetail__wrapper {

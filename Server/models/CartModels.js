@@ -18,10 +18,16 @@ const cartInfoTemplate = new mongoose.Schema({
             }
         }
     ],
-    history: [{
-        productID: String,
-        productImage: String
-    }]
+    history:[
+        {
+            productID:{
+                type:String
+            },
+            productImage:{
+                type:String
+            }
+        }
+    ]
 })
 
 module.exports = mongoose.model('cart_info', cartInfoTemplate)

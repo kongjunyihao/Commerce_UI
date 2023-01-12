@@ -49,7 +49,7 @@ router.post('/cart/history', async (req, res)=>{
     let email = req.body.email
     let result = await cartInfoTemplateCopy.findOne({email: email}).exec()
     await result.save()
-    res.json(result.history)
+    res.json(result)
 })
 
 //add to history
@@ -58,11 +58,18 @@ router.post('/cart/history/add', async (req, res)=>{
     let productID = req.body.productID
     let productImage = req.body.productImage
     let result = await cartInfoTemplateCopy.findOne({email: email}).exec()
-    if(result.history.length < 3) result.history.push({productID:productID, productImage:productImage})
+    if(result.history.length < 3){
+        if(!result.history.find(i => i.productID === productID)) result.history.push({productID, productImage});
+        else return;
+    }
     else{
-        result.history.shift()
-        result.history.push({productID:productID, productImage:productImage})
+        if(!result.history.find(i => i.productID === productID)){
+        result.history.shift();
+        result.history.push({productID, productImage});
+        }
+        else return;
     }
     await result.save()
+    res.json(result)
 })
 module.exports = router

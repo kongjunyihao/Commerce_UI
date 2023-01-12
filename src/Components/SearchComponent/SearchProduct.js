@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useNavigate } from "react";
+import React, { useState, useEffect } from "react";
 import { categoryItem } from "./SearchFunction";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 import Button from '@mui/material/Button';
 import './BestClothStyle.css';

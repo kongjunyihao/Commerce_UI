@@ -14,7 +14,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import Link from '@mui/material/Link';
-import { application } from "express";
+
 
 
 export default function ProductDetail() {
@@ -22,7 +22,7 @@ export default function ProductDetail() {
     const Globalstate = useContext(CommerceContext);
     const dispatch = Globalstate.dispatch;
     const navigate = useNavigate();
-    const [item, setItem] = useState([]);
+    const [item, setItem] = useState({});
     const [history,setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
     const [categoryItem, setCategory] = useState("");
@@ -36,14 +36,7 @@ export default function ProductDetail() {
                 setCategory(item.category)
             }
         )
-    }
-    useEffect(()=>{
-        getData();
-        
-    },[]);
-    useEffect(()=>{
-        if(item){
-            fetch("http://localhost:4000/app/cart/history",{
+        fetch("http://localhost:4000/app/cart/history",{
                 method:"POST",
                 headers:{
                     'Content-Type': 'application/json'
@@ -53,20 +46,31 @@ export default function ProductDetail() {
                 })
             })
             .then(res=>res.json())
-            .then(res=>{setHistory(res)});
+            .then(res=>{console.log(res.history);setHistory(res.history)});
+    }
+    const pushHistory = () => {
+        if(item.productID && item.productImage){
             fetch("http://localhost:4000/app/cart/history/add",{
                 method:"POST",
                 headers:{
-                    'Content-Type':'application/json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     email: window.localStorage.getItem('email'),
-                    productID: item.productId,
+                    productID: item.productID,
                     productImage: item.productImage
                 })
             })
         }
+    }
+    
+    useEffect(()=>{
+        getData();
+    },[]);
+    useEffect(()=>{
+        pushHistory();
     },[item])
+
     if(loading) return (
         <>
         <div>Loading the details...</div>
@@ -128,10 +132,16 @@ export default function ProductDetail() {
                 >
                     Go to Cart
                 </Button>
-                {history && (
+                {(history.length !== 0) && (
                     <>
                         <h4>Viewed products:</h4>
-                        {history.map((i)=>(<img src={require("../../uploads/" + i.productImage.slice(8,i.productImage.length))}/>))}
+                        {history.map((i,index)=>{return(
+                        <Link key={index} color="inherit" underline="hover" href={`/${i.productID}`}>
+                            <img 
+                            src={require("../../uploads/" + i.productImage.slice(8,i.productImage.length))} alt=" "/>
+                            <div>{i.productID}</div>
+                        </Link>
+                        )})}
                     </>
                 )}
                 
