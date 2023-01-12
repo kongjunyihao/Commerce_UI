@@ -1,44 +1,38 @@
-const {string} = require('mathjs')
 const express = require('express')
 const mongoose = require('mongoose')
 
 const signUpTemplate = new mongoose.Schema({
     firstName:{
-        type: string,
+        type: String,
         required: true
     },
     lastName:{
-        type: string,
+        type: String,
         required: true
     },
     email:{
-        type: string,
+        type: String,
         required: true
     },
     phone:{
-        type: string,
+        type: String,
         required: true
     },
     password:{
-        type: string,
+        type: String,
         required: true
     },
-    address:{
-        type: string,
-        required: false
-    },
-    city:{
-        type: string,
-        required: false
-    },
-    state:{
-        type: string,
-        required: false
-    },
-    zip:{
-        type: string,
-        required: false
-    }
+    address:[
+        {
+            fullName: String,
+            phone: String,
+            city: String,
+            street: String,
+            building: String,
+            zip: Number,
+            state: String
+        }
+    ]
 })
 
 

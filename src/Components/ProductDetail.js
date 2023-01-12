@@ -21,7 +21,6 @@ export default function ProductDetail() {
     const Globalstate = useContext(CommerceContext);
     const dispatch = Globalstate.dispatch;
     const navigate = useNavigate();
-    // const item = Globalstate.productWithDetail.find(prod => prod.id === parseInt(productId));
     const [item, setItem] = useState([]);
     const [loading, setLoading] = useState(true);
     const [categoryItem, setCategory] = useState("");
@@ -30,7 +29,6 @@ export default function ProductDetail() {
         .then(res=>res.json())
         .then(
             item => {
-                // let item = Array.from(res).find(i => parseInt(i.productID) === parseInt(productId))
                 setItem(item)
                 setLoading(false)
                 setCategory(item.category)

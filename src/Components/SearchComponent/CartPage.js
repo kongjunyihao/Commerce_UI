@@ -159,10 +159,6 @@ export default function Cart() {
                         />
                         <Button
                             fullWidth variant="contained"
-                        // onClick={() => {
-                        //     item.quantity = 1;
-                        //     dispatch({ type: "ADD", payload: item });
-                        // }}
                         >
                             Proceed to checkout
                         </Button>

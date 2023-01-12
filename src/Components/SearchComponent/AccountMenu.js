@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -58,6 +58,7 @@ const StyledMenu = styled((props) => (
 export default function AccountMenus() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const navigate = useNavigate()
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -68,6 +69,15 @@ export default function AccountMenus() {
     localStorage.removeItem('email')
     setAnchorEl(null);
   }
+
+  const handleAddress = () => {
+    if(localStorage.getItem("email")){
+      navigate("/address")
+    }else{
+      alert("Please sign in firdt!")
+    }
+  }
+
   return (
     <div>
       <Button
@@ -119,8 +129,8 @@ export default function AccountMenus() {
         <MenuItem onClick={handleClose} disableRipple>
           <Link style={{ textDecoration: 'none', color: 'black' }} to="wallet">Wallet</Link>
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          <Link style={{ textDecoration: 'none', color: 'black' }} to="address">Address Preferences</Link>
+        <MenuItem onClick={handleAddress} disableRipple>
+          <Link style={{ textDecoration: 'none', color: 'black' }}>Address Preferences</Link>
         </MenuItem>
         {localStorage.getItem("email")&&
         <MenuItem onClick={handleSignout} disableRipple>

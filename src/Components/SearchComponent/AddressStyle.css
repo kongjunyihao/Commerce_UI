@@ -1,0 +1,12 @@
+.address-container{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+  }
+
+  .address-add{
+    border: 2px grey;
+    border-style: dashed;
+  }
+
+  .address-list{}

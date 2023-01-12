@@ -56,18 +56,6 @@ export default function UploadProduct() {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (productID && name && type && file && price && category && rating && views && description) { //What if we add same products??
-            // setProduct([...product, {
-            //     id: new Date().getTime(),
-            //     productID,
-            //     type,
-            //     title:name,
-            //     image:file, //mock data
-            //     price:parseFloat(price),
-            //     category,
-            //     rating:{rate: rating, count:views}, // modified
-            //     views,
-            //     description
-            // }]);
             let formData = new FormData();
             formData.append("productID", productID)
             formData.append("productType", type)
@@ -162,7 +150,6 @@ export default function UploadProduct() {
     }
 
     const handleImage = (event) => {
-        // console.log(event.target.files);
         setFile(event.target.files[0]);
         console.log(file);
     }
