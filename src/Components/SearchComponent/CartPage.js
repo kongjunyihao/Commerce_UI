@@ -30,7 +30,7 @@ export default function Cart() {
             })
             .then(res=>res.json())
             .then(data=>{
-                setItems(data.products)
+                if(data) setItems(data.products)
             })
     },[]);
     useEffect(()=>{
