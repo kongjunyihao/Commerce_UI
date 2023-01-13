@@ -19,8 +19,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 export default function ProfilePage() {
-    const productContext = useContext(CommerceContext); // TODO: Need to call api to fetch user information!!
-    console.log(productContext.user);
+    const [user, setUser] = useState({});
     const navigate = useNavigate();
 
     //Initial state
@@ -38,51 +37,26 @@ export default function ProfilePage() {
     const [emailEmpty, setEmailEmpty] = useState(false);
     const [phoneNumberEmpty, setPhoneNumberEmpty] = useState(false);
 
+    useEffect(()=>{
+        fetch("http://localhost:4000/app/profile",{
+            method:"POST",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                email:window.localStorage.getItem("email")
+            })
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            setUser(data)
+        })
+    },[])
     const handleSubmit = (event) => {
     event.preventDefault();
     if(firstNameEmpty === false && lastNameEmpty === false &&
        emailEmpty === false && phoneNumberEmpty === false){
-        // if(password !== rePassword){
-        //   setVerify(1);
-        // }else{
-        //   const data = {
-        //     username: email,
-        //     password: password
-        //   };
-        //   fetch("http://localhost:8080/user_detail",{
-        //     credentials: "include",
-        //     method: "POST",
-        //     headers: {
-        //       'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //       email: email,
-        //       name: firstName+" "+lastName,
-        //       phone: phone
-        //     })
-        //   })
-        //   .then(res=>res.json())
-        //   .then(result=>{
-        //     console.log(result)});
-
-        //   fetch("http://localhost:8080/users",{
-        //     credentials: "include",
-        //     method: "POST",
-        //     headers: {
-        //       'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(data)
-        //   })
-        //   .then(res=>res.json())
-        //   .then(result=>{
-        //     console.log(result);
-        //     if(result.code === 200){
-        //       navigate("/signIn");
-        //     }else{
-        //       alert("Please check your registration information");
-        //     }
-        //   })
-        // }
+        
     }
   };
 
@@ -151,7 +125,7 @@ export default function ProfilePage() {
                                     id="firstName"
                                     name="firstName"
                                     label={firstNameEmpty? "First Name":""}
-                                    defaultValue={productContext.user.firstName}
+                                    defaultValue={user.firstName}
                                     autoComplete="given-name"
                                     variant="standard"
                                     autoFocus
@@ -167,7 +141,7 @@ export default function ProfilePage() {
                                     id="lastName"
                                     name="lastName"
                                     label={lastNameEmpty? "Last Name":""}
-                                    defaultValue={productContext.user.lastName}
+                                    defaultValue={user.lastName}
                                     autoComplete="family-name"
                                     variant="standard"
                                     autoFocus
@@ -182,7 +156,7 @@ export default function ProfilePage() {
                                     id="email"
                                     name="email"
                                     label={emailEmpty? "Email Address":""}
-                                    defaultValue={productContext.user.email}
+                                    defaultValue={user.email}
                                     autoComplete="email"
                                     variant="standard"
                                     autoFocus
@@ -197,7 +171,7 @@ export default function ProfilePage() {
                                     id="phone number"
                                     name="phone number"
                                     label={phoneNumberEmpty? "Phone Number":""}
-                                    defaultValue={productContext.user.phoneNumber}
+                                    defaultValue={user.phone}
                                     autoComplete="mobile-phone-number"
                                     variant="standard"
                                     autoFocus
