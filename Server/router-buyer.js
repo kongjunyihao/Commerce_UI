@@ -16,7 +16,8 @@ router.post('/signup', async (req, res)=>{
         lastName:req.body.lastName,
         email:req.body.email,
         phone:req.body.phone,
-        password:securityPassword
+        password:securityPassword,
+        location:{}
     })
 
     const signUpCart = new cartInfoTemplateCopy({
@@ -81,7 +82,18 @@ router.post('/profile', async (req, res)=>{
 //update profile
 router.put('/profile/update', async (req, res)=>{
     let email = req.body.email
+    let user = req.body.user
     let result = await signUpTemplateCopy.findOne({email: email}).exec()
+    result.firstName = user.firstName;
+    result.lastName = user.lastName;
+    result.phone = user.phone;
+    result.location = {
+        address: user.location.address,
+        city: user.location.city,
+        state: user.location.state,
+        zip: user.location.zip
+    }; 
+    await result.save();
     res.json(result)
 })
 

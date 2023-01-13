@@ -22,16 +22,15 @@ const signUpTemplate = new mongoose.Schema({
         type: String,
         required: true
     },
-    addresses:[
-        {
-            fullName: String,
-            phone: String,
-            street: String,
+    location:{
+        type:{
+            address: String,
             city: String,
             state: String,
             zip: Number
-        }
-    ]
+        },
+        required: true
+    }
 })
 
 

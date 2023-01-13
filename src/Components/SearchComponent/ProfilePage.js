@@ -19,25 +19,27 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 export default function ProfilePage() {
-    const [user, setUser] = useState({});
-    const navigate = useNavigate();
-
     //Initial state
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
-    const [city, setCity] = useState("");
-    const [state, setState] = useState("");
-    const [zip, setZip] = useState("");
+    const [user, setUser] = useState({
+        firstName:"",
+        lastName:"",
+        email:"",
+        phone:"",
+        location:{
+            address:"",
+            city:"",
+            state:"",
+            zip:""
+        }
+    });
+    const navigate = useNavigate();
 
     const [firstNameEmpty, setFirstNameEmpty] = useState(false);
     const [lastNameEmpty, setLastNameEmpty] = useState(false);
-    const [emailEmpty, setEmailEmpty] = useState(false);
+    // const [emailEmpty, setEmailEmpty] = useState(false);
     const [phoneNumberEmpty, setPhoneNumberEmpty] = useState(false);
 
-    useEffect(()=>{
+    const getData = () => {
         fetch("http://localhost:4000/app/profile",{
             method:"POST",
             headers:{
@@ -49,14 +51,38 @@ export default function ProfilePage() {
         })
         .then(res=>res.json())
         .then(data=>{
-            setUser(data)
+            console.log(data)
+            setUser({...data})
         })
+    }
+
+    useEffect(()=>{
+        getData()
     },[])
+
     const handleSubmit = (event) => {
     event.preventDefault();
-    if(firstNameEmpty === false && lastNameEmpty === false &&
-       emailEmpty === false && phoneNumberEmpty === false){
-        
+    if( firstNameEmpty === false 
+     && lastNameEmpty === false 
+    //  && emailEmpty === false 
+     && phoneNumberEmpty === false){
+        fetch("http://localhost:4000/app/profile/update",{
+            method:"PUT",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                email:window.localStorage.getItem("email"),
+                user: user
+            })
+        })
+        .then(res=>{
+            alert("Successfully updated!");
+            navigate('/')
+        })
+    }
+    else {
+        alert("Please fill in your information!")
     }
   };
 
@@ -66,41 +92,44 @@ export default function ProfilePage() {
 
   const FirstNameInput = (value) => {
     if(value !== ""){
-      setFirstName(value);
+      setUser({...user,firstName:value})
       setFirstNameEmpty(false);
     }else{
+        setUser({...user,firstName:value})
         setFirstNameEmpty(true);
     }
   }
 
   const LastNameInput = (value) => {
     if(value !== ""){
-      setLastName(value);
+      setUser({...user,lastName:value})
       setLastNameEmpty(false);
     }else{
+        setUser({...user,lastName:value})
         setLastNameEmpty(true);
     }
   }
 
-  const EmailInput = (value) => {
-    if(value !== ""){
-      setEmail(value);
-      setEmailEmpty(false);
-    }else{
-        setEmailEmpty(true);
-    }
-  }
+//   const EmailInput = (value) => {
+//     if(value !== ""){
+//       setUser({...user,email:value})
+//       setEmailEmpty(false);
+//     }else{
+//         setEmailEmpty(true);
+//     }
+//   }
 
   const PhoneNumberInput = (value) => {
     if(value !== ""){
-      setPhone(value);
+      setUser({...user,phone:value})
       setPhoneNumberEmpty(false);
     }else{
+        setUser({...user,phone:value})
         setPhoneNumberEmpty(true);
     }
   }
 
-    return (
+  return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
@@ -125,7 +154,7 @@ export default function ProfilePage() {
                                     id="firstName"
                                     name="firstName"
                                     label={firstNameEmpty? "First Name":""}
-                                    defaultValue={user.firstName}
+                                    value={user.firstName}
                                     autoComplete="given-name"
                                     variant="standard"
                                     autoFocus
@@ -141,7 +170,7 @@ export default function ProfilePage() {
                                     id="lastName"
                                     name="lastName"
                                     label={lastNameEmpty? "Last Name":""}
-                                    defaultValue={user.lastName}
+                                    value={user.lastName}
                                     autoComplete="family-name"
                                     variant="standard"
                                     autoFocus
@@ -155,14 +184,14 @@ export default function ProfilePage() {
                                     fullWidth
                                     id="email"
                                     name="email"
-                                    label={emailEmpty? "Email Address":""}
-                                    defaultValue={user.email}
+                                    // label={emailEmpty? "Email Address":""}
+                                    value={user.email}
                                     autoComplete="email"
                                     variant="standard"
                                     autoFocus
-                                    onChange={(e) => EmailInput(e.target.value)}
+                                    // onChange={(e) => EmailInput(e.target.value)}
                                 />
-                                {emailEmpty?<div style={{color: 'red'}}>Email required!</div>:''}
+                                {/* {emailEmpty?<div style={{color: 'red'}}>Email required!</div>:''} */}
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
@@ -171,7 +200,7 @@ export default function ProfilePage() {
                                     id="phone number"
                                     name="phone number"
                                     label={phoneNumberEmpty? "Phone Number":""}
-                                    defaultValue={user.phone}
+                                    value={user.phone}
                                     autoComplete="mobile-phone-number"
                                     variant="standard"
                                     autoFocus
@@ -186,10 +215,11 @@ export default function ProfilePage() {
                                     name="address"
                                     label="Address"
                                     type="standard"
+                                    value={user.location.address?user.location.address:""}
                                     autoComplete="mailing-address"
                                     variant="standard"
                                     autoFocus
-                                    onChange={(e) => setAddress(e.target.value)}
+                                    onChange={(e) => setUser({...user,location:{...user.location, address:e.target.value}})}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -199,10 +229,11 @@ export default function ProfilePage() {
                                     name="city"
                                     label="City"
                                     type="standard"
+                                    value={user.location.city?user.location.city:""}
                                     autoComplete="current city"
                                     variant="standard"
                                     autoFocus
-                                    onChange={(e) => setCity(e.target.value)}
+                                    onChange={(e) => setUser({...user,location:{...user.location, city:e.target.value}})}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -212,10 +243,11 @@ export default function ProfilePage() {
                                     name="state"
                                     label="State"
                                     type="standard"
+                                    value={user.location.state?user.location.state:""}
                                     autoComplete="current State"
                                     variant="standard"
                                     autoFocus
-                                    onChange={(e) => setState(e.target.value)}
+                                    onChange={(e) => setUser({...user,location:{...user.location, state:e.target.value}})}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -225,10 +257,11 @@ export default function ProfilePage() {
                                     name="zip"
                                     label="Zip Code"
                                     type="standard"
+                                    value={user.location.zip?user.location.zip:""}
                                     autoComplete="Zip code"
                                     variant="standard"
                                     autoFocus
-                                    onChange={(e) => setZip(e.target.value)}
+                                    onChange={(e) => setUser({...user,location:{...user.location, zip:e.target.value}})}
                                 />
                             </Grid>
                         </Grid>
