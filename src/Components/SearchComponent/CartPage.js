@@ -33,6 +33,7 @@ export default function Cart() {
                 if(data) setItems(data.products)
             })
     },[]);
+
     useEffect(()=>{
         let details = [];
         items.forEach((i)=>{
@@ -43,6 +44,7 @@ export default function Cart() {
                 setDetails([...details]);})
             })
     },[items])
+    
     useEffect(()=>{
         if(itemDetails.length === items.length) setLoading(false);
     },[itemDetails])

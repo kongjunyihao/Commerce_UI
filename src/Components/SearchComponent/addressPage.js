@@ -198,7 +198,7 @@ function AddAddress() {
                         <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                             Add address
                         </Button>
-                        <Button onClick={()=>{navigate("/")}} fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                        <Button onClick={()=>{navigate("/address")}} fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                             Cancel
                         </Button>
                     </Box>
