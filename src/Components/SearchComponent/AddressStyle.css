@@ -45,7 +45,7 @@
   margin-bottom: 50px;
 }
 
-.list-content{
+.list-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -53,5 +53,13 @@
   border: 4px rgb(184, 184, 184);
   width: 350px;
   height: 350px;
+  cursor: pointer;
+}
+
+.list-content a {
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(56, 100, 234);
+  text-decoration: none;
   cursor: pointer;
 }

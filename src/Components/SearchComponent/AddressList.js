@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Icon from '@mui/material/Icon';
 
@@ -65,7 +66,7 @@ function AddressList() {
                                     Phone number: {item.phone}
                                 </p>
                                 <div>
-                                    Edit | Remove
+                                    <a href=''>Edit</a> | <a href=''>Rwmove</a>
                                 </div>
                             </div>
                         );

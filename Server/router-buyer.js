@@ -89,8 +89,9 @@ router.put('/profile/update', async (req, res)=>{
 router.get('/address', async (req, res)=>{
     let email = req.body.email
     let result = await signUpTemplateCopy.findOne({email: email}).exec()
-    let existAddress = await result.addresses.find().exec()
-    if(existAddress) res.send(existAddress)
+    // let existAddress = await result.addresses.find().exec()
+    // if(existAddress) res.send(existAddress)
+    res.send(result.addresses);
 })
 
 //add mailing address
