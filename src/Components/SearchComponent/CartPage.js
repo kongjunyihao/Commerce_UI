@@ -10,7 +10,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 
 export default function Cart() {
@@ -53,6 +53,11 @@ export default function Cart() {
         <div>Loading...</div>
         </>
     )
+
+    const handleCheckout = () => {
+        Navigate('/checkout')
+    }
+
     return (
         <>
             <Toolbar>
@@ -126,7 +131,7 @@ export default function Cart() {
                                         +
                                     </button>
                                 </div>
-                                <h2  onClick={() => 
+                                <h2 onClick={() => 
                                             fetch("http://localhost:4000/app/cart/delete",{
                                                 method:"POST",
                                                 headers:{
@@ -161,6 +166,7 @@ export default function Cart() {
                         />
                         <Button
                             fullWidth variant="contained"
+                            onClick={handleCheckout}
                         >
                             Proceed to checkout
                         </Button>
