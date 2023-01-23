@@ -28,7 +28,7 @@ export default function Checkout() {
     }
 
     return (
-        <Box className="detail"
+        <Box className="checkout-container"
             width='100%' sx={{ flexGrow: 1 }}
             bgcolor="white" color="black">
             <Toolbar>
@@ -77,19 +77,19 @@ export default function Checkout() {
                 <h5>Order Summary</h5>
                 <CssBaseline />
                 <div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div>
-                    <div></div>
+                    <div>Items:</div>
                     <div></div>
                 </div>
                 <div>
-                    <div></div>
+                    <div>Shipping & handling:</div>
                     <div></div>
                 </div>
                 <div>
+                    <div>Total before tax:</div>
                     <div></div>
+                </div>
+                <div>
+                    <div>Estimated tax to be collected:</div>
                     <div></div>
                 </div>
                 <CssBaseline />

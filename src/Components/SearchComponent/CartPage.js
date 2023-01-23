@@ -1,4 +1,5 @@
 import React, { useContext,useEffect,useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import { CommerceContext } from "../../App";
 
 import "./CartComponentStyle.css";
@@ -10,7 +11,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { Link, Navigate } from 'react-router-dom';
+
 
 
 export default function Cart() {
