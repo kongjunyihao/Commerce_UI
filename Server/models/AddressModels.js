@@ -7,11 +7,9 @@ const mailAddressTemplate = new mongoose.Schema({
     },
     address: [
         {
-            country: String,
             fullName: String,
             phone: String,
             street: String,
-            Apt: String,
             city: String,
             state: String,
             zip: Number

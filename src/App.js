@@ -17,7 +17,7 @@ export const CommerceContext = createContext();
 
 function App() {
 
-  const user = {
+  const checkout_info = {
     firstName: "John",
     lastName: "Alisa",
     email: "123456@gmail.com",
@@ -68,7 +68,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, []);
 
   const allCommerce = {
-    user,
+    checkout_info,
     product,
     setProduct,
     state,

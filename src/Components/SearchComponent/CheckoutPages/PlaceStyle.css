@@ -1,0 +1,19 @@
+.place-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.place-complete {
+    display: flex;
+    flex-direction: column;
+}
+
+.place-items {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid grey;
+}
+
+.items-info {
+    display: flex;
+}
