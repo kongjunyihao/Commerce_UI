@@ -11,11 +11,11 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const cors = require('cors')
-// const routerURI = require('./router-app')
 const routerBuyer = require('./router-buyer')
 const routerProduct = require('./router-product')
 const routerCart = require('./router-cart')
 // const draftURI = require('./modules/uploadDraft/DraftRouter')
+
 
 
 //MongoDB connection personal URI
