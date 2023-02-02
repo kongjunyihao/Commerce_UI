@@ -112,7 +112,6 @@ export default function CommerceSearchBar() {
     fetch("http://localhost:4000/app/products")
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setProductdata(data);
       })
   }

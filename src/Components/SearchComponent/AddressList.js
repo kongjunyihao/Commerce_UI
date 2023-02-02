@@ -22,7 +22,15 @@ function AddressList() {
     }, [])
 
     const getAddress = () => {
-        fetch('http://localhost:4000/app/address')
+        fetch('http://localhost:4000/app/address',{
+            method: "POST",
+            headers: {
+                    'Content-Type': 'application/json'
+                },
+            body: JSON.stringify({
+                    email: window.localStorage.getItem('email')
+                })
+        })
         .then(res=>res.json())
         .then(data=>{setAddress(data)})
     }
@@ -35,7 +43,7 @@ function AddressList() {
                     component="div"
                     sx={{ display: { xs: 'none', sm: 'block' }, paddingTop: '8px' }}
                 >
-                    {`Your Addresses (TODO: fetch from database)`}
+                    {`Your Addresses`}
                 </Typography>
             </Toolbar>
             <Box className="address-container"
@@ -52,13 +60,13 @@ function AddressList() {
                     </div>
                 </Stack>
                 <Stack className='list-container'>
-                    {address.map((item, index)=>{
+                    {address && (address.map((item, index)=>{
                         return (
                             <div className='list-content' key={index}>
                                 <h5>{item.fullName}</h5>
                                 <p>{item.street}</p>
                                 <div>
-                                    <div>{item.citty}</div>
+                                    <div>{item.city}</div>
                                     <div>{item.state}</div>
                                     <div>{item.zip}</div>
                                 </div>
@@ -66,11 +74,11 @@ function AddressList() {
                                     Phone number: {item.phone}
                                 </p>
                                 <div>
-                                    <a href=''>Edit</a> | <a href=''>Rwmove</a>
+                                    <a href=''>Edit</a> | <a href=''>Remove</a>
                                 </div>
                             </div>
                         );
-                    })}
+                    }))}
                 </Stack>
             </Box>
         </>

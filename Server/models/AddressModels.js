@@ -5,7 +5,7 @@ const mailAddressTemplate = new mongoose.Schema({
         type: String,
         required: true
     },
-    address: [
+    addresses: [
         {
             fullName: String,
             phone: String,
@@ -16,3 +16,4 @@ const mailAddressTemplate = new mongoose.Schema({
         }
     ]
 })
+module.exports = mongoose.model('address_infos', mailAddressTemplate)
