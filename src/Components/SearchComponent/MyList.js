@@ -26,7 +26,12 @@ export default function MyList({productID}) {
                 </Typography>
             </Toolbar>
             <div className='list-container'>
-                <div className='list-info'></div>
+                <div className='list-info'>
+                    {items.length === 0? (
+                        <h1 style={{marginTop: "15%", marginBottom: "15%", marginLeft:"40px"}}>Your cart is empty. Add something you like here!</h1>
+                    ) : null}
+                    {items.map((item, index) => {})}
+                </div>
             </div>
     </>
   );
