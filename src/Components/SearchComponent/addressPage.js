@@ -52,7 +52,21 @@ function AddAddress() {
     ];
 
     const handleAdd = () => {
-        //TODO: Call api to add address!!
+        fetch('http://localhost:4000/app/address/add',{
+            method: "POST",
+            headers: {
+                    'Content-Type': 'application/json'
+                },
+            body: JSON.stringify({
+                    email: window.localStorage.getItem('email'),
+                    fullName:fullName,
+                    phone:phone,
+                    street:address,
+                    city:city,
+                    state:state,
+                    zip:zip
+                })
+        })
         navigate('/address')
     }
 

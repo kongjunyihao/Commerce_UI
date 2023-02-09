@@ -19,24 +19,13 @@ import Link from '@mui/material/Link';
 
 export default function ProductDetail() {
     const { productId } = useParams();
-    const Globalstate = useContext(CommerceContext);
-    const dispatch = Globalstate.dispatch;
     const navigate = useNavigate();
     const [item, setItem] = useState({});
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
     const [categoryItem, setCategory] = useState("");
     const getData = () => {
-        fetch("http://localhost:4000/app/products/" + productId)
-            .then(res => res.json())
-            .then(
-                item => {
-                    setItem(item)
-                    setLoading(false)
-                    setCategory(item.category)
-                }
-            )
-        fetch("http://localhost:4000/app/cart/history", {
+        fetch("http://localhost:4000/app/history", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -47,10 +36,22 @@ export default function ProductDetail() {
         })
             .then(res => res.json())
             .then(res => { console.log(res.history); setHistory(res.history) });
+        fetch("http://localhost:4000/app/products/" + productId)
+            .then(res => res.json())
+            .then(
+                item => {
+                    setItem(item)
+                    setLoading(false)
+                    setCategory(item.category)
+                }
+            )
     }
-    const pushHistory = () => {
-        if (item.productID && item.productImage) {
-            fetch("http://localhost:4000/app/cart/history/add", {
+    useEffect(() => {
+        getData();
+    }, []);
+    useEffect(() => {
+        if (item.productID && item.productImage && history) {
+            fetch("http://localhost:4000/app/history/add", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -62,14 +63,8 @@ export default function ProductDetail() {
                 })
             })
         }
-    }
-
-    useEffect(() => {
-        getData();
-    }, []);
-    useEffect(() => {
-        pushHistory();
-    }, [item])
+    },[history])
+    
 
     if (loading) return (
         <>

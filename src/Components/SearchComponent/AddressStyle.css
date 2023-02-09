@@ -43,6 +43,9 @@
   margin-left: 50px;
   margin-top: 50px;
   margin-bottom: 50px;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .list-content {

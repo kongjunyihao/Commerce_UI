@@ -16,7 +16,8 @@ router.post('/signup', async (req, res)=>{
         lastName:req.body.lastName,
         email:req.body.email,
         phone:req.body.phone,
-        password:securityPassword
+        password:securityPassword,
+        location:{}
     })
 
     const signUpCart = new cartInfoTemplateCopy({
@@ -26,6 +27,11 @@ router.post('/signup', async (req, res)=>{
     })
     signUpCart.save()
 
+    const signUpAddress = new addressTemplateCopy({
+        buyer_email: req.body.email,
+        addresses: []
+    })
+    signUpAddress.save()
     signUpBuyer.save()
     .then(data=>{
         res.status(200).json(data)
@@ -81,14 +87,25 @@ router.post('/profile', async (req, res)=>{
 //update profile
 router.put('/profile/update', async (req, res)=>{
     let email = req.body.email
+    let user = req.body.user
     let result = await signUpTemplateCopy.findOne({email: email}).exec()
+    result.firstName = user.firstName;
+    result.lastName = user.lastName;
+    result.phone = user.phone;
+    result.location = {
+        address: user.location.address,
+        city: user.location.city,
+        state: user.location.state,
+        zip: user.location.zip
+    }; 
+    await result.save();
     res.json(result)
 })
 
 //get mailing address info by email
-router.get('/address', async (req, res)=>{
+router.post('/address', async (req, res)=>{
     let email = req.body.email
-    let result = await signUpTemplateCopy.findOne({email: email}).exec()
+    let result = await addressTemplateCopy.findOne({buyer_email: email}).exec()
     // let existAddress = await result.addresses.find().exec()
     // if(existAddress) res.send(existAddress)
     res.send(result.addresses);
@@ -97,17 +114,16 @@ router.get('/address', async (req, res)=>{
 //add mailing address
 router.post('/address/add', async (req, res)=>{
     let email = req.body.email
-    let fullName = req.body.fullName
-    let result = await signUpTemplateCopy.findOne({email: email}).exec()
-    const addAddress = new signUpTemplateCopy({
+    let result = await addressTemplateCopy.findOne({buyer_email: email}).exec()
+    const addAddress = {
         fullName: req.body.fullName,
         phone: req.body.phone,
         street: req.body.street,
         city: req.body.city,
         state: req.body.state,
         zip: req.body.zip
-    })
-    result.addresses.push({addresses: addAddress})
+    }
+    result.addresses.push(addAddress)
     await result.save()
     res.json(result)
 })
@@ -116,17 +132,17 @@ router.post('/address/add', async (req, res)=>{
 router.put('/address/edit', async (req, res)=>{
     let email = req.body.email
     let fullName = req.body.fullName
-    let result = await signUpTemplateCopy.findOne({email: email}).exec()
-    let existAddress = await result.addresses.findOne(address => address.fullName === fullName).exec()
-    const addAddress = new signUpTemplateCopy({
+    let result = await addressTemplateCopy.findOne({buyer_email: email}).exec()
+    const addAddress = {
         fullName: req.body.fullName,
         phone: req.body.phone,
         street: req.body.street,
         city: req.body.city,
         state: req.body.state,
         zip: req.body.zip
-    })
-    result.addresses.push({addresses: addAddress})
+    }
+    result.addresses = result.addresses.filter((i)=>{i.fullName !== fullName})
+    result.addresses.push(addAddress)
     await result.save()
     res.json(result)
 })
@@ -135,7 +151,7 @@ router.put('/address/edit', async (req, res)=>{
 router.post('/address/remove', async (req, res)=>{
     let email = req.body.email
     let fullName = req.body.fullName
-    let result = await signUpTemplateCopy.findOne({email: email}).exec()
+    let result = await addressTemplateCopy.findOne({buyer_email: email}).exec()
     result.addresses = result.addresses.filter(address=>address.fullName !== fullName)
     await result.save()
     res.json(result)
