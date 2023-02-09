@@ -63,11 +63,11 @@ function AddressList() {
                     {address && (address.map((item, index)=>{
                         return (
                             <div className='list-content' key={index}>
-                                <h5>{item.fullName}</h5>
+                                <p>{item.fullName}</p>
                                 <p>{item.street}</p>
-                                <div>
-                                    <div>{item.city}</div>
-                                    <div>{item.state}</div>
+                                <div className='location'>
+                                    <div>{item.city}</div>,&nbsp;
+                                    <div>{item.state}</div>&nbsp;
                                     <div>{item.zip}</div>
                                 </div>
                                 <p>

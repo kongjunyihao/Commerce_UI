@@ -15,6 +15,7 @@ router.post('/cart/add', async (req, res)=>{
     let email = req.body.email
     let productID = req.body.productID
     let result = await cartInfoTemplateCopy.findOne({email: email}).exec()
+    console.log(result)
     let targetItem = result.products.find(product => product.productID === productID)
     if(targetItem) targetItem.quantity += 1
     else result.products.push({productID,quantity:1})
