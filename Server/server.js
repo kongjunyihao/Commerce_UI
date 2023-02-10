@@ -14,6 +14,7 @@ const cors = require('cors')
 const routerBuyer = require('./router-buyer')
 const routerProduct = require('./router-product')
 const routerCart = require('./router-cart')
+const routerMylist = require('./router-mylist')
 // const draftURI = require('./modules/uploadDraft/DraftRouter')
 
 
@@ -45,6 +46,7 @@ app.use(express.json())
 app.use('/app', routerProduct)
 app.use('/app', routerBuyer)
 app.use('/app', routerCart)
+app.use('/app', routerMylist)
 app.use('uploads', express.static('uploads'))
 // app.use('/app', draftURI)
 

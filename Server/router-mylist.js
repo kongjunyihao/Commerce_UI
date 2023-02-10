@@ -22,4 +22,11 @@ router.post('/mylist/add', async (req, res)=>{
 })
 
 //remove items from mylist
-router.post('/mylist/delete', async (req, res)=>{})
+router.post('/mylist/delete', async (req, res)=>{
+    let email = req.body.email
+    let productID = req.body.productID
+    let result = await mylistInfoTemplateCopy.findOne({email: email}).exec()
+    result.mylists = result.mylists.filter(product=> product.productID !== productID)
+    await result.save()
+    res.json(result)
+})
