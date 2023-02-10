@@ -10,6 +10,21 @@ router.post('/mylist', async (req, res)=>{
     res.json(result)
 })
 
+//set up storage position
+const Storage = multer.diskStorage({
+    destination: 'uploads',
+    filename: (req, file, cb) =>{
+        // cb(null, file.originalname)
+        let ext = path.extname(file.originalname)
+        cb(null, Date.now() + ext)
+    }
+})
+
+//Upload image content
+const upload = multer({
+    storage: Storage
+}).single('productImage')
+
 //add items into mylist
 router.post('/mylist/add', async (req, res)=>{
     let email = req.body.email
