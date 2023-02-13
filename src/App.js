@@ -13,6 +13,7 @@ import AddAddress from './Components/SearchComponent/addressPage';
 import CommerceSearchBar from './Components/SearchBar';
 import CommerceNavBar from './Components/NavBar';
 import CommerceFooter from './Components/FeatureComponents/CommerceFooter';
+import MyList from './Components/SearchComponent/MyList';
 export const CommerceContext = createContext();
 
 function App() {
@@ -87,6 +88,7 @@ function App() {
           <Route path="addProduct" element={<SellerMainPage/>}></Route>
           <Route path="sellerCenter" element={<SellerCenterPage/>}></Route>
           <Route path="profile" element={<ProfilePage />}></Route>
+          <Route path="mylist" element={<><CommerceSearchBar/><CommerceNavBar/><MyList /><CommerceFooter/></>}></Route>
           <Route path="address" element={<><CommerceSearchBar/><CommerceNavBar/><AddressList /><CommerceFooter/></>}></Route>
           <Route path="address/add" element={<AddAddress/>}></Route>
         </Routes>

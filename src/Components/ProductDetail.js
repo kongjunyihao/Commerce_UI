@@ -92,6 +92,7 @@ export default function ProductDetail() {
                         />
                     </div>
                     {window.localStorage.getItem("email") ? (
+                        <>
                         <Button
                             fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
                             onClick={() =>
@@ -107,6 +108,22 @@ export default function ProductDetail() {
                                 })}>
                             add to cart
                         </Button>
+                        <Button
+                        fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
+                        onClick={() =>
+                            fetch("http://localhost:4000/app/mylist/add", {
+                                method: "POST",
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    email: window.localStorage.getItem("email"),
+                                    productID: item.productID
+                                })
+                            })}>
+                        add to mylist
+                        </Button>
+                        </>
                     ) : (
                         <Button
                             fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}

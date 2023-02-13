@@ -22,40 +22,49 @@
   width: 70%;
 }
 
-.list-item .list-item {
+.list-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  background: linear-gradient(to right, white,lightblue);
 }
 
-.list-item .list-item img {
+.list-item img {
   width: 40px;
   height: 40px;
 }
 
-.list-item .list-item p {
+.list-item p {
   width: 200px;
 }
 
-.list-item .list-operation {
+.list-operation {
   display: flex;
-  flex-direction: column;
   align-items: center;
   height: 120px;
-  border: 1px solid rgb(36, 91, 219);
   border-radius: 10px;
 }
 
-.list-item .list-operation button {
-  width: 70px;
-  height: 48px;
-  color: white;
+.list-operation button {
+  color: rgb(0, 0, 0);
   font-size: larger;
   cursor: pointer;
+  margin: 10px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  background-color: rgb(36, 91, 219);
+  background-color: rgb(64, 116, 237);
+  border:2px solid rgb(64, 116, 237) 
+}
+
+.list-operation button:hover {
+  border:2px solid rgb(64, 116, 237) 
+}
+
+.productName:hover {
+  text-decoration: underline;
+  color:darkblue;
+  cursor: pointer;
 }

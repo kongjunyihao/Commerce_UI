@@ -72,7 +72,7 @@ export default function AccountMenus() {
   const handleMyList = () => {
     if (localStorage.getItem("email")) {
       navigate("/mylist")
-      setAnchorEl(null)
+      setAnchorEl(null);
     } else {
       alert("Please sign in first!")
     }
@@ -89,6 +89,7 @@ export default function AccountMenus() {
   const handleAddress = () => {
     if (localStorage.getItem("email")) {
       navigate("/address")
+      setAnchorEl(null);
     } else {
       alert("Please sign in first!")
     }

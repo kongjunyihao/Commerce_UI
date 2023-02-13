@@ -16,6 +16,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    background: linear-gradient(to right, white,lightblue);
   }
   .cart .card img {
     width: 40px;
@@ -30,6 +31,15 @@
     height: 48px;
     border: 1px solid rgb(36, 91, 219);
     border-radius: 10px;
+  }
+  #saveForLater{
+    height: 46px;
+    color: black;
+    font-size: small;
+    text-align: center;
+    cursor: pointer;
+    background-color: lightcyan;
+    margin-right: 10px;
   }
   #left{
     width: 70px;

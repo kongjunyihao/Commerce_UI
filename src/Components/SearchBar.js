@@ -158,7 +158,7 @@ export default function CommerceSearchBar() {
           <Button variant="h6"
             sx={{ display: { marginLeft: 'auto' } }}
           >
-            <Link to='cart' style={{ color: 'white', textDecoration: 'none' }}>
+            <Link to='/cart' style={{ color: 'white', textDecoration: 'none' }}>
             <ShoppingCartCheckoutIcon
               fontSize='medium'
               sx={{ marginRight: 'auto' }} />&nbsp;Cart
