@@ -60,9 +60,15 @@ export default function MyList({ productID }) {
             <div className='list-container'>
                 <div className='list-info'>
                     {items.length === 0 ? (
-                        <h1 style={{ marginTop: "15%", marginBottom: "15%", marginLeft: "40px" }}>Your cart is empty. Add something you like here!</h1>
+                        <h1 style={{ marginTop: "15%", marginBottom: "15%", marginLeft: "40px" }}>Your list is empty. Add something you like here!</h1>
                     ) : null}
                     {items.map((item, index) => {
+                        let detail = itemDetails.find(i => i.productID === item.productID)
+                        if (detail === undefined) {
+                            return (
+                                <div key={index}>Loading...</div>
+                            )
+                        }
                         return (
                             <div className='list-item' key={index}>
                                 <img src={

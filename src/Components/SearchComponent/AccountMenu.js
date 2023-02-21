@@ -135,7 +135,7 @@ export default function AccountMenus() {
         </MenuItem>
         {localStorage.getItem("email") &&
           <MenuItem onClick={handleMyList} disableRipple>
-            <Link style={{ textDecoration: 'none', color: 'black' }} to="mylist">My List</Link>
+            <Link style={{ textDecoration: 'none', color: 'black' }} to="myList">My List</Link>
           </MenuItem>
         }
         <MenuItem onClick={handleProfile} disableRipple>
