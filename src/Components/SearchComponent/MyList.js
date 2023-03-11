@@ -9,11 +9,13 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { useNavigate } from 'react-router-dom';
 
-export default function MyList({ productID }) {
+export default function MyList() {
     const [items, setItems] = useState([])
     const [itemDetails, setDetails] = useState([])
-
+    const [loading,setLoading] = useState(true)
+    const navigate = useNavigate();
     useEffect(() => {
         fetch("http://localhost:4000/app/mylist", {
             method: "POST",
@@ -26,13 +28,13 @@ export default function MyList({ productID }) {
         })
             .then(res => res.json())
             .then(data => {
-                if (data) setItems(data.products)
+                if (data) setItems(data.mylists)
             })
     }, []);
 
     useEffect(() => {
         let details = [];
-        items.forEach((i) => {
+        if(items) items.forEach((i) => {
             fetch("http://localhost:4000/app/products/" + i.productID)
                 .then(res => res.json())
                 .then(data => {
@@ -42,9 +44,14 @@ export default function MyList({ productID }) {
         })
     }, [items])
 
-    const handleAddToCart = () => { }
-
-    const handleRemove = () => { }
+    useEffect(()=>{
+        if(itemDetails.length === items.length) setLoading(false);
+    },[itemDetails])
+    if(loading) return(
+        <>
+        <div>Loading...</div>
+        </>
+    )
 
     return (
         <>
@@ -59,25 +66,49 @@ export default function MyList({ productID }) {
             </Toolbar>
             <div className='list-container'>
                 <div className='list-info'>
-                    {items.length === 0 ? (
+                    {items.length === 0? (
                         <h1 style={{ marginTop: "15%", marginBottom: "15%", marginLeft: "40px" }}>Your list is empty. Add something you like here!</h1>
                     ) : null}
-                    {items.map((item, index) => {
-                        let detail = itemDetails.find(i => i.productID === item.productID)
-                        if (detail === undefined) {
-                            return (
-                                <div key={index}>Loading...</div>
-                            )
-                        }
+                    {itemDetails.map((item, index) => {
                         return (
                             <div className='list-item' key={index}>
                                 <img src={
-                                    detail.productImage[0] === 'h' ? detail.productImage : require("../../../uploads/" + detail.productImage.slice(8, detail.productImage.length)) //apply online data / mock data
+                                    item.productImage[0] === 'h' ? item.productImage : require("../../../uploads/" + item.productImage.slice(8, item.productImage.length)) //apply online data / mock data
                                 } alt=""></img>
-                                <p>{detail.productName}</p>
+                                <p className='productName' onClick={()=>{navigate(`/${item.productID}`)}}>{item.productName}</p>
                                 <div className='list-operation'>
-                                    <button onClick={handleAddToCart}>Add to Cart</button>
-                                    <button onClick={handleRemove}>Remove From List</button>
+                                    <Button onClick={()=>{ //move to cart
+                                        fetch("http://localhost:4000/app/mylist/delete",{
+                                            method:"POST",
+                                            headers:{
+                                                'Content-Type':'application/json'
+                                            },
+                                            body: JSON.stringify({
+                                                email: window.localStorage.getItem("email"),
+                                                productID: item.productID
+                                            })
+                                        });
+                                        fetch("http://localhost:4000/app/cart/add",{
+                                                method:"POST",
+                                                headers:{
+                                                    'Content-Type':'application/json'
+                                                },
+                                                body: JSON.stringify({
+                                                    email: window.localStorage.getItem("email"),
+                                                    productID: item.productID
+                                                })
+                                            }).then(window.location.reload());
+                                    }}>Move to Cart</Button>
+                                    <Button onClick={()=>{fetch("http://localhost:4000/app/mylist/delete",{
+                                        method:"POST",
+                                        headers:{
+                                            'Content-Type':'application/json'
+                                        },
+                                        body: JSON.stringify({
+                                            email: window.localStorage.getItem("email"),
+                                            productID: item.productID
+                                        })
+                                    }).then(window.location.reload())}}>Remove From List</Button>
                                 </div>
                             </div>
                         );

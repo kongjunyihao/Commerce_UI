@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-
+const multer = require('multer')
 const mylistInfoTemplateCopy = require('./models/MylistModels')
 
 //get mylist by buyer email
@@ -45,3 +45,4 @@ router.post('/mylist/delete', async (req, res)=>{
     await result.save()
     res.json(result)
 })
+module.exports = router

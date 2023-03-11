@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt')
 const signUpTemplateCopy = require('./models/SignUpModels')
 const addressTemplateCopy = require('./models/AddressModels')
 const cartInfoTemplateCopy = require('./models/CartModels')
+const mylistInfoTemplateCopy = require('./models/MylistModels')
 //Sign Up
 router.post('/signup', async (req, res)=>{
     const saltPassword = await bcrypt.genSalt(10)
@@ -32,6 +33,13 @@ router.post('/signup', async (req, res)=>{
         addresses: []
     })
     signUpAddress.save()
+
+    const signUpMyList = new mylistInfoTemplateCopy({
+        email: req.body.email,
+        mylists:[]
+    })
+    signUpMyList.save()
+
     signUpBuyer.save()
     .then(data=>{
         res.status(200).json(data)

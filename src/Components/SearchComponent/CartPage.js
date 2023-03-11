@@ -99,6 +99,30 @@ export default function Cart() {
                                 } alt=""></img>
                                 <p>{detail.productName}</p>
                                 <p>${(item.quantity * detail.price).toFixed(2)}</p>
+                                <Button id="saveForLater" onClick={()=>{
+                                        fetch("http://localhost:4000/app/cart/delete",{
+                                            method:"POST",
+                                            headers:{
+                                                'Content-Type':'application/json'
+                                            },
+                                            body: JSON.stringify({
+                                                email: window.localStorage.getItem("email"),
+                                                productID: item.productID
+                                            })
+                                        });
+                                        fetch("http://localhost:4000/app/mylist/add",{
+                                                method:"POST",
+                                                headers:{
+                                                    'Content-Type':'application/json'
+                                                },
+                                                body: JSON.stringify({
+                                                    email: window.localStorage.getItem("email"),
+                                                    productID: item.productID
+                                                })
+                                            }).then(window.location.reload());
+                                    }}>
+                                        Save for later
+                                    </Button>
                                 <div className="quantity">
                                     <button id="left"
                                          onClick={() => 
@@ -132,7 +156,7 @@ export default function Cart() {
                                         +
                                     </button>
                                 </div>
-                                <h2 onClick={() => 
+                                <h2 style={{marginRight:"10px"}} onClick={() => 
                                             fetch("http://localhost:4000/app/cart/delete",{
                                                 method:"POST",
                                                 headers:{

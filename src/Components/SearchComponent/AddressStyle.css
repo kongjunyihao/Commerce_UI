@@ -6,8 +6,8 @@
 
 .add-container {
   margin-left: 50px;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 60px;
+  margin-bottom: 40px;
 }
 
 .add-icon {
@@ -66,6 +66,8 @@
   height: 350px;
   cursor: pointer;
   border-width: large;
+  margin: 10px;
+  background: linear-gradient(to right, white, lightcyan);
 }
 
 .location{
