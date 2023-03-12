@@ -14,7 +14,6 @@ import MyList from './Components/SearchComponent/MyList';
 import CommerceSearchBar from './Components/SearchBar';
 import CommerceNavBar from './Components/NavBar';
 import CommerceFooter from './Components/FeatureComponents/CommerceFooter';
-import MyList from './Components/SearchComponent/MyList';
 export const CommerceContext = createContext();
 
 function App() {
