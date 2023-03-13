@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useContext } from 'react';
-import { Link as RouteLink } from 'react-router-dom';
+// import { Link as RouteLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { CommerceContext } from '../App';
 
@@ -23,7 +23,7 @@ import { Alert } from '@mui/material';
 const theme = createTheme();
 
 export default function SignUp() {
-  const userdata = useContext(CommerceContext);
+  // const userdata = useContext(CommerceContext);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");

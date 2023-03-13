@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { json, Link as RouteLink } from 'react-router-dom';
+import React, { useState } from 'react';
+// import { json, Link as RouteLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { CommerceContext } from '../App';
+// import { CommerceContext } from '../App';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -16,7 +16,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { data } from 'autoprefixer';
+// import { data } from 'autoprefixer';
 
 
 const theme = createTheme();

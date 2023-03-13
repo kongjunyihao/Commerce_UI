@@ -5,10 +5,10 @@ import "./BestProductStyle.css";
 import { Link } from 'react-router-dom';
 
 export default function BestProduct({product}){
-    // const { addToCart } = useContext(CommerceContext);
+    
     const Globalstate = useContext(CommerceContext);
     const dispatch = Globalstate.dispatch;
-    let opts = { format: "%s%v", symbol: "€" };
+    // let opts = { format: "%s%v", symbol: "€" };
     return (
         <div className='productCard__wrapper'>
           <div>
