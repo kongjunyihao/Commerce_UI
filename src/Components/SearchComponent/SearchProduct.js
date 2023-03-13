@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { categoryItem } from "./SearchFunction";
+// import { categoryItem } from "./SearchFunction";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
 import Button from '@mui/material/Button';

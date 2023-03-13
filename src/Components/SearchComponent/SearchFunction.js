@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { CommerceContext } from "../../App";
 
-import { styled, alpha, useTheme } from '@mui/material/styles';
-import { Tabs, Button, Tab } from '@mui/material';
+import { styled, alpha } from '@mui/material/styles';
+import { Button } from '@mui/material';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from "@mui/icons-material/Close";
-import { Link } from "react-router-dom";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+// import { Link } from "react-router-dom";
+// import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import "./SearchFunctionStyle.css";
 
 //Styled input element
@@ -40,11 +40,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchFunction({data}) {
-    const [productdata, setProductdata] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [nameEntered, setNameEntered] = useState("");
     const Globalstate = useContext(CommerceContext);
-    const dispatch = Globalstate.dispatch;
     
     let categories = new Set();
 
