@@ -7,8 +7,6 @@ import "./SearchComponent/BestClothStyle.css";
 export default function Recommendation({ categoryVal, productID }) {
     const [cloth, setCloth] = useState([]);
     const Globalstate = useContext(CommerceContext);
-    // const dispatch = Globalstate.dispatch;
-    // const navigate = useNavigate();
 
     const getData = () => {
         fetch("http://localhost:4000/app/products/category/"+categoryVal)
