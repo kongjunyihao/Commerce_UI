@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { styled, alpha, useTheme } from '@mui/material/styles';
-import { Tabs, Button, Tab } from '@mui/material';
+import { Button } from '@mui/material';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import MuiAppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,9 +12,9 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
+// import Badge from '@mui/material/Badge';
+// import MenuItem from '@mui/material/MenuItem';
+// import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -25,10 +25,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import { CheckOutlined } from '@mui/icons-material';
+// import AccountCircle from '@mui/icons-material/AccountCircle';
+// import NotificationsIcon from '@mui/icons-material/Notifications';
+// import MoreIcon from '@mui/icons-material/MoreVert';
+// import { CheckOutlined } from '@mui/icons-material';
 
 import AccountMenus from './SearchComponent/AccountMenu';
 import SearchFunction from './SearchComponent/SearchFunction';
@@ -45,35 +45,6 @@ const department = ['Clothing, Shoes Jewelry & Watches', 'Books',
 
 const programFeature = ['Whole Foods Market', 'Pharmacy', 'Physucal Stores', 'Subscribe & Save'];
 
-const helpSetting = [];
-
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 1),
-  marginRight: theme.spacing(0),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: '40%',
-  },
-}));
-
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'black',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
 
 
 const AppBar = styled(MuiAppBar, {
@@ -104,7 +75,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function CommerceSearchBar() {
   const theme = useTheme();
-  const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false);
   const [productdata, setProductdata] = useState([]);
 
@@ -127,8 +97,6 @@ export default function CommerceSearchBar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
-  const handleCart = () => { }
 
   return (
     <Box sx={{ flexGrow: 1 }}>

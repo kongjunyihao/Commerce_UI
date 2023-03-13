@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Route, Routes } from "react-router-dom";
-import { CommerceContext } from '../App';
 import ProductRating from "../Pages/Rating";
 import Recommendation from "./Recommendation";
 
@@ -9,10 +7,10 @@ import "./DetailStyle.css";
 import "./RecommendationStyle.css";
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Divider, { Button } from "@mui/material";
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { Button } from "@mui/material";
+// import TextField from '@mui/material/TextField';
+// import Typography from '@mui/material/Typography';
+// import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import Link from '@mui/material/Link';
 
 

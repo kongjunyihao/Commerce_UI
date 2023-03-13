@@ -1,10 +1,10 @@
-import React, { useContext,useEffect,useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { CommerceContext } from "../../App";
+// import { CommerceContext } from "../../App";
 
 import "./CartComponentStyle.css";
-import Box from '@mui/material/Box';
-import Divider, { Button } from "@mui/material";
+// import Box from '@mui/material/Box';
+import { Button } from "@mui/material";
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -49,6 +49,7 @@ export default function Cart() {
     useEffect(()=>{
         if(itemDetails.length === items.length) setLoading(false);
     },[itemDetails])
+    
     if(loading) return(
         <>
         <div>Loading...</div>

@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { CommerceContext } from "../App";
-import { Route, Routes, Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./SearchComponent/BestClothStyle.css";
 
-export default function ({ categoryVal, productID }) {
+export default function Recommendation({ categoryVal, productID }) {
     const [cloth, setCloth] = useState([]);
     const Globalstate = useContext(CommerceContext);
-    const dispatch = Globalstate.dispatch;
-    const navigate = useNavigate();
+    // const dispatch = Globalstate.dispatch;
+    // const navigate = useNavigate();
 
     const getData = () => {
         fetch("http://localhost:4000/app/products/category/"+categoryVal)
