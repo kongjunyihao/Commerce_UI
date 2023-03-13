@@ -8,9 +8,6 @@ import "./RecommendationStyle.css";
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { Button } from "@mui/material";
-// import TextField from '@mui/material/TextField';
-// import Typography from '@mui/material/Typography';
-// import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import Link from '@mui/material/Link';
 
 
