@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 
 import CommerceSearchBar from './Components/SearchBar';
 import CommerceNavBar from './Components/NavBar';
@@ -8,13 +8,13 @@ import Cart from './Components/SearchComponent/CartPage';
 import CommerceFooter from './Components/FeatureComponents/CommerceFooter';
 import SellerMainPage from './SellerComponent/SellerMainPage';
 import BestPage from './Pages/BestPage';
-import Recommendation from './Components/Recommendation';
+// import Recommendation from './Components/Recommendation';
 import SearchProduct from './Components/SearchComponent/SearchProduct';
 
-import Box from '@mui/material/Box';
-import { data } from 'autoprefixer';
+// import Box from '@mui/material/Box';
+// import { data } from 'autoprefixer';
 import ProductDetail from './Components/ProductDetail';
-import { positions } from '@mui/system';
+// import { positions } from '@mui/system';
 
 
 export default function BuyerMainPage() {
