@@ -1,17 +1,17 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { json, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { CommerceContext } from '../App';
 
-import Avatar from '@mui/material/Avatar';
+// import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Link from '@mui/material/Link';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -21,8 +21,8 @@ const theme = createTheme();
 export default function UploadProduct() {
     const productContext = useContext(CommerceContext);
     const product = productContext.product;
-    const setProduct = productContext.setProduct;
-    const navigate = useNavigate();
+    // const setProduct = productContext.setProduct;
+    // const navigate = useNavigate();
 
     const [productID, setProductID] = useState("");
     const [name, setName] = useState("");
@@ -37,7 +37,6 @@ export default function UploadProduct() {
     const [IDEmpty, setIDEmpty] = useState(true);
     const [typeEmpty, setTypeEmpty] = useState("ID Type");
     const [nameEmpty, setNameEmpty] = useState(true);
-    const [fileEmpty, setFileEmpty] = useState(true);
     const [priceEmpty, setPriceEmpty] = useState(true);
     const [categoryEmpty, setCategoryEmpty] = useState(true);
     const [ratingEmpty, setRatingEmpty] = useState(true);
