@@ -1,9 +1,7 @@
 import React, { useEffect,useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-// import { CommerceContext } from "../../App";
 
 import "./CartComponentStyle.css";
-// import Box from '@mui/material/Box';
 import { Button } from "@mui/material";
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';

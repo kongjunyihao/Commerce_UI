@@ -4,14 +4,12 @@ import { CommerceContext } from "../../App";
 import "./BestClothStyle.css";
 import { Link, useNavigate } from "react-router-dom";
 import ProductDetail from "../ProductDetail";
-// import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
 function BestCloth(){
     const [cloth,setCloth] = useState([]);
     const [loading,setLoading] = useState(true);
     const Globalstate = useContext(CommerceContext);
-    // const dispatch = Globalstate.dispatch;
     const navigate = useNavigate();
     const getData = () => {
         fetch("http://localhost:4000/app/products")

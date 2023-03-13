@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import "./MylistStyle.css";
-// import Box from '@mui/material/Box';
 import { Button } from "@mui/material";
-// import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
-// import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { useNavigate } from 'react-router-dom';
 
 export default function MyList() {

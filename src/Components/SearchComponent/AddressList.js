@@ -3,14 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 import "./AddressStyle.css";
 import Box from '@mui/material/Box';
-// import Divider, { Button } from "@mui/material";
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Checkbox from '@mui/material/Checkbox';
-// import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-// import Icon from '@mui/material/Icon';
 
 
 function AddressList() {

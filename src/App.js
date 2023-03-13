@@ -6,7 +6,6 @@ import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
 import SellerMainPage from './SellerComponent/SellerMainPage';
 import SellerCenterPage from './SellerComponent/SellerCenterPage';
-// import UploadProduct from './SellerComponent/UploadProduct';
 import ProfilePage from './Components/SearchComponent/ProfilePage';
 import AddressList from './Components/SearchComponent/AddressList';
 import AddAddress from './Components/SearchComponent/addressPage';

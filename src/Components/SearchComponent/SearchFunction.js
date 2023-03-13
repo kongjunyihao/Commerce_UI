@@ -6,8 +6,6 @@ import { Button } from '@mui/material';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from "@mui/icons-material/Close";
-// import { Link } from "react-router-dom";
-// import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import "./SearchFunctionStyle.css";
 
 //Styled input element
