@@ -1,6 +1,5 @@
 import React from "react";
-import { useState, useEffect, useContext } from "react";
-import { CommerceContext } from "../../App";
+import { useState, useEffect } from "react";
 import "./BestClothStyle.css";
 import { Link, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';

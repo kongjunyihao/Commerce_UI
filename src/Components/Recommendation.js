@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import { CommerceContext } from "../App";
+import React, { useState, useEffect } from "react";
 
 import "./SearchComponent/BestClothStyle.css";
 
