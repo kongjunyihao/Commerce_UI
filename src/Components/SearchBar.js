@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { styled, alpha, useTheme } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { Button } from '@mui/material';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import MuiAppBar from '@mui/material/AppBar';
@@ -11,17 +11,13 @@ import Toolbar from '@mui/material/Toolbar';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 
 import AccountMenus from './SearchComponent/AccountMenu';
 import SearchFunction from './SearchComponent/SearchFunction';

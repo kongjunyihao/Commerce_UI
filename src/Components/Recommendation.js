@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { CommerceContext } from "../App";
-import { useNavigate } from "react-router-dom";
 
 import "./SearchComponent/BestClothStyle.css";
 
 export default function Recommendation({ categoryVal, productID }) {
     const [cloth, setCloth] = useState([]);
-    const Globalstate = useContext(CommerceContext);
 
     const getData = () => {
         fetch("http://localhost:4000/app/products/category/"+categoryVal)

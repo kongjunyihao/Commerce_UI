@@ -40,7 +40,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchFunction({data}) {
     const [filteredData, setFilteredData] = useState([]);
     const [nameEntered, setNameEntered] = useState("");
-    const Globalstate = useContext(CommerceContext);
     
     let categories = new Set();
 
