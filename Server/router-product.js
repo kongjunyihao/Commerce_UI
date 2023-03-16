@@ -8,7 +8,7 @@ const productInfoTemplateCopy = require('./models/ProductModels')
 
 //set up storage position
 const Storage = multer.diskStorage({
-    destination: 'uploads',
+    dest: 'uploads/',
     filename: (req, file, cb) =>{
         // cb(null, file.originalname)
         let ext = path.extname(file.originalname)
