@@ -41,7 +41,7 @@ connect()
 
 //express middleware
 app.use(cors({
-    origin: '*',
+    origin: 'http://107.20.70.11:80',
 }))
 app.use(express.json())
 // app.use('/app', routerURI)
