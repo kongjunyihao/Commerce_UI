@@ -8,12 +8,18 @@ const productInfoTemplateCopy = require('./models/ProductModels')
 
 //set up storage position
 const Storage = multer.diskStorage({
-    dest: 'uploads/',
-    filename: (req, file, cb) =>{
-        // cb(null, file.originalname)
-        let ext = path.extname(file.originalname)
-        cb(null, Date.now() + ext)
-    }
+    destination: function (req, file, callback) {  
+        callback(null, './uploads');  
+      },  
+      filename: function (req, file, callback) {  
+        callback(null, file.originalname);  
+      }  
+    // dest: 'uploads/',
+    // filename: (req, file, cb) =>{
+    //     // cb(null, file.originalname)
+    //     let ext = path.extname(file.originalname)
+    //     cb(null, Date.now() + ext)
+    // }
 })
 
 //Upload image content
