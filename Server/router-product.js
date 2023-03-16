@@ -29,7 +29,7 @@ const upload = multer({
 
 //Upload Product
 router.post('/upload', (req, res)=>{
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    // res.setHeader("Access-Control-Allow-Origin", "*");
     upload(req, res, (err)=>{
         if(err){
             console.log(err)
