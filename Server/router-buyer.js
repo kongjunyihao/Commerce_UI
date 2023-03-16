@@ -114,8 +114,6 @@ router.put('/profile/update', async (req, res)=>{
 router.post('/address', async (req, res)=>{
     let email = req.body.email
     let result = await addressTemplateCopy.findOne({buyer_email: email}).exec()
-    // let existAddress = await result.addresses.find().exec()
-    // if(existAddress) res.send(existAddress)
     console.log(result.addresses)
     res.send(result.addresses);
 })
