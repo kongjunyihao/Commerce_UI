@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Host } from '../Frontend_Network';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -21,8 +21,6 @@ import { Alert } from '@mui/material';
 const theme = createTheme();
 
 export default function SignUp() {
-  // const userdata = useContext(CommerceContext);
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -47,7 +45,7 @@ export default function SignUp() {
       if (password !== rePassword) {
         setVerify(1);
       } else {
-        fetch("http://107.20.70.11:80/app/signup", {
+        fetch(Host+"/app/signup", {
           credentials: "omit",
           method: "POST",
           headers: {

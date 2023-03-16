@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-// import { json, Link as RouteLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-// import { CommerceContext } from '../App';
+import { Host } from '../Frontend_Network';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -16,7 +15,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import { data } from 'autoprefixer';
 
 
 const theme = createTheme();
@@ -32,7 +30,7 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if(emailEmpty === false && passwordEmpty === false){
-      fetch("http://107.20.70.11:80/app/signin",{
+      fetch(Host+"/app/signin",{
             method: "POST",
             headers: {
               'Content-Type': 'application/json',

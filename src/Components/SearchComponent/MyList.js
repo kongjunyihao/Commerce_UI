@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Host } from '../../Frontend_Network';
 
 import "./MylistStyle.css";
 import { Button } from "@mui/material";
@@ -12,7 +13,7 @@ export default function MyList() {
     const [loading,setLoading] = useState(true)
     const navigate = useNavigate();
     useEffect(() => {
-        fetch("http://107.20.70.11:80/app/mylist", {
+        fetch(Host+"/app/mylist", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -30,7 +31,7 @@ export default function MyList() {
     useEffect(() => {
         let details = [];
         if(items) items.forEach((i) => {
-            fetch("http://107.20.70.11:80/app/products/" + i.productID)
+            fetch(Host+"/app/products/" + i.productID)
                 .then(res => res.json())
                 .then(data => {
                     details.push(data);
@@ -73,7 +74,7 @@ export default function MyList() {
                                 <p className='productName' onClick={()=>{navigate(`/${item.productID}`)}}>{item.productName}</p>
                                 <div className='list-operation'>
                                     <Button onClick={()=>{ //move to cart
-                                        fetch("http://107.20.70.11:80/app/mylist/delete",{
+                                        fetch(Host+"/app/mylist/delete",{
                                             method:"POST",
                                             headers:{
                                                 'Content-Type':'application/json'
@@ -83,7 +84,7 @@ export default function MyList() {
                                                 productID: item.productID
                                             })
                                         });
-                                        fetch("http://107.20.70.11:80/app/cart/add",{
+                                        fetch(Host+"/app/cart/add",{
                                                 method:"POST",
                                                 headers:{
                                                     'Content-Type':'application/json'
@@ -94,7 +95,7 @@ export default function MyList() {
                                                 })
                                             }).then(window.location.reload());
                                     }}>Move to Cart</Button>
-                                    <Button onClick={()=>{fetch("http://107.20.70.11:80/app/mylist/delete",{
+                                    <Button onClick={()=>{fetch(Host+"/app/mylist/delete",{
                                         method:"POST",
                                         headers:{
                                             'Content-Type':'application/json'

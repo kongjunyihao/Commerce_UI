@@ -1,7 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "./BestClothStyle.css";
 import { Link, useNavigate } from "react-router-dom";
+import { Host } from "../../Frontend_Network";
+
+import "./BestClothStyle.css";
 import Button from '@mui/material/Button';
 
 function BestCloth(){
@@ -9,7 +11,7 @@ function BestCloth(){
     const [loading,setLoading] = useState(true);
     const navigate = useNavigate();
     const getData = () => {
-        fetch("http://107.20.70.11:80/app/products")
+        fetch(Host+"/app/products")
         .then(res=>res.json())
         .then(
             data=>{
@@ -51,7 +53,7 @@ function BestCloth(){
                             <Button
                             fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
                             onClick={() => 
-                                fetch("http://107.20.70.11:80/app/cart/add",{
+                                fetch(Host+"/app/cart/add",{
                                     method:"POST",
                                     headers:{
                                         'Content-Type':'application/json'

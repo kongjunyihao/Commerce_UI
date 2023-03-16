@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import { Host } from '../../Frontend_Network';
 
 import "./AddressStyle.css";
 import Box from '@mui/material/Box';
@@ -17,7 +18,7 @@ function AddressList() {
     }, [])
 
     const getAddress = () => {
-        fetch('http://107.20.70.11:80/app/address',{
+        fetch(Host+"/app/address",{
             method: "POST",
             headers: {
                     'Content-Type': 'application/json'

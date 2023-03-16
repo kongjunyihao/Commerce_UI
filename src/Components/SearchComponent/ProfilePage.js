@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import { Host } from "../../Frontend_Network";
 
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -33,7 +34,7 @@ export default function ProfilePage() {
     const [phoneNumberEmpty, setPhoneNumberEmpty] = useState(false);
 
     const getData = () => {
-        fetch("http://107.20.70.11:80/app/profile",{
+        fetch(Host+"/app/profile",{
             method:"POST",
             headers:{
                 'Content-Type':'application/json'
@@ -58,7 +59,7 @@ export default function ProfilePage() {
     if( firstNameEmpty === false 
      && lastNameEmpty === false 
      && phoneNumberEmpty === false){
-        fetch("http://107.20.70.11:80/app/profile/update",{
+        fetch(Host+"/app/profile/update",{
             method:"PUT",
             headers:{
                 'Content-Type':'application/json'

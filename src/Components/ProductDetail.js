@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductRating from "../Pages/Rating";
 import Recommendation from "./Recommendation";
+import { Host } from "../Frontend_Network";
 
 import "./DetailStyle.css";
 import "./RecommendationStyle.css";
@@ -20,7 +21,7 @@ export default function ProductDetail() {
     const [loading, setLoading] = useState(true);
     const [categoryItem, setCategory] = useState("");
     const getData = () => {
-        fetch("http://107.20.70.11:80/app/history", {
+        fetch(Host+"/app/history", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -31,7 +32,7 @@ export default function ProductDetail() {
         })
             .then(res => res.json())
             .then(res => { console.log(res.history); setHistory(res.history) });
-        fetch("http://107.20.70.11:80/app/products/" + productId)
+        fetch(Host+"/app/products/" + productId)
             .then(res => res.json())
             .then(
                 item => {
@@ -46,7 +47,7 @@ export default function ProductDetail() {
     }, []);
     useEffect(() => {
         if (item.productID && item.productImage && history) {
-            fetch("http://107.20.70.11:80/app/history/add", {
+            fetch(Host+"/app/history/add", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

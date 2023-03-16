@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Host } from "../Frontend_Network";
 
 import "./SearchComponent/BestClothStyle.css";
 
@@ -6,7 +7,7 @@ export default function Recommendation({ categoryVal, productID }) {
     const [cloth, setCloth] = useState([]);
 
     const getData = () => {
-        fetch("http://107.20.70.11:80/app/products/category/"+categoryVal)
+        fetch(Host+"/app/products/category/"+categoryVal)
             .then(res => res.json())
             .then(
                 data => {

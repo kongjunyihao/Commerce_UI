@@ -1,7 +1,7 @@
+import { useContext, useEffect } from "react";
 import products from "./data";
 import BestProduct from "./BestSellerComponent";
 import { CommerceContext } from "../App";
-import { useContext, useEffect } from "react";
 import "./BestPageStyle.css";
 
 export default function BestPage(){

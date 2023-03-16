@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Host } from '../Frontend_Network';
 
 import { styled, useTheme } from '@mui/material/styles';
 import { Button } from '@mui/material';
@@ -68,7 +69,7 @@ export default function CommerceSearchBar() {
   const [productdata, setProductdata] = useState([]);
 
   const getData = () => {
-    fetch("http://107.20.70.11:80/app/products")
+    fetch(Host+"/app/products")
       .then(res => res.json())
       .then(data => {
         setProductdata(data);

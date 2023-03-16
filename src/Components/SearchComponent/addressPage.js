@@ -1,5 +1,6 @@
 import React, { useState} from 'react';
 import { useNavigate } from "react-router-dom";
+import { Host } from '../../Frontend_Network';
 
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -49,7 +50,7 @@ function AddAddress() {
     ];
 
     const handleAdd = () => {
-        fetch('http://107.20.70.11:80/app/address/add',{
+        fetch(Host+"/app/address/add",{
             method: "POST",
             headers: {
                     'Content-Type': 'application/json'
