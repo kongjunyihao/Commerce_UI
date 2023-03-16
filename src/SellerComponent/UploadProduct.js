@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { CommerceContext } from '../App';
 
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,9 +15,6 @@ const theme = createTheme();
 const URL = "http://107.20.70.11:80/app";
 
 export default function UploadProduct() {
-    // const productContext = useContext(CommerceContext);
-    // const product = productContext.product;
-
     const [productID, setProductID] = useState("");
     const [name, setName] = useState("");
     const [type, setType] = useState("");
@@ -79,12 +75,6 @@ export default function UploadProduct() {
             })
         };
     }
-
-
-    // useEffect(() => {
-    //     console.log(product);
-    //     if (product.length > 0) window.sessionStorage.setItem("product", JSON.stringify(product));
-    // }, [product]);
 
     const IDInput = (value) => {
         if (value !== "") {
