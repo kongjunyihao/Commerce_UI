@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Host } from '../Frontend_Network';
 
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -57,7 +58,7 @@ export default function UploadProduct() {
             formData.append("view", views)
             formData.append("description", description)
 
-            fetch(URL+"/upload", {
+            fetch(Host+"/app/upload", {
                 method: "POST",
                 body: formData
             })
