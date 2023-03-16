@@ -49,7 +49,7 @@ function AddAddress() {
     ];
 
     const handleAdd = () => {
-        fetch('http://localhost:4000/app/address/add',{
+        fetch('http://107.20.70.11:80/app/address/add',{
             method: "POST",
             headers: {
                     'Content-Type': 'application/json'

@@ -47,7 +47,7 @@ export default function SignUp() {
       if (password !== rePassword) {
         setVerify(1);
       } else {
-        fetch("http://localhost:4000/app/signup", {
+        fetch("http://107.20.70.11:80/app/signup", {
           credentials: "omit",
           method: "POST",
           headers: {
@@ -73,7 +73,7 @@ export default function SignUp() {
         //   username: email,
         //   password: password
         // };
-        // fetch("http://localhost:8080/user_detail",{
+        // fetch("http://107.20.70.11:8080/user_detail",{
         //   credentials: "include",
         //   method: "POST",
         //   headers: {
@@ -89,7 +89,7 @@ export default function SignUp() {
         // .then(result=>{
         //   console.log(result)});
 
-        // fetch("http://localhost:8080/users",{
+        // fetch("http://107.20.70.11:8080/users",{
         //   credentials: "include",
         //   method: "POST",
         //   headers: {

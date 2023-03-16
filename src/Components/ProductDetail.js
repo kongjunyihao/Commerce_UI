@@ -20,7 +20,7 @@ export default function ProductDetail() {
     const [loading, setLoading] = useState(true);
     const [categoryItem, setCategory] = useState("");
     const getData = () => {
-        fetch("http://localhost:4000/app/history", {
+        fetch("http://107.20.70.11:80/app/history", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ export default function ProductDetail() {
         })
             .then(res => res.json())
             .then(res => { console.log(res.history); setHistory(res.history) });
-        fetch("http://localhost:4000/app/products/" + productId)
+        fetch("http://107.20.70.11:80/app/products/" + productId)
             .then(res => res.json())
             .then(
                 item => {
@@ -46,7 +46,7 @@ export default function ProductDetail() {
     }, []);
     useEffect(() => {
         if (item.productID && item.productImage && history) {
-            fetch("http://localhost:4000/app/history/add", {
+            fetch("http://107.20.70.11:80/app/history/add", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ export default function ProductDetail() {
                         <Button
                             fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
                             onClick={() =>
-                                fetch("http://localhost:4000/app/cart/add", {
+                                fetch("http://107.20.70.11:80/app/cart/add", {
                                     method: "POST",
                                     headers: {
                                         'Content-Type': 'application/json'
@@ -106,7 +106,7 @@ export default function ProductDetail() {
                         <Button
                         fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
                         onClick={() =>
-                            fetch("http://localhost:4000/app/mylist/add", {
+                            fetch("http://107.20.70.11:80/app/mylist/add", {
                                 method: "POST",
                                 headers: {
                                     'Content-Type': 'application/json'

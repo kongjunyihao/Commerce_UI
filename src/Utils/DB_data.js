@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const app = express();
 
 const con = mysql.createConnection({
-    hoat: 'localhost',
+    hoat: '107.20.70.11',
     user: 'root',
     password: '123456',
     database: 'sys'

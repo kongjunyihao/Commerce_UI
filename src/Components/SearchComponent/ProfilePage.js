@@ -33,7 +33,7 @@ export default function ProfilePage() {
     const [phoneNumberEmpty, setPhoneNumberEmpty] = useState(false);
 
     const getData = () => {
-        fetch("http://localhost:4000/app/profile",{
+        fetch("http://107.20.70.11:80/app/profile",{
             method:"POST",
             headers:{
                 'Content-Type':'application/json'
@@ -58,7 +58,7 @@ export default function ProfilePage() {
     if( firstNameEmpty === false 
      && lastNameEmpty === false 
      && phoneNumberEmpty === false){
-        fetch("http://localhost:4000/app/profile/update",{
+        fetch("http://107.20.70.11:80/app/profile/update",{
             method:"PUT",
             headers:{
                 'Content-Type':'application/json'

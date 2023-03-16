@@ -32,7 +32,7 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if(emailEmpty === false && passwordEmpty === false){
-      fetch("http://localhost:4000/app/signin",{
+      fetch("http://107.20.70.11:80/app/signin",{
             method: "POST",
             headers: {
               'Content-Type': 'application/json',

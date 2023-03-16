@@ -18,7 +18,7 @@ export default function Cart() {
     const [loading,setLoading] = useState(true)
     let total = 0
     useEffect(() => {
-            fetch("http://localhost:4000/app/cart",{
+            fetch("http://107.20.70.11:80/app/cart",{
                 method:"POST",
                 headers:{
                     'Content-Type':'application/json'
@@ -36,7 +36,7 @@ export default function Cart() {
     useEffect(()=>{
         let details = [];
         items.forEach((i)=>{
-            fetch("http://localhost:4000/app/products/" + i.productID)
+            fetch("http://107.20.70.11:80/app/products/" + i.productID)
             .then(res=>res.json())
             .then(data=>{
                 details.push(data);
@@ -99,7 +99,7 @@ export default function Cart() {
                                 <p>{detail.productName}</p>
                                 <p>${(item.quantity * detail.price).toFixed(2)}</p>
                                 <Button id="saveForLater" onClick={()=>{
-                                        fetch("http://localhost:4000/app/cart/delete",{
+                                        fetch("http://107.20.70.11:80/app/cart/delete",{
                                             method:"POST",
                                             headers:{
                                                 'Content-Type':'application/json'
@@ -109,7 +109,7 @@ export default function Cart() {
                                                 productID: item.productID
                                             })
                                         });
-                                        fetch("http://localhost:4000/app/mylist/add",{
+                                        fetch("http://107.20.70.11:80/app/mylist/add",{
                                                 method:"POST",
                                                 headers:{
                                                     'Content-Type':'application/json'
@@ -125,7 +125,7 @@ export default function Cart() {
                                 <div className="quantity">
                                     <button id="left"
                                          onClick={() => 
-                                            fetch("http://localhost:4000/app/cart/minus",{
+                                            fetch("http://107.20.70.11:80/app/cart/minus",{
                                                 method:"POST",
                                                 headers:{
                                                     'Content-Type':'application/json'
@@ -141,7 +141,7 @@ export default function Cart() {
                                     <p id="middle">{item.quantity}</p>
                                     <button id="right"
                                         onClick={() => 
-                                            fetch("http://localhost:4000/app/cart/add",{
+                                            fetch("http://107.20.70.11:80/app/cart/add",{
                                                 method:"POST",
                                                 headers:{
                                                     'Content-Type':'application/json'
@@ -156,7 +156,7 @@ export default function Cart() {
                                     </button>
                                 </div>
                                 <h2 style={{marginRight:"10px"}} onClick={() => 
-                                            fetch("http://localhost:4000/app/cart/delete",{
+                                            fetch("http://107.20.70.11:80/app/cart/delete",{
                                                 method:"POST",
                                                 headers:{
                                                     'Content-Type':'application/json'

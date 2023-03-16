@@ -9,7 +9,7 @@ function SearchProduct() {
     const {categoryVal} = useParams();
     const navigate = useNavigate();
     const getData = () => {
-        fetch("http://localhost:4000/app/search",{
+        fetch("http://107.20.70.11:80/app/search",{
             method: "POST",
             headers:{
                 'Content-Type': 'application/json'
@@ -50,7 +50,7 @@ function SearchProduct() {
                             <Button
                             fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
                             onClick={() => 
-                                fetch("http://localhost:4000/app/cart/add",{
+                                fetch("http://107.20.70.11:80/app/cart/add",{
                                     method:"POST",
                                     headers:{
                                         'Content-Type':'application/json'

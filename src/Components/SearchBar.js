@@ -68,7 +68,7 @@ export default function CommerceSearchBar() {
   const [productdata, setProductdata] = useState([]);
 
   const getData = () => {
-    fetch("http://localhost:80/app/products")
+    fetch("http://107.20.70.11:80/app/products")
       .then(res => res.json())
       .then(data => {
         setProductdata(data);

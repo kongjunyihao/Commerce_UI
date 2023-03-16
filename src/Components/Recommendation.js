@@ -6,7 +6,7 @@ export default function Recommendation({ categoryVal, productID }) {
     const [cloth, setCloth] = useState([]);
 
     const getData = () => {
-        fetch("http://localhost:4000/app/products/category/"+categoryVal)
+        fetch("http://107.20.70.11:80/app/products/category/"+categoryVal)
             .then(res => res.json())
             .then(
                 data => {
