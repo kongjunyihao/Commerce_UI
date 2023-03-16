@@ -40,7 +40,9 @@ async function connect(){
 connect()
 
 //express middleware
-app.use(cors())
+app.use(cors({
+    origin: 'http://107.20.70.11:3000',
+}))
 app.use(express.json())
 // app.use('/app', routerURI)
 app.use('/app', routerProduct)

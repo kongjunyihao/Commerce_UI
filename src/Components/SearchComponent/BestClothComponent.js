@@ -9,7 +9,7 @@ function BestCloth(){
     const [loading,setLoading] = useState(true);
     const navigate = useNavigate();
     const getData = () => {
-        fetch("http://localhost:4000/app/products")
+        fetch("http://localhost:80/app/products")
         .then(res=>res.json())
         .then(
             data=>{
