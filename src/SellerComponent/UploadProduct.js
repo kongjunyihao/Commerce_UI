@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
 
-const URL = "http://107.20.70.11:4000/app";
+const URL = "http://107.20.70.11:80/app";
 
 export default function UploadProduct() {
     const productContext = useContext(CommerceContext);
