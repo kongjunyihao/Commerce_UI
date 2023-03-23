@@ -152,7 +152,7 @@ export default function UploadProduct() {
     }
 
     return (
-        <Profiler id="UploadProduct" onRender={onRenderCallback}>
+        <profiler id="UploadProduct" onRender={onRenderCallback}>
             <ThemeProvider theme={theme}>
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />
@@ -301,6 +301,6 @@ export default function UploadProduct() {
                     </Box>
                 </Container>
             </ThemeProvider>
-        </Profiler>
+        </profiler>
     );
 }
