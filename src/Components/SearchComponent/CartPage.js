@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { Profiler, useEffect,useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { Host } from '../../Frontend_Network';
 
@@ -11,13 +11,40 @@ import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
+const onRenderCallback = (
+    id,
+    phase,
+    actualDuration,
+    baseDuration,
+    strtTime,
+    commitTime,
+    interactions
+  ) => {
+    console.log(
+      "id",
+      id,
+      "phase",
+      phase,
+      "actualDuration",
+      actualDuration,
+      "baseDuration",
+      baseDuration,
+      "startTime",
+      strtTime,
+      "commitTime",
+      commitTime,
+      "interactions",
+      interactions
+    );
+  };
 
-
-export default function Cart() {
+function Cart() {
     const [items,setItems] = useState([])
     const [itemDetails, setDetails] = useState([])
     const [loading,setLoading] = useState(true)
+
     let total = 0
+    
     useEffect(() => {
             fetch(Host+"/app/cart",{
                 method:"POST",
@@ -41,7 +68,8 @@ export default function Cart() {
             .then(res=>res.json())
             .then(data=>{
                 details.push(data);
-                setDetails([...details]);})
+                setDetails([...details]);
+            })
             })
     },[items])
     
@@ -61,6 +89,7 @@ export default function Cart() {
 
     return (
         <>
+            <Profiler id="Cart" onRender={onRenderCallback}>
             <Toolbar>
                 <Typography
                     variant="h4"
@@ -200,6 +229,9 @@ export default function Cart() {
                 </Stack>
                 }
             </div>
+            </Profiler>
         </>
     );
 }
+
+export default Cart;
