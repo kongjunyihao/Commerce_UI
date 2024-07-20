@@ -25,6 +25,7 @@ function SearchProduct() {
                     }
                     else {
                         setProduct(data);
+                        console.log(data)
                     }
                 }
             )
