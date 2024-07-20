@@ -21,6 +21,7 @@ function BestCloth(){
                 else{
                     setCloth(data);
                     setLoading(false);
+                    console.log(data)
                 }
             }
         )
